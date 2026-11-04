@@ -1,0 +1,111 @@
+<section class="hb-section">
+  <div class="hb-container">
+    @switch (ctx().kind) {
+      @case ('loading') {
+        <div class="checkout"><div class="hb-skeleton" style="height: 520px"></div><div class="hb-skeleton" style="height: 420px"></div></div>
+      }
+      @case ('unavailable') {
+        <div class="hb-center">
+          <h2 class="hb-title">We can't book this stay</h2>
+          <p class="hb-subtitle">{{ $any(ctx()).reason }}</p>
+          <p style="margin-top: 24px"><a class="hb-btn" routerLink="/rooms" [queryParams]="$any(ctx()).search">Back to rooms</a></p>
+        </div>
+      }
+      @case ('ready') {
+        @let x = ready()!;
+        @let q = x.result.quote;
+        <div class="checkout">
+          <form class="checkout__form" [formGroup]="form" (ngSubmit)="payAtHotel()" novalidate>
+            <h1 class="hb-title">Your details</h1>
+
+            <div class="grid-2">
+              <div class="hb-field">
+                <label class="hb-label" for="g-name">Full name *</label>
+                <input class="hb-input" id="g-name" formControlName="guest_name" autocomplete="name" [class.is-invalid]="invalid('guest_name')">
+                @if (invalid('guest_name')) { <span class="hb-error">Please enter your name.</span> }
+              </div>
+              <div class="hb-field">
+                <label class="hb-label" for="g-email">Email *</label>
+                <input class="hb-input" id="g-email" type="email" formControlName="guest_email" autocomplete="email" [class.is-invalid]="invalid('guest_email')">
+                @if (invalid('guest_email')) { <span class="hb-error">Please enter a valid email. We send your confirmation here.</span> }
+              </div>
+              <div class="hb-field">
+                <label class="hb-label" for="g-phone">Phone</label>
+                <input class="hb-input" id="g-phone" type="tel" formControlName="guest_phone" autocomplete="tel">
+              </div>
+            </div>
+
+            <div class="hb-field">
+              <label class="hb-label" for="g-req">Special requests</label>
+              <textarea class="hb-textarea" id="g-req" formControlName="special_requests" placeholder="Arrival time, bed preference, celebrations…"></textarea>
+            </div>
+
+            <h2 class="checkout__h2">Payment</h2>
+            <div class="methods" role="radiogroup" aria-label="Payment method">
+              @for (m of methods(x.hotel); track m) {
+                <label class="method" [class.is-active]="method() === m">
+                  <input type="radio" formControlName="payment_method" [value]="m" [attr.disabled]="booking() ? true : null">
+                  @if (m === 'paypal') {
+                    <span class="method__body"><strong>Pay online now</strong><small>PayPal or debit/credit card · {{ q.amount_due_now | money: q.currency }} today</small></span>
+                  } @else {
+                    <span class="method__body"><strong>Pay at the hotel</strong><small>Nothing charged now · pay {{ q.total | money: q.currency }} on arrival</small></span>
+                  }
+                </label>
+              } @empty {
+                <p class="hb-alert">Online booking is not available right now. Please contact the hotel.</p>
+              }
+            </div>
+
+            <label class="accept">
+              <input type="checkbox" formControlName="accept">
+              <span>I accept the booking and cancellation policy: free cancellation up to {{ x.hotel.cancellation_hours }} hours before check-in.</span>
+            </label>
+            @if (invalid('accept')) { <span class="hb-error">Please accept the policy to continue.</span> }
+
+            @if (notice()) { <p class="hb-alert" role="status">{{ notice() }}</p> }
+            @if (error(); as e) {
+              <p class="hb-alert hb-alert--error" role="alert">
+                {{ e.message }}
+                @if (e.code === 'no_availability' || e.code === 'hold_expired') {
+                  <a class="hb-link" routerLink="/rooms" [queryParams]="x.search">Search again</a>
+                }
+              </p>
+            }
+
+            <div class="checkout__pay">
+              @if (method() === 'paypal' && x.hotel.paypal) {
+                @if (busy()) {
+                  <p class="hb-alert" role="status">Confirming your payment…</p>
+                } @else {
+                  <app-paypal-buttons [clientId]="x.hotel.paypal.client_id" [currency]="x.hotel.paypal.currency"
+                                      [createOrder]="createPayPalOrder" (approved)="onPayPalApproved($event)"
+                                      (cancelled)="onPayPalCancelled()" (failed)="onPayPalFailed($event)" />
+                }
+                @if (holdUntil()) { <p class="checkout__hint">Room held for you until {{ holdUntil() }}.</p> }
+              } @else if (method() === 'pay_at_hotel') {
+                <button class="hb-btn hb-btn--gold hb-btn--block" type="submit" [disabled]="busy()">
+                  {{ busy() ? 'Booking…' : 'Confirm booking' }}
+                </button>
+              }
+            </div>
+          </form>
+
+          <aside class="summary hb-card">
+            <img class="summary__img" [src]="roomImage()" [alt]="x.result.room_type.name" (error)="onImgError($event)">
+            <div class="summary__body">
+              <h2 class="summary__title">{{ x.result.room_type.name }}</h2>
+              <p class="summary__line">{{ stayLabel() }}</p>
+              <p class="summary__line">
+                {{ x.search.adults }} adult{{ x.search.adults > 1 ? 's' : '' }}@if (x.search.children) {, {{ x.search.children }} child{{ x.search.children > 1 ? 'ren' : '' }}}
+                · <a class="hb-link" [routerLink]="['/rooms', x.result.room_type.slug]" [queryParams]="x.search">change</a>
+              </p>
+              <p class="summary__line">Check-in from {{ x.hotel.check_in_time }} · Check-out until {{ x.hotel.check_out_time }}</p>
+              <app-price-summary [currency]="q.currency" [nightlyRates]="q.nightly_rates" [subtotal]="q.subtotal"
+                                 [taxes]="q.taxes" [total]="q.total" [dueNow]="dueNow()" />
+            </div>
+          </aside>
+        </div>
+      }
+    }
+  </div>
+</section>

@@ -2,12 +2,13 @@
 @use 'swiper/swiper';
 @use 'swiper/modules/pagination';
 @use '_main' as *; // Import custom styles here
+@use 'custom-styles/hotel/booking-ui';
 
 html, 
 body { height: 100%; }
 
-body.ecommerce-blog-jewelry-luxury {
+body.hotel-boutique {
 	overflow-x: hidden;
 	
-	@include get-theme-name('ecommerce-blog-jewelry-luxury');
+	@include get-theme-name('hotel-boutique');
 }

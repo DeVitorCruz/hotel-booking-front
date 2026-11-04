@@ -2,5 +2,5 @@ import { Environment } from "./environment.interface";
 
 export const ENVIRONMENT: Environment = {
     production: true,
-    apiUrl: 'https://ecommerce-blog.devitor.local/api',
+    apiUrl: 'https://api.example.com/api',
 };

@@ -1,0 +1,6 @@
+<svg width="211" height="43" viewBox="0 0 211 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M4 40V19C4 10.2 10.7 3 19 3s15 7.2 15 16v21" stroke="#BA9659" stroke-width="3"/>
+  <path d="M11 40V21c0-4.7 3.6-8.5 8-8.5s8 3.8 8 8.5v19" stroke="#BA9659" stroke-width="2"/>
+  <path d="M1 40.5h36" stroke="#BA9659" stroke-width="3" stroke-linecap="round"/>
+  <text x="48" y="30" font-family="Cinzel, Georgia, 'Times New Roman', serif" font-size="18" font-weight="700" letter-spacing="1.6" fill="#626842">DEMO HOTEL</text>
+</svg>

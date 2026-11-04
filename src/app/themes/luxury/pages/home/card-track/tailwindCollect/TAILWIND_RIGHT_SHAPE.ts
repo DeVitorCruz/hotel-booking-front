@@ -1,1 +1,0 @@
-export const TAILWIND_RIGHT_SHAPE: string[] = [];

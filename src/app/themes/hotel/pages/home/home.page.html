@@ -1,0 +1,89 @@
+<section class="hero">
+  <img class="hero__bg" [src]="C.hero.image" alt="" fetchpriority="high">
+  <div class="hero__veil"></div>
+  <div class="hb-container hero__content">
+    <span class="hb-eyebrow hero__eyebrow">{{ C.hero.eyebrow }}</span>
+    <h1 class="hero__title">{{ C.hero.title }}</h1>
+    <p class="hero__subtitle">{{ C.hero.subtitle }}</p>
+  </div>
+  <div class="hb-container hero__search">
+    <app-stay-search />
+  </div>
+</section>
+
+<section class="hb-section">
+  <div class="hb-container">
+    <ul class="highlights">
+      @for (h of C.highlights; track h.title) {
+        <li class="highlights__item">
+          <span class="highlights__icon"><fa-icon [icon]="iconFor(h.icon)" /></span>
+          <h3>{{ h.title }}</h3>
+          <p>{{ h.text }}</p>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
+
+<section class="hb-section hb-section--cream">
+  <div class="hb-container">
+    <header class="hb-center section-head">
+      <span class="hb-eyebrow">{{ C.rooms.eyebrow }}</span>
+      <h2 class="hb-title">{{ C.rooms.title }}</h2>
+      <p class="hb-subtitle">{{ C.rooms.subtitle }}</p>
+    </header>
+
+    <div class="rooms-grid">
+      @if (rooms() === null) {
+        @for (i of [1, 2, 3]; track i) { <div class="hb-skeleton rooms-grid__skeleton"></div> }
+      } @else {
+        @for (room of rooms(); track room.id) {
+          <app-room-card [room]="room" [placeholder]="C.roomPlaceholder" />
+        } @empty {
+          <p class="hb-center hb-subtitle">Our rooms will be listed here soon.</p>
+        }
+      }
+    </div>
+
+    <div class="hb-center section-foot">
+      <a class="hb-btn hb-btn--ghost" routerLink="/rooms">See all rooms</a>
+    </div>
+  </div>
+</section>
+
+<section class="hb-section">
+  <div class="hb-container about">
+    <div class="about__media"><img [src]="C.about.image" alt="" loading="lazy"></div>
+    <div class="about__text">
+      <span class="hb-eyebrow">{{ C.about.eyebrow }}</span>
+      <h2 class="hb-title">{{ C.about.title }}</h2>
+      <p class="hb-subtitle">{{ C.about.text }}</p>
+      @if (hotel(); as h) {
+        <dl class="about__facts">
+          <div><dt>Check-in</dt><dd>from {{ h.check_in_time }}</dd></div>
+          <div><dt>Check-out</dt><dd>until {{ h.check_out_time }}</dd></div>
+          <div><dt>Free cancellation</dt><dd>up to {{ h.cancellation_hours }}h before</dd></div>
+        </dl>
+      }
+      <a class="hb-btn" [routerLink]="C.about.ctaLink">{{ C.about.ctaLabel }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="hb-section hb-section--beige testimonial">
+  <div class="hb-container hb-center">
+    <fa-icon class="testimonial__icon" [icon]="quoteIcon" />
+    <blockquote class="testimonial__quote">{{ C.testimonial.quote }}</blockquote>
+    <p class="testimonial__author"><strong>{{ C.testimonial.author }}</strong><span>{{ C.testimonial.role }}</span></p>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="hb-container cta__inner">
+    <div>
+      <h2 class="cta__title">{{ C.cta.title }}</h2>
+      <p class="cta__text">{{ C.cta.text }}</p>
+    </div>
+    <a class="hb-btn hb-btn--gold" routerLink="/rooms">{{ C.cta.label }}</a>
+  </div>
+</section>

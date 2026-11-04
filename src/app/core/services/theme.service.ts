@@ -5,8 +5,7 @@ import { StorageService } from '../web-api-collect/storage/storage.service';
 import { ThemeConfig } from '../themes-features/theme.config.interface';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { FASHION_CLOTHES_THEME_CONFIG } from '../../themes/fashion-clothes/theme.config';
-import { JEWELRY_LUXURY_THEME_CONFIG } from '../../themes/luxury/theme.config';
+import { HOTEL_THEME_CONFIG } from '../../themes/hotel/theme.config';
 
 @Injectable({
   providedIn: 'root'
@@ -69,7 +68,6 @@ export class ThemeService {
   }
 
   private applyThemeFromRoute(url: string): void {
-    if (url.startsWith('/fashion-clothes')) this.setTheme(FASHION_CLOTHES_THEME_CONFIG);
-    else this.setTheme(JEWELRY_LUXURY_THEME_CONFIG);
+    this.setTheme(HOTEL_THEME_CONFIG);
   }
 }

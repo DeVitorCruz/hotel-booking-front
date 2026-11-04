@@ -1,7 +1,7 @@
-@use './luxury/luxury' as *;
+@use './hotel/hotel' as *;
 
 @mixin select-theme($theme-name) {
-    @if $theme-name == 'ecommerce-blog-jewelry-luxury' {
-        @include ecommerce-blog-jewelry-luxury-theme-all-features();
+    @if $theme-name == 'hotel-boutique' {
+        @include hotel-boutique-theme-all-features();
     }
 }

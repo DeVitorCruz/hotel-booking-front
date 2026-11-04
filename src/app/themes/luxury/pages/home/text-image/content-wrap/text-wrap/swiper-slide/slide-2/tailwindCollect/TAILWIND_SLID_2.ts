@@ -1,1 +1,0 @@
-export const TAILWIND_SLID_2: string[] = [];

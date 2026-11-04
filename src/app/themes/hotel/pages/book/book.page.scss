@@ -1,0 +1,30 @@
+.checkout { display: grid; gap: 40px; }
+@media (min-width: 992px) { .checkout { grid-template-columns: minmax(0, 1fr) 380px; gap: 56px; align-items: start; } }
+
+.checkout__form { display: flex; flex-direction: column; gap: 20px; }
+.checkout__h2 { margin: 16px 0 0; font: 700 22px/1.3 var(--hb-serif); color: var(--hb-olive); }
+.grid-2 { display: grid; gap: 20px; }
+@media (min-width: 640px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+
+.methods { display: grid; gap: 12px; }
+.method { display: flex; gap: 14px; align-items: flex-start; padding: 16px; border: 1px solid var(--hb-line); border-radius: var(--hb-radius); cursor: pointer; transition: border-color .2s, background .2s; }
+.method.is-active { border-color: var(--hb-gold); background: var(--hb-cream); }
+.method input { margin-top: 3px; accent-color: var(--hb-olive); }
+.method__body { display: flex; flex-direction: column; gap: 4px; }
+.method__body strong { color: var(--hb-ink); }
+.method__body small { color: var(--hb-muted); font-size: 13px; }
+
+.accept { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--hb-muted); line-height: 1.5; cursor: pointer; }
+.accept input { margin-top: 3px; accent-color: var(--hb-olive); }
+
+.checkout__pay { margin-top: 4px; }
+.checkout__hint { margin: 10px 0 0; font-size: 13px; color: var(--hb-gold-dark); text-align: center; }
+
+.summary { overflow: hidden; order: -1; } /* phones: what you're booking comes first */
+@media (min-width: 992px) { .summary { order: 0; } }
+@media (min-width: 992px) { .summary { position: sticky; top: 110px; } }
+.summary__img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--hb-beige); }
+.summary__body { padding: 24px; display: flex; flex-direction: column; gap: 8px; }
+.summary__title { margin: 0 0 4px; font: 700 20px/1.3 var(--hb-serif); color: var(--hb-olive); }
+.summary__line { margin: 0; font-size: 14px; color: var(--hb-muted); }
+.summary app-price-summary { display: block; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--hb-line); }

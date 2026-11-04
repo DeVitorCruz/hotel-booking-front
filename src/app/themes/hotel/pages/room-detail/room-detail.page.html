@@ -1,0 +1,82 @@
+@if (room() === null) {
+  <section class="hb-section"><div class="hb-container detail">
+    <div class="hb-skeleton" style="height: 420px"></div>
+    <div class="hb-skeleton" style="height: 420px"></div>
+  </div></section>
+} @else if (room() === 'missing') {
+  <section class="hb-section"><div class="hb-container hb-center">
+    <h2 class="hb-title">Room not found</h2>
+    <p class="hb-subtitle">This room is no longer available.</p>
+    <p style="margin-top: 24px"><a class="hb-btn" routerLink="/rooms">See all rooms</a></p>
+  </div></section>
+} @else {
+  @let r = $any(room());
+  <section class="hb-section">
+    <div class="hb-container detail">
+      <div class="detail__main">
+        <div class="gallery">
+          <img class="gallery__main" [src]="images()[activeImage()].url" [alt]="images()[activeImage()].alt || r.name" (error)="onImgError($event)">
+          @if (images().length > 1) {
+            <div class="gallery__thumbs" role="tablist" aria-label="Photos">
+              @for (img of images(); track img.url; let i = $index) {
+                <button type="button" role="tab" [attr.aria-selected]="i === activeImage()" [class.is-active]="i === activeImage()"
+                        (click)="activeImage.set(i)"><img [src]="img.url" [alt]="img.alt" loading="lazy" (error)="onImgError($event)"></button>
+              }
+            </div>
+          }
+        </div>
+
+        <span class="hb-eyebrow">From {{ r.base_price | money: r.currency : true }} / night</span>
+        <h1 class="hb-title">{{ r.name }}</h1>
+
+        <ul class="facts">
+          <li><fa-icon [icon]="icons.guests" /> Up to {{ r.max_occupancy }} guests</li>
+          <li><fa-icon [icon]="icons.adult" /> {{ r.max_adults }} adults</li>
+          @if (r.max_children) { <li><fa-icon [icon]="icons.child" /> {{ r.max_children }} children</li> }
+          @if (r.beds) { <li><fa-icon [icon]="icons.bed" /> {{ r.beds }}</li> }
+          @if (r.size_sqm) { <li><fa-icon [icon]="icons.size" /> {{ r.size_sqm }} m²</li> }
+        </ul>
+
+        @if (r.description || r.short_description) {
+          <p class="detail__text">{{ r.description || r.short_description }}</p>
+        }
+
+        @if (r.amenities?.length) {
+          <h2 class="detail__h2">Amenities</h2>
+          <ul class="amenities">
+            @for (a of r.amenities; track a.slug) {
+              <li><fa-icon [icon]="iconFor(a.slug)" /> {{ a.name }}</li>
+            }
+          </ul>
+        }
+      </div>
+
+      <aside class="detail__aside">
+        <div class="book-box hb-card">
+          <h2 class="book-box__title">Check availability</h2>
+          <app-stay-search layout="stacked" [navigate]="false" [initial]="search()" submitLabel="Show price" (searched)="onSearch($event)" />
+
+          @switch (quote().kind) {
+            @case ('loading') { <div class="hb-skeleton" style="height: 140px; margin-top: 20px"></div> }
+            @case ('error') { <p class="hb-alert hb-alert--error book-box__msg" role="alert">{{ $any(quote()).message }}</p> }
+            @case ('ok') {
+              @if (!fits()) {
+                <p class="hb-alert book-box__msg">This room doesn't fit your party. <a class="hb-link" routerLink="/rooms" [queryParams]="search()">See rooms that do</a>.</p>
+              } @else if (!bookable()) {
+                <p class="hb-alert book-box__msg">Sold out for these dates. <a class="hb-link" routerLink="/rooms" [queryParams]="search()">See other rooms</a>.</p>
+              } @else {
+                @let q = result()!.quote;
+                <div class="book-box__quote" aria-live="polite">
+                  <app-price-summary [currency]="q.currency" [nightlyRates]="q.nightly_rates" [subtotal]="q.subtotal"
+                                     [taxes]="q.taxes" [total]="q.total" [dueNow]="q.amount_due_now" />
+                  <a class="hb-btn hb-btn--gold hb-btn--block" routerLink="/book" [queryParams]="bookParams()">Book now</a>
+                  @if (result()!.available <= 2) { <p class="book-box__left">Only {{ result()!.available }} left at this price</p> }
+                </div>
+              }
+            }
+          }
+        </div>
+      </aside>
+    </div>
+  </section>
+}

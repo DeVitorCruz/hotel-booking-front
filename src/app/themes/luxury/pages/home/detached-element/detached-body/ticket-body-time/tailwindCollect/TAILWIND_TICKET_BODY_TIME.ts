@@ -1,1 +1,0 @@
-export const TAILWIND_TICKET_BODY_TIME: string[] = [];

@@ -1,1 +1,0 @@
-export const TAILWIND_BUTTON_PREV: string[] = ['cursor-pointer'];

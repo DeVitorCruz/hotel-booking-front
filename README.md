@@ -1,59 +1,52 @@
-# Datentria
+# Hotel Booking — Angular frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.6.
+Guest-facing website for small hotels, paired with the
+[hotel-booking-back](https://github.com/DeVitorCruz/hotel-booking-back) Laravel API.
+Forked from `datentria-corp@3f9eba8`: the theme system, shell (nav, drawers, footer),
+banners and content pages are reused; the jewelry shop was replaced by a booking flow.
 
-## Development server
+**Stack:** Angular 20 (standalone, signals, SSR) · Tailwind 4 + SCSS · Angular Material · PayPal JS SDK
 
-To start a local development server, run:
+## Pages
 
-```bash
-ng serve
-```
+| Route | What it does | Rendering |
+|---|---|---|
+| `/` | Hero with availability search, featured rooms, highlights, story, testimonial | SSR |
+| `/rooms` | All room types, or live availability + stay prices when dates are in the URL | SSR |
+| `/rooms/:slug` | Gallery, amenities, live quote for chosen dates | SSR |
+| `/book?room=&check_in=&check_out=&adults=&children=` | Guest details, PayPal or pay at hotel | Browser |
+| `/booking/:reference?token=` | Confirmation, pay a pending booking, cancel (auto refund in free window) | Browser |
+| `/about` `/faq` `/team` `/blog` `/contact` `/auth/*` | Content pages from the base template | SSR / prerender |
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+The calendar button in the header opens a quick availability search drawer.
 
-## Code scaffolding
+## Rebrand for a new client
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1. `src/app/themes/hotel/theme.content.ts` — hero, highlights, story, testimonial copy.
+2. `src/assets/hotel/` — replace `logo.svg`, `logo-light.svg`, `hero.svg`, `about.svg`,
+   `banner-side.svg`, `room-placeholder.svg` with the hotel's logo and photos
+   (any format; update the paths in `theme.content.ts` / banner config if extensions change).
+3. Colors: `src/custom-styles/hotel/_booking-ui.scss` (`--hb-*` tokens) and `_variables.scss`.
+4. `src/environments/environment.ts` → `apiUrl` of the client's API.
+5. Hotel name, phone, check-in times, currency, payment options and room data come from the API,
+   so they are edited in the back office, not here.
 
-```bash
-ng generate component component-name
-```
+Footer copy lives in `themes/hotel/main-build/semantic-home/footer-childs/`.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Booking flow
 
-```bash
-ng generate --help
-```
+- **PayPal:** clicking the PayPal button validates the form, then `POST /api/bookings`
+  creates the booking (room held for `HOTEL_HOLD_MINUTES`) and returns the PayPal order id.
+  On approval the app calls `POST /api/bookings/{ref}/paypal/capture` and opens the
+  confirmation page. Cancelled popups or declined cards reuse the same hold via `/paypal/retry`.
+- **Pay at hotel:** `POST /api/bookings` returns a confirmed booking immediately.
+- The guest's manage token is in the confirmation email link and is also remembered in
+  `localStorage`, so refreshing the booking page works.
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+## Develop
 
 ```bash
-ng e2e
+npm install
+npm start            # http://localhost:4200, expects the API at http://localhost:8000/api
+npm run build        # production SSR build (Netlify runtime, see netlify.toml)
 ```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

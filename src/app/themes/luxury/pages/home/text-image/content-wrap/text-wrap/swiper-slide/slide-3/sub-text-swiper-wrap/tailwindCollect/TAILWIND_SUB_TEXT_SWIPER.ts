@@ -1,1 +1,0 @@
-export const TAILWIND_SUB_TEXT_SWIPER: string[] = [];

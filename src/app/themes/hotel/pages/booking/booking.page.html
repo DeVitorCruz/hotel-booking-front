@@ -1,0 +1,104 @@
+<section class="hb-section">
+  <div class="hb-container">
+    @if (loadError(); as err) {
+      <div class="hb-center">
+        <h2 class="hb-title">Booking not found</h2>
+        <p class="hb-subtitle">{{ err }}</p>
+        <p style="margin-top: 24px"><a class="hb-btn" routerLink="/contact">Contact us</a></p>
+      </div>
+    } @else if (!booking()) {
+      <div class="hb-skeleton" style="height: 480px"></div>
+    } @else {
+      @let b = booking()!;
+      <header class="head" [class.head--ok]="b.status === 'confirmed' || b.status === 'checked_in' || b.status === 'checked_out'"
+              [class.head--warn]="b.status === 'pending'">
+        @switch (b.status) {
+          @case ('confirmed') {
+            <fa-icon class="head__icon" [icon]="icons.ok" />
+            <h1 class="hb-title">{{ isNew() ? 'Your stay is booked!' : 'Booking confirmed' }}</h1>
+            <p class="hb-subtitle">We sent the details to <strong>{{ b.guest_email }}</strong>. Keep this link to view or cancel your booking.</p>
+          }
+          @case ('pending') {
+            <fa-icon class="head__icon" [icon]="icons.wait" />
+            <h1 class="hb-title">Complete your payment</h1>
+            <p class="hb-subtitle">Your room is held @if (holdUntil()) { until {{ holdUntil() }} }. Pay below to confirm it.</p>
+          }
+          @default {
+            <fa-icon class="head__icon" [icon]="b.status === 'checked_in' || b.status === 'checked_out' ? icons.ok : icons.no" />
+            <h1 class="hb-title">Booking {{ statusLabel().toLowerCase() }}</h1>
+          }
+        }
+        <p class="head__ref">Reference <strong>{{ b.reference }}</strong> <span class="hb-badge" [class]="'hb-badge--' + b.status">{{ statusLabel() }}</span></p>
+      </header>
+
+      @if (notice()) { <p class="hb-alert hb-alert--success block" role="status">{{ notice() }}</p> }
+      @if (actionError(); as e) { <p class="hb-alert hb-alert--error block" role="alert">{{ e.message }}</p> }
+
+      <div class="layout">
+        <div class="hb-card card">
+          @if (b.room_type) {
+            <div class="room">
+              <img [src]="b.room_type.images?.[0]?.url || C.roomPlaceholder" [alt]="b.room_type.name" (error)="onImgError($event)">
+              <div>
+                <h2 class="card__title">{{ b.room_type.name }}</h2>
+                <p class="muted">{{ b.adults }} adult{{ b.adults > 1 ? 's' : '' }}@if (b.children) {, {{ b.children }} child{{ b.children > 1 ? 'ren' : '' }}} · {{ b.nights }} night{{ b.nights > 1 ? 's' : '' }}</p>
+              </div>
+            </div>
+          }
+          <dl class="dates">
+            <div><dt>Check-in</dt><dd>{{ pretty(b.check_in) }}</dd>@if (hotel()) {<dd class="muted">from {{ hotel()!.check_in_time }}</dd>}</div>
+            <div><dt>Check-out</dt><dd>{{ pretty(b.check_out) }}</dd>@if (hotel()) {<dd class="muted">until {{ hotel()!.check_out_time }}</dd>}</div>
+          </dl>
+          <dl class="guest">
+            <div><dt>Guest</dt><dd>{{ b.guest_name }}</dd></div>
+            <div><dt>Email</dt><dd>{{ b.guest_email }}</dd></div>
+            @if (b.guest_phone) { <div><dt>Phone</dt><dd>{{ b.guest_phone }}</dd></div> }
+            @if (b.special_requests) { <div><dt>Requests</dt><dd>{{ b.special_requests }}</dd></div> }
+          </dl>
+          @if (hotel(); as h) {
+            <p class="muted small">{{ h.name }}@if (h.address) { · {{ h.address }} }@if (h.phone) { · {{ h.phone }} } · {{ h.email }}</p>
+          }
+        </div>
+
+        <aside class="hb-card card">
+          <h2 class="card__title">Payment</h2>
+          <app-price-summary [currency]="b.currency" [nightlyRates]="b.nightly_rates" [subtotal]="b.subtotal" [taxes]="b.taxes" [total]="b.total" />
+          <dl class="paid">
+            <div><dt>Paid</dt><dd>{{ b.amount_paid | money: b.currency }}</dd></div>
+            @if (+b.amount_refunded > 0) { <div><dt>Refunded</dt><dd>{{ b.amount_refunded | money: b.currency }}</dd></div> }
+            @if (b.status !== 'cancelled' && b.status !== 'expired' && +b.balance_due > 0) {
+              <div class="paid__due"><dt>{{ b.payment_method === 'pay_at_hotel' || +b.amount_paid > 0 ? 'Due at the hotel' : 'Due now' }}</dt><dd>{{ b.balance_due | money: b.currency }}</dd></div>
+            }
+          </dl>
+
+          @if (canPay()) {
+            @if (busy()) { <p class="hb-alert" role="status">Confirming your payment…</p> }
+            @else {
+              <app-paypal-buttons [clientId]="hotel()!.paypal!.client_id" [currency]="hotel()!.paypal!.currency"
+                                  [createOrder]="createPayPalOrder" (approved)="onPayPalApproved($event)" />
+            }
+          }
+
+          @if (canCancel()) {
+            <div class="cancel">
+              @if (!confirmingCancel()) {
+                <button type="button" class="hb-btn hb-btn--danger hb-btn--block" (click)="confirmingCancel.set(true)">Cancel booking</button>
+                @if (hotel()) { <p class="muted small">Free cancellation up to {{ hotel()!.cancellation_hours }} hours before check-in.</p> }
+              } @else {
+                <p class="small"><strong>Cancel this booking?</strong> This can't be undone.</p>
+                <div class="cancel__actions">
+                  <button type="button" class="hb-btn hb-btn--ghost" (click)="confirmingCancel.set(false)" [disabled]="busy()">Keep it</button>
+                  <button type="button" class="hb-btn hb-btn--danger" (click)="cancel()" [disabled]="busy()">{{ busy() ? 'Cancelling…' : 'Yes, cancel' }}</button>
+                </div>
+              }
+            </div>
+          }
+        </aside>
+      </div>
+
+      @if (b.status === 'cancelled' || b.status === 'expired') {
+        <p class="hb-center block"><a class="hb-btn" routerLink="/rooms">Book a new stay</a></p>
+      }
+    }
+  </div>
+</section>
