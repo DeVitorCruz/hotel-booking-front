@@ -37,7 +37,6 @@
               "src/assets"
             ],
             "styles": [
-              
               "src/styles.scss"
             ],
             "server": "src/main.server.ts",
@@ -56,8 +55,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kB",
-                  "maximumError": "10kB"
+                  "maximumWarning": "16kB",
+                  "maximumError": "24kB"
                 }
               ],
               "outputHashing": "all"
@@ -114,7 +113,6 @@
               "src/assets"
             ],
             "styles": [
-              
               "src/styles.scss"
             ]
           }

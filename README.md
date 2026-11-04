@@ -20,6 +20,29 @@ banners and content pages are reused; the jewelry shop was replaced by a booking
 
 The calendar button in the header opens a quick availability search drawer.
 
+## Back office (`/admin`)
+
+Staff sign in at `/admin` with the accounts created in the API (the owner from
+`OWNER_EMAIL`/`OWNER_PASSWORD`, others under **Team**). Lives in `src/app/admin/`, is
+lazy-loaded and browser-only, so it adds nothing to the public site's bundle, and is
+`noindex`. The menu adapts to the user's permissions (a receptionist does not see
+settings, team or pricing edits).
+
+| Page | What staff do there |
+|---|---|
+| Dashboard | Occupancy, arrivals and departures today, money collected this month |
+| Calendar | Rooms × days chart; click a free night to book it |
+| Bookings | Search/filter; detail page to check in/out, record payment, no-show, cancel, PayPal refund |
+| New booking | Phone and walk-in bookings, live availability and price, paid at the hotel |
+| Room types | Name, prices, capacity, amenities, descriptions, photo upload and ordering, show/hide |
+| Rooms | Room numbers, type, floor, active / maintenance / inactive |
+| Seasonal rates | Special prices by date range, minimum nights, priority |
+| Room blocks | Close a room for repairs or private use |
+| Messages | Contact-form inbox, reply by email |
+| FAQ | Questions on the public FAQ page |
+| Hotel settings | Name, contacts, time zone, currency, taxes, deposit, payment options, cancellation policy |
+| Team | Add staff, change roles, set passwords, remove access |
+
 ## Rebrand for a new client
 
 1. `src/app/themes/hotel/theme.content.ts` — hero, highlights, story, testimonial copy.
@@ -29,7 +52,7 @@ The calendar button in the header opens a quick availability search drawer.
 3. Colors: `src/custom-styles/hotel/_booking-ui.scss` (`--hb-*` tokens) and `_variables.scss`.
 4. `src/environments/environment.ts` → `apiUrl` of the client's API.
 5. Hotel name, phone, check-in times, currency, payment options and room data come from the API,
-   so they are edited in the back office, not here.
+   so they are edited in the back office (`/admin`), not here.
 
 Footer copy lives in `themes/hotel/main-build/semantic-home/footer-childs/`.
 

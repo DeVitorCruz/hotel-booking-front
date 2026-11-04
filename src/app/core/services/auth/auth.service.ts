@@ -3,7 +3,7 @@ import { ApiService } from "../api/api.service";
 import { User } from "@core/models/auth/user.model";
 import { HttpClient } from "@angular/common/http";
 import { StorageService } from "@core/web-api-collect/storage/storage.service";
-import { Observable, tap } from "rxjs";
+import { finalize, Observable, tap } from "rxjs";
 import { AuthResponse, LoginRequest, RegisterRequest } from "@core/models/auth/auth-response.model";
 
 @Injectable({
@@ -18,6 +18,12 @@ import { AuthResponse, LoginRequest, RegisterRequest } from "@core/models/auth/a
     public readonly _USER_EFFECT = computed(() => this.USER());
     public readonly _TOKEN_EFFECT = computed(() => this.TOKEN());
     public readonly _IS_AUTENTICATED_EFFECT = computed(() => !!this.TOKEN());
+
+    /** Roles that may use the back office (mirrors User::STAFF_ROLES on the API). */
+    public static readonly STAFF_ROLES = ['owner', 'admin', 'receptionist', 'editor'];
+
+    public readonly _IS_STAFF_EFFECT = computed(() =>
+        (this.USER()?.roles ?? []).some(r => AuthService.STAFF_ROLES.includes(r)));
 
     constructor(
         http: HttpClient,
@@ -41,12 +47,29 @@ import { AuthResponse, LoginRequest, RegisterRequest } from "@core/models/auth/a
 
     public logout(): Observable<any> {
         return this.post<any>('logout', {}).pipe(
-            tap(() => this._clearSession())
+            finalize(() => this._clearSession())
         );
     }
 
     public getToken(): string | null {
         return this.TOKEN();
+    }
+
+    /** Re-read the signed-in user (roles/permissions may have changed server side). */
+    public refreshMe(): Observable<User> {
+        return this.get<User>('me').pipe(tap(user => {
+            this.USER.set(user);
+            this.storage.setItem(this.USER_KEY, JSON.stringify(user));
+        }));
+    }
+
+    public can(permission: string): boolean {
+        return (this.USER()?.permissions ?? []).includes(permission);
+    }
+
+    /** Drop the local session without calling the API (e.g. after a 401). */
+    public forgetSession(): void {
+        this._clearSession();
     }
 
     private _setSession(response: AuthResponse): void {
@@ -68,6 +91,8 @@ import { AuthResponse, LoginRequest, RegisterRequest } from "@core/models/auth/a
         const SCOPE_USER = this.storage.getItem(this.USER_KEY);
 
         if (SCOPE_TOKEN) this.TOKEN.set(SCOPE_TOKEN);
-        if (SCOPE_USER) this.USER.set(JSON.parse(SCOPE_USER));
+        if (SCOPE_USER) {
+            try { this.USER.set(JSON.parse(SCOPE_USER)); } catch { this.storage.removeItem(this.USER_KEY); }
+        }
     }
 }

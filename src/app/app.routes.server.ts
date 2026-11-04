@@ -19,6 +19,10 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'auth/login', renderMode: RenderMode.Client },
   { path: 'auth/register', renderMode: RenderMode.Client },
 
+  // Back office: browser only (token in localStorage, nothing to pre-render)
+  { path: 'admin', renderMode: RenderMode.Client },
+  { path: 'admin/**', renderMode: RenderMode.Client },
+
   // Remaining static pages - prerendered at build time
   { path: '**', renderMode: RenderMode.Prerender },
 ];

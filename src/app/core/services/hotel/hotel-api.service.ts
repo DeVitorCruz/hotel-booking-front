@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable, shareReplay } from 'rxjs';
+import { Observable, shareReplay, tap } from 'rxjs';
 import { ENVIRONMENT } from '@environments/environment';
 import {
     ApiError, AvailabilityResponse, Booking, CancelBookingResponse, CreateBookingRequest,
@@ -19,7 +19,16 @@ export class HotelApiService {
     private hotel$?: Observable<HotelInfo>;
 
     public hotel(): Observable<HotelInfo> {
-        return this.hotel$ ??= this.HTTP.get<HotelInfo>(`${this.BASE}/hotel`).pipe(shareReplay(1));
+        return this.hotel$ ??= this.HTTP.get<HotelInfo>(`${this.BASE}/hotel`).pipe(
+            // A failed request must not be cached forever
+            tap({ error: () => this.hotel$ = undefined }),
+            shareReplay(1),
+        );
+    }
+
+    /** Drop the cached hotel info (after staff change the settings). */
+    public forgetHotel(): void {
+        this.hotel$ = undefined;
     }
 
     public roomTypes(): Observable<RoomType[]> {
