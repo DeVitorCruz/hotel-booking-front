@@ -1,0 +1,77 @@
+@switch(HEADING().headingType) {
+    @case('none') {}
+
+    @case ('h2') {
+        <h2 class="ui-flex-heading">
+            {{ HEADING().text }}
+
+            @if (HEADING().achorFlexList) {
+                @for (achor_flex_item of HEADING().achorFlexList; track achor_flex_item) {
+                    <app-anchor-flex
+                        [ANCHOR_FLEX_ITEM]="achor_flex_item"></app-anchor-flex>
+                }
+            }
+        </h2>
+    }
+
+    @case ('h3') {
+        <h3 class="ui-flex-heading">
+            {{ HEADING().text }}
+
+            @if (HEADING().achorFlexList) {
+                @for (achor_flex_item of HEADING().achorFlexList; track achor_flex_item) {
+                    <app-anchor-flex [ANCHOR_FLEX_ITEM]="achor_flex_item"></app-anchor-flex>
+                }
+            }
+        </h3>
+    }
+
+    @case ('h4') {
+        <h4 class="ui-flex-heading">
+            {{ HEADING().text }}
+
+            @if (HEADING().achorFlexList) {
+                @for (achor_flex_item of HEADING().achorFlexList; track achor_flex_item) {
+                    <app-anchor-flex [ANCHOR_FLEX_ITEM]="achor_flex_item"></app-anchor-flex>
+                }
+            }
+        </h4>
+    }
+
+    @case ('h5') {
+        <h5 class="ui-flex-heading">
+            {{ HEADING().text }}
+
+            @if (HEADING().achorFlexList) {
+                @for (achor_flex_item of HEADING().achorFlexList; track achor_flex_item) {
+                    <app-anchor-flex [ANCHOR_FLEX_ITEM]="achor_flex_item"></app-anchor-flex>
+                }
+            }
+        </h5>
+    }
+
+    @case ('h6') {
+        <h6 class="ui-flex-heading">
+            {{ HEADING().text }}
+
+            @if (HEADING().achorFlexList) {
+                @for (achor_flex_item of HEADING().achorFlexList; track achor_flex_item) {
+                    <app-anchor-flex [ANCHOR_FLEX_ITEM]="achor_flex_item"></app-anchor-flex>
+                }
+            }
+        </h6>
+    } 
+
+    @default {
+        <h1 class="ui-flex-heading">
+            {{ HEADING().text }}
+
+            @if (HEADING().achorFlexList) {
+                @for (achor_flex_item of HEADING().achorFlexList; track achor_flex_item) {
+                    <app-anchor-flex [ANCHOR_FLEX_ITEM]="achor_flex_item"></app-anchor-flex>
+                }
+            }
+        </h1>
+    }
+}
+

@@ -1,0 +1,9 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+
+
+@mixin body-side-bar-list-custom-all-features() {
+    app-custom-list:has(.ui-list-custom) {
+        @include display-features($display: block, $justify-content: center, $flex-direction: column, $align-items: start, $align-content: center, $flex-wrap: nowrap);
+        @include transition-features($transition: all .5s ease-out);
+    }
+}

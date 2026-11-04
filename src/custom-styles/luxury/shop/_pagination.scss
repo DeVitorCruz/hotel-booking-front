@@ -1,0 +1,32 @@
+@use '../variables' as var;
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+
+@mixin pagination-all-features() {
+    app-pagination:has(.ui-pagination) {
+        display: block;
+        margin-top: 40px;
+        
+        .ui-pagination, .ui-pagination__list {
+            display: flex;
+            align-items: center;
+        }
+
+        .ui-pagination {
+            .ui-pagination__arrow, .ui-pagination__page {
+                @include font-collect($font-family: inherit, $font-weight: var.$font-weight-intermediate, $font-size: 1rem, $line-height: 40px);
+                width: 40px;
+                height: 40px;
+                background-color: var.$thritieth-four-color;
+                color: var.$secondary-color;
+                margin-right: 10px;
+            }
+
+            .ui-list-item {
+                .is-active {
+                    background-color: var.$secondary-color;
+                    color: var.$white-color;
+                }
+            }
+        }
+    }
+}

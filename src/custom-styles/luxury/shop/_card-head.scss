@@ -1,0 +1,14 @@
+@use '../variables' as var;
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+
+@mixin card-head-all-features() {
+    app-flex-heading:has(.ui-flex-heading) {
+        display: block;
+        margin: 0 0 .5em;    
+
+        .ui-flex-heading {
+            @include font-collect($font-family: var.$font-family-cinzel, $font-weight: var.$font-weight-middle, $font-size: 16px, $line-height: 1.2);   
+            color: var.$secondary-color; 
+        }
+    }
+}

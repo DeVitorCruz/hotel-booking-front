@@ -1,0 +1,25 @@
+@use '../../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../../styles-collections/breakpoints' as *;
+@use '../../variables' as var;
+
+@mixin swiper-pagination-all-features() {
+    .swiper-pagination.swiper-pagination-bullets {
+        @include display-features($display: flex, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+        @include direction-position($top: unset, $right: 0, $bottom: -10%, $left: unset);
+    
+        .swiper-pagination-bullet {
+            @include dimension($width: 10px, $height: 10px);
+            margin: 0 5px 0 5px;
+            border-radius: 100%;
+            background-color: var.$secondary-color;
+            cursor: pointer;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: var.$tertiary-color;
+        }
+
+        @include respond('lg') { display: none; }
+    }
+}

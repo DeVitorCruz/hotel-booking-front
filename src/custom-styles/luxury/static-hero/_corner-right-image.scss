@@ -1,0 +1,13 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+
+@mixin corner-right-image-all-features() {
+    .ui-image-flex {
+        @include dimension($width: 119px, $height: 220px);
+        @include transformation-rotate(20deg);
+
+        img {
+            @include border-decoration-radius(1000px);
+        }
+    }
+}

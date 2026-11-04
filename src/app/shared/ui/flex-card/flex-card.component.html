@@ -1,0 +1,10 @@
+<div [class]="'flex-card-block' + `${CARD().customBlockClassName? '__' + CARD().customBlockClassName : ''}`" [ngClass]="CARD().customClassName"> 
+    <div class="head">
+        <app-img-flex  
+            [IMAGE_FLEX_ITEM]="CARD().head"
+            [IMAGE_FLEX_ADDICTION_LIST]="CARD().imgFlexAddiction"></app-img-flex>
+    </div>
+    <div class="body">
+        <app-text-box [TEXT_BOX_LIST]="CARD().body"></app-text-box>
+    </div>
+</div>

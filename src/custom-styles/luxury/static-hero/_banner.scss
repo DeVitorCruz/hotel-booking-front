@@ -1,0 +1,40 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/breakpoints' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+
+@use './banner-text-section' as *;
+@use './banner-image' as *;
+
+@mixin banner-all-features() {
+    @include display-features($display: flex, $justify-content: space-between, $flex-direction: column-reverse, $align-items: center);
+
+    .head {
+        app-img-flex:has(.ui-image-flex) {
+            @include display-features($display: block, $justify-content: unset, $flex-direction: unset, $align-items: unset);
+            @include banner-image-all-features();
+            @include dimension($width: 300px, $height: 300px);
+            @include position-features(unset);
+            @include box-external-space($top: 50px, $right: auto, $bottom: 0, $left: auto);
+
+            @include respond(sm) {
+                @include dimension($width: 452px, $height: 487px);
+            }
+
+            @include respond(lg) {
+                @include box-external-space($top: 0, $right: 0, $bottom: 0, $left: 0)
+            }
+     
+            @include respond(xl) {
+                @include dimension($width: 652px, $height: 687px);
+            }
+        }
+    }
+
+    .body {
+        @include banner-text-section-all-features();
+    }
+
+    @include respond(lg) {
+        @include display-features($display: flex, $justify-content: space-between, $flex-direction: row-reverse, $align-items: center);
+    }
+}

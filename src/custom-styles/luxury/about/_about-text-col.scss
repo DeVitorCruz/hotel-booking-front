@@ -1,0 +1,58 @@
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../variables' as var;
+@use '../../../styles-collections/breakpoints' as *;
+@use '../../../styles-collections/mixin/ui-button-rectangle-mixin' as *;
+
+@mixin about-text-coll-all-features() {
+    app-text-box:has(.text-box-block__about-subtitle-0) {
+        .text-box-block__about-subtitle-0 {
+            @include font-collect($font-family: var.$font-family-cinzel, $font-weight: var.$font-weight-bold, $font-size: 40px, $line-height: 60px);
+            text-transform: uppercase;
+            color: var.$secondary-color;
+            margin-bottom: .5rem;
+
+            @include respond('md') {
+                font-size: 50px;
+            }
+        }
+
+        .text-box-block__about-body-1 {
+            .ui-text {
+                margin-right: 0px;
+                margin-bottom: 13px;
+                line-height: 29px;
+
+                @include respond('lg') {
+                    margin-right: 59px;
+                    margin-bottom: 16px;
+                    line-height: 32px;
+                }
+            }
+        }
+
+        .text-box-block__about-cta-2 {
+            margin-top: 30px;
+
+            .link-list-block {
+                app-anchor-flex:has(.ui-link-e) {
+                    .ui-link-e {
+                        @include ui-button-rectangle($button-text-color: var.$tertiary-color, $content-color: var.$fourth-color, $border-color: transparent);
+
+                        &:hover {
+                            background-color: transparent;
+                            border: solid 1px var.$tertiary-color;
+                        }
+                    }
+                }
+            }
+
+            @include respond('xl') {
+                margin-top: 50px;
+            }
+
+            @include respond('2xl') {
+                margin-top: 70px;
+            }
+        }
+    }
+}

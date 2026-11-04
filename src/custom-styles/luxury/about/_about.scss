@@ -1,0 +1,49 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use './about-image-col' as *;
+@use './about-text-col' as *;
+@use '../../../styles-collections/breakpoints' as *;
+
+@mixin about-all-features() {
+    app-container:has(.ui-sequence-block__about-section-block) {
+        display: block;
+        padding: 80px 0;
+
+        app-sequence-space:has(.ui-sequence-block__about-section-block) {
+            .ui-sequence-block__about-section-block {
+                width: 100%;
+                margin: 0 auto;
+                padding: 0 .75rem;
+                @include display-features($display: flex, $justify-content: space-between, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: wrap);
+
+                .item-space__about-section-element-0, .item-space__about-section-element-1 {
+                    flex: 0 0 auto;
+                    width: 100%;
+
+                    @include respond('lg') { width: 50%; }
+                }
+
+                .item-space__about-section-element-0 {
+                    @include about-image-col-all-features();
+                }
+
+                .item-space__about-section-element-1 {
+                    @include about-text-coll-all-features();
+                }
+
+                @include respond('2sm') { max-width: 540px; }
+
+                @include respond('md') { max-width: 720px; }
+
+                @include respond('lg') { max-width: 960px; }
+
+                @include respond('xl') { max-width: 1140px; }
+
+                @include respond('2xl') { max-width: 1340px; }
+            }
+        }
+
+        @include respond('md') { padding: 90px 0; }
+
+        @include respond('lg') { padding: 120px 0; }
+    }
+}

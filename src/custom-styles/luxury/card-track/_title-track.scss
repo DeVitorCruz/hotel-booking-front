@@ -1,0 +1,21 @@
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+@use '../variables' as var;
+
+
+@mixin title-track-all-features() {
+    @include font-collect(var.$font-family-cinzel, var.$font-weight-bold, 30px, $line-height: 40px);
+    @include text-format($text-transform: capitalize, $text-align: center, $letter-spacing: normal);
+    @include text-color(var.$secondary-color);
+
+    @include respond(md) {
+        @include font-collect(var.$font-family-cinzel, var.$font-weight-bold, 47px, $line-height: 40px);
+    }
+
+    @include respond(xl) {
+        @include font-collect(var.$font-family-cinzel, var.$font-weight-bold, 50px, $line-height: 67px);
+    }
+}

@@ -1,0 +1,1 @@
+export const FASHION_CLOTHES_PAGES = {};

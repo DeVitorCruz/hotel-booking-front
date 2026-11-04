@@ -1,0 +1,21 @@
+@use '../variables' as var;
+
+@mixin form-card-header-all-features() {
+    app-container:has(.ui-sequence-block__register-header-content-block, .ui-sequence-block__login-header-content-block) {
+        app-sequence-space:has(.ui-sequence-block__register-header-content-block, .ui-sequence-block__login-header-content-block) {
+            .item-space__register-header-content-element-0, .item-space__login-header-content-element-0 {
+                .ui-flex-heading {
+                    font-size: 30px;
+                    color: var.$secondary-color;
+                    font-weight: var.$font-weight-bold;
+                    margin-bottom: 10px;    
+                    font-family: var.$font-family-cinzel;
+                }
+                .ui-text {
+                    font-size: 15px;
+                    margin-bottom: 40px;
+                }
+            }
+        }
+    }
+}

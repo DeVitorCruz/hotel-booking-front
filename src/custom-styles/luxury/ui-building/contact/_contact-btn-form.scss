@@ -1,0 +1,19 @@
+@use '../../variables' as var;
+
+@mixin contact-btn-form-all-features() {
+    .contact-submit {
+        width: 100%;
+        padding: .875rem;
+        background-color: var.$tertiary-color;
+        color: var.$white-color;
+        border: none;
+        font-size: .8125rem;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        font-family: var.$font-family-sans;
+        transition: background-color .3s ease;
+
+        &:hover { background-color: var.$twentieth-one-color; }
+    }
+}

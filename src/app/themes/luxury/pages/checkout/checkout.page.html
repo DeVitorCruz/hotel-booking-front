@@ -1,0 +1,8 @@
+@if(LOADING()) {
+    <div class="checkout-loading">Loading...</div>
+}
+
+@if (CHECKOUT_CONTENT) {
+    <app-gateway-checkout
+        [CONTENT]="CHECKOUT_CONTENT"></app-gateway-checkout>
+}

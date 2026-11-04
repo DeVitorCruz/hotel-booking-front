@@ -1,0 +1,19 @@
+@mixin product-list-summary-all-features() {
+    &__summary {
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+        margin-top: 2rem;
+        max-width: 320px;
+        margin-left: auto;
+    }
+
+    &__summary-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: .9375rem;
+    }
+
+    &__summary-label { font-weight: 600; }
+}

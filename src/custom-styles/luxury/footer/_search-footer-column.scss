@@ -1,0 +1,68 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+
+@use './button-form-flex' as *;
+@use './input-form-flex' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+@use '../variables' as var;
+
+@mixin search-footer-column-all-features() {
+    .text-box-block__search-text-box-3 {
+		& {
+			padding: 0px 15px 0px 15px;
+			margin: 0 0 70px 0;
+		}
+        
+        .ui-flex-heading {
+			& {
+				margin: 0px 0px 35px 0px;
+			}
+            @include font-collect(var.$font-family-cinzel, 700, 23px);
+            @include text-format($text-transform: uppercase, $text-align: left);
+        }
+
+        .ui-text {
+			& {
+				margin: 0 0 15px 0;
+			}
+        }
+
+        .ui-flex-form {
+			& {
+				position: relative;
+				margin: 30px 0 0px 0;
+			}
+            @include dimension($width: 100%, $height: auto);
+            @include display-features($display: flex, $justify-content: left, $flex-direction: row, $align-items: center, $align-content: center);
+
+            app-flex-input {
+				& {
+					flex: 0 0 80%; 
+				}
+            }
+
+            app-button-flex {
+				& {
+					flex: 0 0 20%;
+				}
+            }
+
+            .ui-input-flex {
+                @include input-form-flex-all-features();
+            }
+
+            .ui-btn-flex {
+                @include button-form-flex-all-features();
+            }
+        }
+
+        @include respond(lg) {
+			& {
+				padding: 140px 15px 140px 15px;
+				margin: 0 0 0px 0;
+			}
+        }
+    }
+}

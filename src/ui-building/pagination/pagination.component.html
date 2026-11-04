@@ -1,0 +1,39 @@
+<nav class="ui-pagination" aria-label="Pagination">
+    <button
+        class="ui-pagination__arrow ui-pagination__prev"
+        type="button"
+        [disabled]="!HAS_PREV()"
+        (click)="prev()">
+        <app-icon-flex
+            [ICON_SWITCH]="{
+                type: 'iconAwesome',
+                currentIcon: faArrowLeft,
+            }"></app-icon-flex>
+    </button>    
+
+    <ul class="ui-pagination__list">
+        @for(page of PAGES(); track page) {
+            <li class="ui-list-item">
+                <button 
+                    type="button"
+                    class="ui-pagination__page"
+                    [ngClass]="{ 'is-active': page === CONTENT().currentPage }"
+                    (click)="goTo(page)">
+                    {{ page }}
+                </button>
+            </li>
+        }
+    </ul>
+
+    <button
+        class="ui-pagination__arrow ui-pagination__next"
+        type="button"
+        [disabled]="!HAS_NEXT()"
+        (click)="next()">
+        <app-icon-flex
+            [ICON_SWITCH]="{
+                type: 'iconAwesome',
+                currentIcon: faArrowRight,
+            }"></app-icon-flex>
+    </button>
+</nav>

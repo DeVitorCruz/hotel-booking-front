@@ -1,0 +1,7 @@
+<div [class]="'ui-option-list-block__' + `${LIST().customBlockClassName?? 'default'}`" [ngClass]="LIST().customClassName">
+    <app-flex-heading
+        [FLEX_HEADING]="LIST().heading"></app-flex-heading>
+
+    <app-custom-list
+        [ITEMS_LIST]="LIST().optionsList"></app-custom-list>
+</div>

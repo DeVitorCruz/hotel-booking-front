@@ -1,0 +1,40 @@
+@use '../../variables' as var;
+
+@mixin checkout-steps-indicator-all-features() {
+    &__step {
+        &-number {
+            border-color: var.$thirteenth-color;
+            color: var.$twentieth-color;
+            background-color: transparent;
+        }
+
+        &-label {
+            color: var.$twentieth-color;
+            font-size: .75rem;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+        }
+
+        &.is-active {
+            .checkout__step-number {
+                border-color: var.$tertiary-color;
+                background-color: var.$tertiary-color;
+                color: var.$white-color;
+            }
+
+            .checkout__step-label { color: var.$secondary-color; }
+        }
+
+        &.is-done {
+            .checkout__step-number {
+                border-color: var.$secondary-color;
+                background-color: var.$secondary-color;
+                color: var.$white-color;
+            }
+
+            .checkout__step-label { color: var.$secondary-color; }
+        }
+    }
+
+    &__step-line { background-color: var.$thirteenth-color; }
+}

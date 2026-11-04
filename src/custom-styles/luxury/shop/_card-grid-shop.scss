@@ -1,0 +1,39 @@
+@use '../../../styles-collections/breakpoints' as *;
+@use '../variables' as var;
+@use './card-head' as *;
+@use './card-button' as *;
+
+@mixin card-grid-shop-all-features() {
+    app-card-grid:has(.card-grid, .shop-grid) {
+        .shop-grid {
+            padding: 0;
+
+            .card-grid__container {
+                --card-grid-max-width: none;
+                margin: 0;
+                padding: 0;
+
+                .card-grid__body--shop {
+                    margin: 0 -15px;
+
+                    .card-grid__item {
+                        margin: 0 15px 30px;
+
+                        img {
+                            width: 100%;
+                        }
+                        
+                        .card-grid__content {
+                            background-color: var.$thritieth-three-color;
+                            text-align: center;
+                            padding: 30px 15px;
+
+                            @include card-head-all-features();
+                            @include card-button-all-features();
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

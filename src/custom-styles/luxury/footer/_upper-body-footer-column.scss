@@ -1,0 +1,47 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+
+@use '../variables' as var;
+
+@mixin upper-body-footer-column-all-features() {
+    .text-box-block__body-logo-column-0 {
+        .ui-text {
+			& {
+				padding: 12px 0px 0px 0px;
+				margin: 0 0 .8rem 0;
+				line-height: 1.9em;
+			}
+        }
+    
+        .link-list-block {
+			& {
+				padding: 16px 0px 0px 0px;
+				margin: 25px 0 0 0;
+			}
+            @include display-features($display: flex, $justify-content: left, $flex-direction: row, $align-items: center);
+            
+            .ui-link-e {
+				& {
+					display: flex;
+					justify-content: center;
+					flex-direction: column-reverse;
+					text-align: center;
+					background-color: var.$tertiary-color;
+					margin: 0px 8px 0px 0px;
+					transition: all .3s ease-in-out;
+					border-radius: 100px;
+				}
+                @include font-dimension($font-size: 16px, $font-weight: unset, $line-height: 1.9em);
+                @include dimension($width: 48px, $height: 48px);
+               
+                &:hover {
+					& {
+						color: var.$secondary-color;
+						background-color: var.$white-color;  
+					}
+                }
+            }
+        }
+    }
+}

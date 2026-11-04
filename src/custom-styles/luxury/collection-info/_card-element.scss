@@ -1,0 +1,21 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+
+@use '../variables' as var;
+
+@use './upper-title' as *;
+@use './card-body' as *;
+
+@mixin card-element-all-features() {
+    @include border-decoration-solid($length: 1px);
+    @include border-decoration-color(var.$fifth-color);
+
+    .item-space__card-element-1-0, .item-space__card-element-2-0, .item-space__card-element-3-0 {
+        @include upper-title-all-features();
+    }
+
+    .item-space__card-element-1-1, .item-space__card-element-2-1, .item-space__card-element-3-1 {
+        @include card-body-all-features();
+    }
+}

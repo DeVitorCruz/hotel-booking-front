@@ -1,0 +1,23 @@
+@mixin product-list-cols-items-all-features() {
+    &__col {
+        &--image { flex: 0 0 80px; }
+        &--name { flex: 1; min-width: 0; }
+        &--price { flex: 0 0 100px; text-align: center; }
+        &--qty { flex: 0 0 77px; }
+        &--subtotal { flex: 0 0 100px; text-align: center; }     
+        &--actions { flex: 0 0 auto; }
+    }
+
+    &__table-head &__col { font-size: .8125rem; font-weight: 600; }
+
+    // Item
+    &__col--image .ui-image-flex img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        display: block;
+    }
+
+    &__item-name { display: block; font-weight: 600; }
+    &__item-meta { display: block; font-size: .8125rem; }
+}

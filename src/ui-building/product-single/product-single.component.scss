@@ -1,0 +1,88 @@
+@use '../../styles-collections/breakpoints' as *;
+@use './product-single.gallery' as *;
+@use './product-single.form' as *;
+
+:host { display: block; width: 100%; } 
+
+.product-single {
+    width: 100%;
+    padding: var(--product-single-padding-y, 80px) 0;
+
+    &__section {
+        width: 100%;
+
+        &--main { padding: 60px 0; }
+        &--tabs { padding: 40px 0 80px 0; }
+    }
+
+    &__container {
+        display: flex;  
+        flex-wrap: wrap;
+    }
+
+    // Gallery
+    &__gallery {
+        @include product-single-gallery-all-features();
+    }
+
+    // Content
+    &__content {
+        flex: 0 0 auto;
+        width: 100%;
+
+        @include respond('lg') { width: 50%; }
+    }   
+
+    &__title { margin: 0; }
+
+    // Rating
+    &__rating {
+        display: flex;
+        align-items: center;
+        gap: .75rem;
+    }
+
+    &__stars { display: flex; gap: 2px; }
+
+    &__star {
+        font-size: 1.1rem;
+        opacity: .25;
+        &.is-active { opacity: 1; }
+    }
+
+    &__review--count { font-size: .875rem; }
+
+    // Price
+    &__price {
+        display: flex;
+        align-items: center;
+        gap: .75rem;
+        flex-wrap: wrap;
+
+        &--original {
+            text-decoration: line-through;
+            opacity: .5;
+            font-size: .9rem;
+        }
+    }
+
+    &__description { margin: 0; line-height: 1.75; }
+
+    // Meta
+    &__meta {
+        display: flex;
+        align-items: flex-start;
+        gap: .5rem;
+        font-size: .875rem;
+        flex-wrap: wrap;
+
+        &-label { font-weight: 600; flex-shrink: 0; }
+    }
+
+    &__tags { display: flex; flex-wrap: wrap; gap: .375rem; }
+    &__tag { font-size: .8125rem; }
+
+    // Quantity + Add to Cart
+
+    @include product-single-form-all-features();
+}

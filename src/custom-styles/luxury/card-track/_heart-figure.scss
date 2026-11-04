@@ -1,0 +1,20 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+
+@use '../variables' as var;
+
+@mixin heart-figure-all-features() {
+    @include position-features($position: relative);
+    
+    app-icon-flex:has(.ng-fa-icon) {
+        @include position-features($position: absolute);
+        @include direction-position($top: 0, $right: unset, $bottom: unset, $left: unset, );
+        @include display-features($display: flex, $justify-content: center, $flex-direction: column, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+        @include dimension($width: 40px, $height: 40px);
+        @include box-external-space($top: 15px, $right: 15px, $bottom: 15px, $left: 15px);
+        @include content-color($background-color: var.$white-color);
+        @include text-color($color: var.$secondary-color);
+        @include border-decoration-radius($border-radius: 250%);
+    }
+}

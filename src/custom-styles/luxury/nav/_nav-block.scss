@@ -1,0 +1,78 @@
+
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../../styles-collections/mixin/scroll-fix' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+
+@use '../variables' as var;
+@use '../../../styles-collections/breakpoints' as *;
+
+@use './nav-log-section' as *;
+@use './nav-hidden-button' as *;
+@use './nav-list' as *;
+@use './side-bar-button' as *;
+
+@mixin nav-block-all-features() {
+    app-nav-bar:has(.nav-block) {
+        .nav-block {
+			& { 
+				z-index: 10; 
+				position: relative; 
+			}
+    
+            &__first-layer {
+                @include display-features(flex);
+				@include font-dimension($font-size: 16px, $font-weight: var.$font-weight-middle, $line-height: inherit);
+				
+                .nav-block__logo, .nav-block__nav-sidebar-button, .nav-block__nav-hidden-button {
+                    & {
+						justify-content: center;
+						flex-direction: column;
+                    }
+                }
+    
+                @include nav-log-section-all-features();
+                @include nav-hidden-button-all-features();
+                @include nav-list-all-features();
+                @include side-bar-button-all-features();
+    
+                @include respond('xl') {
+					& { 
+						font-size: 17px;
+					}
+                }
+            }
+        }
+    }
+    
+    .nav-block__side-bar-button--clickable,
+    .nav-block__hidden-bar-button--clickable {
+		& {
+			cursor: pointer;
+		}
+    }
+    
+    .nav-list--flex {
+		& {
+			display: flex;
+		}
+    }
+    
+    .nav-block__navigation--container {
+		& {
+			padding: 20px 10px 20px 10px; 
+			margin: 0 auto 0 auto;
+		}
+		@include max-dimension($max-width: 1280px, $max-height: auto);
+		
+		@include respond('lg') {
+			& {
+				padding: 0 10px 0 10px;
+			}
+		}
+    }
+
+    .scroll-bar-features {
+        @include scroll-fix-all-features($position-scroll: fixed, $background-color: var.$fifth-color);
+    }
+}

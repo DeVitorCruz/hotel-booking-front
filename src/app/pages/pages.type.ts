@@ -1,0 +1,1 @@
+export type Pages = Record<string, any>;

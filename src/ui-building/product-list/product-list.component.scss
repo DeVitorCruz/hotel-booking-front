@@ -1,0 +1,16 @@
+@use './product-list-mixin/product-list-header' as *;
+@use './product-list-mixin/product-list-table' as *;
+@use './product-list-mixin/product-list-summary' as *;
+
+:host { display: block; width: 100%; }
+
+.product-list {
+    width: 100%;
+    @include product-list-header-all-features();
+
+    // Table
+    @include product-list-table-all-features();
+
+    // Summary
+    @include product-list-summary-all-features();
+}

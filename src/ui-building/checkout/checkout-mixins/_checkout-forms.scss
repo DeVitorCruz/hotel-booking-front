@@ -1,0 +1,31 @@
+@use '../../../styles-collections/breakpoints' as *;
+
+@mixin checkout-forms-all-features() {
+    &__form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+        margin-bottom: 2rem;
+
+        @include respond("sm") { grid-template-columns: 1fr; }
+    }
+
+    &__form-group { margin-bottom: 1.5rem; }
+
+    &__label {
+        display: block;
+        font-size: .8125rem;
+        font-weight: 600;
+        margin-bottom: .5rem;
+    }
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+        gap: .375rem;
+
+        label { font-size: .8125rem; font-weight: 600; }
+
+        &--full { grid-column: 1 / -1; }
+    }
+}

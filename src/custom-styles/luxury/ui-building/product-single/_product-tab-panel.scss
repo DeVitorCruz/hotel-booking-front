@@ -1,0 +1,37 @@
+@use '../../variables' as var;
+@use '../../../../styles-collections/mixin/typography/font-scales' as *;
+
+@mixin product-tab-panel-all-features() {
+    .product-single__section--tabs {
+        .tab-panel {
+            &__nav {
+                border-bottom: 1px solid var.$thirteenth-color;
+                gap: 0;
+            }
+
+            &__btn {
+                @include font-collect($font-family: var.$font-family-cinzel, $font-weight: var.$font-weight-middle, $font-size: 13px, $line-height: 1);
+                color: var.$twentieth-color;
+                padding: 1rem 1.5rem;
+                text-transform: uppercase;
+                letter-spacing: .05em;
+                border-bottom: 2px solid transparent;
+                transition: all .2s ease;
+
+                &:hover { color: var.$secondary-color; }
+
+                &.is-active {
+                    color: var.$secondary-color;
+                    border-bottom-color: var.$tertiary-color;
+                }
+            }
+
+            &__body {
+                padding: 2.5rem 0;
+                font-size: .9375rem;
+                line-height: 1.75;
+                color: var.$primary-color;
+            }
+        }
+    }
+}

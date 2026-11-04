@@ -1,0 +1,24 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+
+@use '../variables' as var;
+
+@mixin square-swiper-all-features() {
+    @include flex-position-features(0 0 auto);
+    @include dimension($width: 50%, $height: auto);
+
+    app-text-box:has(.text-box-block-0) {
+        @include display-features($display: block, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: wrap);
+        @include dimension($width: 100%, $height: auto);
+
+        .text-box-block-0 {
+            @include dimension($width: 100%, $height: auto);
+            @include border-decoration-solid($length: 1px);
+            @include dimension($width: auto, $height: 80px);
+            @include border-decoration-radius-detailed($border-top-left-radius: unset, $border-top-right-radius: 100px, $border-bottom-right-radius: 100px, $border-bottom-left-radius: unset);
+            @include border-decoration-solid-detailed($border-left: 0px, $border-top: 1px, $border-right: 1px, $border-bottom: 1px, $border-type: solid);
+            @include border-decoration-color(var.$eleventh-color);
+        }
+    }
+}

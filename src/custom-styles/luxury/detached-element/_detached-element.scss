@@ -1,0 +1,29 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/breakpoints' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+
+@use '../variables' as var;
+@use './detached-first-layer.scss' as *;
+
+@mixin detached-element-all-features() {
+
+    app-sequence-space:has(.ui-sequence-block__detached-element-block) {
+        @include display-features($display: block, $justify-content: unset, $flex-direction: unset, $align-items: unset, $align-content: unset, $flex-wrap: unset);
+        @include box-internal-space($top: 80px, $right: 0px, $bottom: 0px, $left: 0px);
+
+        .ui-sequence-block__detached-element-block {
+            .item-space__detached-element-e-0 {
+                @include detached-first-all-features();
+            }
+        }   
+
+        @include respond(md) {
+            @include box-internal-space($top: 90px, $right: 0px, $bottom: 0px, $left: 0px)
+        }
+
+        @include respond(lg) {
+            @include box-internal-space($top: 0px, $right: 0px, $bottom: 0px, $left: 0px)
+        }
+    }
+}

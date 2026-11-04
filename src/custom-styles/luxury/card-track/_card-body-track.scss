@@ -1,0 +1,31 @@
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../variables' as var;
+
+@mixin card-body-track() {
+    @include box-internal-space($top: 35px, $right: 0px, $bottom: 0px, $left: 0px);
+    @include text-format($text-transform: uppercase, $text-align: center, $letter-spacing: normal);
+
+    app-text-box:has(.text-box-block-0) {
+        app-flex-heading:has(.ui-flex-heading) {
+            .ui-flex-heading {
+                @include font-collect(var.$font-family-cinzel, var.$font-weight-bold, $font-size: calc(1.325rem + .9vw), $line-height: 1.2);
+                @include text-color($color: var.$secondary-color);
+                @include box-external-space($top: 0px, $right: 0px, $bottom: .5rem, $left: 0px);
+
+                app-anchor-flex:has(.ui-link-e) {
+                    .ui-link-e {
+                        @include font-collect(var.$font-family-cinzel, var.$font-weight-bold, $font-size: 22px, $line-height: 30px);
+                    }
+                }
+            }
+        }
+        
+        .ui-text {
+            @include font-collect(var.$font-family-sans, var.$font-weight-middle, $font-size: 15px, $line-height: 18px);
+            @include text-color($color: var.$tertiary-color);
+        }
+    }
+}

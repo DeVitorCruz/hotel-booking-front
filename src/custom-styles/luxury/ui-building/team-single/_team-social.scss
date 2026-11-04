@@ -1,0 +1,28 @@
+@use '../../variables' as var;
+
+@mixin team-social-all-features() {
+    &__social {
+        padding-top: .5rem;
+        border-top: 1px solid;
+
+        app-anchor-flex .ui-link-e {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border: 1px solid var.$thirteenth-color;
+            color: var.$primary-color;
+            text-decoration: none;
+            transition: all .2s ease;
+
+            fa-icon svg { width: 14px; height: 14px; }
+
+            &:hover {
+                background-color: var.$tertiary-color;
+                border-color: var.$tertiary-color;
+                color: var.$white-color;
+            }
+        }
+    }
+}

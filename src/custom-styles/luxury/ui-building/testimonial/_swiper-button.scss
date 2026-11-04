@@ -1,0 +1,38 @@
+@use '../../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../../../styles-collections/breakpoints' as *;
+@use '../../variables' as var;
+
+@mixin swiper-button-all-features() {
+    .btn-block {
+        @include direction-position($top: 80%, $right: unset, $bottom: unset, $left: -137%);
+        position: absolute;
+        display: none;
+
+        .swiper-navigation-icon {
+            display: none;
+        }
+
+        .swiper-button-prev, 
+        .swiper-button-next {
+            app-button-flex:has(.ui-btn-flex) {
+                display: block;
+
+                .ui-btn-flex {
+                    @include font-collect($font-family: var.$font-family-sans, $font-weight: var.$font-weight-regular, $font-size: 30px, $line-height: 1.5);
+                    color: var.$secondary-color;
+                    transition: all .3s ease-in-out;
+    
+                    &:hover {
+                        color: var.$tertiary-color;
+                        transform: scale(1.3);
+                    }
+                }           
+            }
+        }
+
+        @include respond('lg') {
+            @include display-features($display: flex, $justify-content: space-between, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: wrap);
+        }
+    }
+}

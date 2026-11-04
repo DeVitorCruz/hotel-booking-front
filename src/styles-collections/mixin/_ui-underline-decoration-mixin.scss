@@ -1,0 +1,28 @@
+@use '../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../styles-collections/mixin/base/base-mixin' as *;
+
+@mixin ui-underline-decoration($background-color: red, $top: 72%, $left: 6%) {
+    &::after {
+		@include dimension(0, 2px);
+        @include direction-position($top, auto, auto, $left);
+		
+		& { 
+			content: ""; 
+			position: absolute;	
+			transition: all .3s ease-out; 
+			opacity: 0;
+			visibility: hidden;
+			background-color: $background-color;
+		}
+    }
+
+    &:hover {
+        &::after {
+            @include dimension(40px, 2px);
+            & {
+				opacity: 1;
+				visibility: visible;
+            }
+        }
+    }
+}

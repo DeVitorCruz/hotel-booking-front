@@ -1,0 +1,1 @@
+export const SCROLL_BAR_CLASS: string = 'scroll-bar-features';

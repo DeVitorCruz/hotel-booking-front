@@ -1,0 +1,37 @@
+@use './container' as *;
+@use '../../../../styles-collections/breakpoints' as *;
+
+
+@mixin testimonial-all-features() {
+	app-testimonial:has(.testimonial) {
+		// Spacing variables
+		--testimonial-padding-y: 80px;
+		--testimonial-padding-y-md: 90px;
+		--testimonial-padding-y-lg: 120px;
+		--testimonial-max-width: 1360px;
+
+		.testimonial {
+			@include container-all-features();
+		}
+
+		@include respond('sm') {
+			--testimonial-max-width: 540px;
+		}
+
+		@include respond('md') {
+			--testimonial-max-width: 720px;
+		}
+
+		@include respond('lg') {
+			--testimonial-max-width: 960px;
+		}
+
+		@include respond('xl') {
+			--testimonial-max-width: 1140px;
+		}
+
+		@include respond('2xl') {
+			--testimonial-max-width: 1360px;
+		}
+	}
+}

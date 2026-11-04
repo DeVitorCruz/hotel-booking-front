@@ -1,0 +1,30 @@
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../../styles-collections/breakpoints' as *;
+@use '../variables' as var;
+
+@mixin banner-title-all-features() {
+    app-text-box:has(.text-box-block-0) {
+        .text-box-block-0 {
+            app-flex-heading:has(.ui-flex-heading) {
+                .ui-flex-heading {
+                    @include font-collect($font-family: var.$font-family-cinzel, $font-weight: var.$font-weight-bold, $font-size: 30px, $line-height: 35px);
+                    color: var.$secondary-color;
+                    margin-bottom: 10px;
+                    text-transform: uppercase;
+
+                    @include respond('md') {
+                        font-size: 45px;
+                        line-height: 45px;
+                    }
+
+                    @include respond('lg') {
+                        font-size: 60px;
+                        line-height: 60px;
+                        margin-top: -10px;
+                        margin-bottom: 10px;
+                    }
+                }   
+            }
+        }
+    }
+}

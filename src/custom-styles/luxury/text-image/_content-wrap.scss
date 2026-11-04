@@ -1,0 +1,42 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+@use '../variables' as var;
+
+@use './image-wrap' as *;
+@use './text-wrap' as *;
+
+
+@mixin content-wrap-all-features() {
+    app-sequence-space:has(.ui-sequence-block__content-wrap-block) {
+        .ui-sequence-block__content-wrap-block {
+            @include position-features($position: relative);
+            @include box-internal-space($top: 0px, $right: 0px, $bottom: 0px, $left: 0px);
+            @include border-decoration-solid-detailed($border-left: 0px, $border-top: 0px, $border-right: 0px, $border-bottom: 4px, $border-type: solid);
+            @include border-decoration-color($border-color: var.$transparent-color);
+            
+            .item-space__content-wrap-element-0 {
+                @include image-wrap-all-features();
+            }
+
+            .item-space__content-wrap-element-1 {
+                app-sequence-space:has(.ui-sequence-block__text-wrap-block) {
+                    .ui-sequence-block__text-wrap-block {
+                        @include text-wrap-all-features();
+                    }
+                }
+            }
+        
+            @include respond(lg) {
+                @include box-internal-space($top: 0px, $right: 0px, $bottom: 72px, $left: 0px);
+                @include border-decoration-color($border-color: var.$fourth-color);
+            }
+        
+            @include respond(xl) {
+                @include box-internal-space($top: 0px, $right: 0px, $bottom: 140px, $left: 0px);
+            }
+        }
+    }
+}

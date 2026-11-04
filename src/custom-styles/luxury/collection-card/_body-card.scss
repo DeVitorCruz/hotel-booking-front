@@ -1,0 +1,61 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/typography/font-scales' as *; 
+
+@use '../variables' as var;
+@use '../../../styles-collections/breakpoints' as *;
+
+@mixin body-card-all-features($top: unset, $bottom: 0) {
+    @include border-decoration-solid($length: 1px);
+    @include border-decoration-color(var.$fifth-color);
+    @include position-features();
+
+    &:before {
+        content: '';
+        @include position-features(absolute);
+        @include dimension($width: 30px, $height: 30px);
+        @include direction-position($top: $top, $right: 0, $bottom: $bottom, $left: unset);
+        @include content-color(var.$fifth-color);
+    }
+
+    .text-box-block-0 {
+        @include box-internal-space($top: 36px, $right: 30px, $bottom: 60px, $left: 30px);
+
+        .ui-flex-heading {
+            @include font-collect(var.$font-family-cinzel, var.$font-weight-bold, 28px, $line-height: 38px);
+            @include text-color(var.$secondary-color);
+            @include box-external-space($top: 0px, $right: 0px, $bottom: .5rem, $left: 0px);
+        }
+
+        .ui-text {
+            @include box-external-space($top: 0px, $right: 0px, $bottom: 35px, $left: 0px);
+        }
+
+        .link-list-block {
+            .ui-link-e {
+                @include text-color(var.$tertiary-color);
+                @include content-color(var.$fourth-color);
+                @include font-collect(var.$font-family-sans, var.$font-weight-middle, 18px, $line-height: 1.5);
+                @include box-internal-space($top: 15px, $right: 45px, $bottom: 15px, $left: 45px);
+                @include transition-features($transition: all .3s ease-in-out);
+                @include border-decoration-solid($length: 1px);
+                @include border-decoration-color(var.$fourth-color);
+
+                @include respond(lg) {
+                    @include font-collect(var.$font-family-sans, var.$font-weight-middle, 16px, $line-height: 1.5);
+                }
+
+                &:hover {
+                    @include content-color(var.$transparent-color);
+                    @include border-decoration-solid($length: 1px);
+                    @include border-decoration-color(var.$tertiary-color);
+                }
+            }
+        }
+
+        @include respond(xl) {
+            @include box-internal-space($top: 36px, $right: 80px, $bottom: 60px, $left: 40px);
+        }
+    }
+}

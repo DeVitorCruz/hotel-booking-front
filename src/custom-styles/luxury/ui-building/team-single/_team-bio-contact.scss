@@ -1,0 +1,26 @@
+@use '../../variables' as var;
+
+@mixin team-bio-contact-all-features() {
+    &__bio {
+        font-size: .9375rem;
+        line-height: 1.75;
+        color: var.$primary-color;
+        margin: 0;
+        padding-top: .5rem;
+        border-top: 1px solid var.$thirteenth-color;
+    }
+
+    &__contact-label {
+        font-weight: var.$font-weight-intermediate;
+        color: var.$secondary-color;
+        font-size: .875rem;
+    }
+
+    &__contact-value {
+        color: var.$primary-color;
+        font-size: .875rem;
+        transition: color .2s ease;
+
+        &:hover { color: var.$tertiary-color; }
+    }
+}

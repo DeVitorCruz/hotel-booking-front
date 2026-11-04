@@ -1,0 +1,34 @@
+@use '../../variables' as var;
+
+@mixin font-collect($font-family: null, $font-weight: null, $font-size: null, $line-height: null) {
+    font-family: $font-family;
+    @include font-dimension($font-size, $font-weight, $line-height);
+}
+
+@mixin heading($level: h1) {
+    @include font-collect(var.$font-family-sans, var.$font-weight-bold, map.get(var.$type-scale, h1));
+    line-height: 1.2;
+}
+
+@mixin body-text() {
+    @include font-collect(var.$font-family-serif, var.$font-family-regular, var.$font-size-base);
+    line-height: 1.6;
+}
+
+@mixin font-fully-collection($font-family: null, $font-weight: null, $font-size: null, $line-scale: null) {
+    @include font-collect($font-family, $font-weight, $font-size);
+    line-height: $line-scale;
+}
+
+@mixin font-dimension($font-size: 15px, $font-weight: 400, $line-height: inherit) {
+    font-size: $font-size;
+    font-weight: $font-weight;
+    line-height: $line-height;
+}
+
+@mixin text-format($text-transform: capitalize, $text-align: center, $letter-spacing: normal, $text-decoration: null) {
+    text-transform: $text-transform;
+    text-align: $text-align;
+    letter-spacing: $letter-spacing;
+    text-decoration: $text-decoration;
+}

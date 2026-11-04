@@ -1,0 +1,28 @@
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../variables' as var;
+
+@mixin card-button-all-features() {
+    .button-list-block {
+        margin-top: 20px;
+
+        app-button-flex:has(.shop-add-to-cart) {
+            .shop-add-to-cart {
+                @include font-collect($font-family: var.$font-family-sans, $font-weight: var.$font-weight-intermediate, $font-size: 15px, $line-height: 1.5);
+                padding: 12px 20px;
+                border: 2px solid var.$secondary-color;
+                border-radius: 50px;
+                transition: all .2s;
+                color: var.$secondary-color;
+
+                app-icon-flex:has(.ng-fa-icon) {
+                    margin-left: 10px;
+                }
+
+                &:hover {
+                    color: var.$white-color;
+                    background-color: var.$secondary-color;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,42 @@
+@switch(INPUT().matInput) {
+    @case ('matInput') {
+        <mat-form-field>        
+            @if (INPUT().label) {
+                <mat-label>{{ INPUT().label }}</mat-label>
+            }
+            <input 
+                class="ui-input-flex" 
+                [ngClass]="INPUT().customClassName" 
+                appDynamicAttributes 
+                [FLEX_INPUT_ITEM]="INPUT()" 
+                (valueChange)="onValueChange($event)"
+                matInput>
+        </mat-form-field>
+    }
+
+    @default {
+        @if (INPUT().label) {
+            <label>{{ INPUT().label }}</label>
+        }
+
+        @if (INPUT().tagType === 'textarea') {
+            <textarea 
+                class="ui-input-flex"
+                [ngClass]="INPUT().customClassName"
+                [name]="INPUT().name?? ''" 
+                [disabled]="INPUT().isDisabled"
+                [placeholder]="INPUT().placeholder"
+                [required]="INPUT().required ?? false"
+                (input)="onValueChange($any($event.target).value)">{{ VALUE() }}</textarea>
+        } @else {
+            <input 
+                class="ui-input-flex" 
+                [ngClass]="INPUT().customClassName" 
+                appDynamicAttributes 
+                [FLEX_INPUT_ITEM]="INPUT()"
+                (valueChange)="onValueChange($event)"> 
+
+        }
+    }
+}
+

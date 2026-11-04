@@ -1,0 +1,42 @@
+@use '../../../styles-collections/breakpoints' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+
+@use '../variables' as var;
+
+@mixin banner-image-all-features() {
+    .ui-image-flex {
+        @include max-dimension($max-width: 400px, $max-height: 510px);
+        @include box-external-space($top: 0px, $right: auto, $bottom: 0px, $left: auto);
+
+        &:after, &:before {
+            content: unset;
+            @include position-features(absolute);
+            @include out-direction-move(-1);
+            @include border-decoration-radius(1000px);
+            @include border-decoration-solid(1px);
+            @include border-decoration-color(var.$sixth-color);
+
+            @include respond(lg) {
+                content: "";
+            }
+        }
+
+        &:after {
+            @include content-color(linear-gradient(var.$tertiary-color 50%, var.$transparent-color 50%));
+            @include dimension($width: 150px, $height: 150px);
+            @include direction-position($top: 43%, $right: unset, $bottom: unset, $left: 51%);
+        }
+
+        &:before {
+            @include content-color(linear-gradient(var.$white-color 50%, var.$transparent-color 50%));
+            @include dimension($width: 364px, $height: 154px);
+            @include direction-position($top: unset, $right: 3%, $bottom: 12%, $left: unset);
+        }
+
+        @include respond(xl) {
+            @include max-dimension($max-width: 500px, $max-height: 610px);
+        }
+    }
+}

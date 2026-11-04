@@ -1,0 +1,27 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *; 
+
+@use '../../../styles-collections/breakpoints' as *;
+@use '../variables' as var;
+
+@mixin wall-figure-all-features() {
+    @include position-features($position: absolute);
+    @include direction-position($top: -60px, $right: unset, $bottom: unset, $left: -60px, );
+    @include dimension($width: 1410px, $height: 499px);
+    @include content-color($background-color: var.$fifth-color);
+    @include out-direction-move($z-index: -1);
+
+    @include respond(md){
+        content: "";
+        @include dimension($width: 1410px, $height: 550px);
+    }
+
+    @include respond("2xl") {
+        @include dimension($width: 1636.38px, $height: 550px);
+    }
+
+    @include respond("3xl") {
+        @include dimension($width: 1644.62px, $height: 550px);
+    }
+}

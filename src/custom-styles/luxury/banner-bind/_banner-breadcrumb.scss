@@ -1,0 +1,48 @@
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../../styles-collections/breakpoints' as *;
+@use '../variables' as var;
+
+@mixin banner-breadcrumb-all-features() {
+    app-bread-crumb:has(.nav-bread-crumbs__block) {
+        .nav-bread-crumbs__block {
+            .ui-link-e, .ui-link-e__disabled {
+                @include font-collect($font-family: var.$font-family-sans, $font-weight: var.$font-weight-middle, $font-size: 18px, $line-height: 30px);
+                color: var.$tertiary-color;
+                text-transform: capitalize;
+                padding: 0 5px;
+            }
+            
+            app-anchor-flex:has(.ui-link-e) {
+                .ui-link-e {
+                    position: relative;
+                    color: var.$primary-color;
+                    transition: all .3s;
+                    padding-right: 20px;
+                    
+                    &:hover {
+                        color: var.$secondary-color;
+                    }
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        right: 8%;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 8px;
+                        height: 3px;
+                        background: var.$primary-color;   
+                    }
+                }
+            }
+
+            .ui-slash-e {
+                display: none;
+            }
+
+            @include respond('md') {
+                font-size: 16px;
+            }
+        }
+    }
+}

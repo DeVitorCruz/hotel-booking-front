@@ -1,0 +1,17 @@
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+@use '../variables' as var;
+
+@mixin side-bar-button-all-features() {
+    .nav-block__nav-sidebar-button {
+        & { padding: 0 .7rem 0 .7rem; }
+        
+        .ui-btn-flex {
+            @include dimension(40px, 40px);
+            & { 
+				color: var.$white-color; 
+				background-color: var.$secondary-color; 
+			}
+        }
+    }
+}

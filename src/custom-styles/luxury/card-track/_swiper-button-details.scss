@@ -1,0 +1,23 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+
+@mixin swiper-button-details-all-features($left: 4px, $left-hover: 16px, $justify-content: end) {
+    app-button-flex:has(.ui-btn-flex) {
+        @include display-features($display: flex, $justify-content: $justify-content, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+
+        .ui-btn-flex {
+            &:after {
+                @include direction-position($top: -3px, $right: unset, $bottom: unset, $left: $left, );
+            }
+        }
+    }
+
+    &:hover {
+        app-button-flex:has(.ui-btn-flex) {
+            .ui-btn-flex {
+                &:after {
+                    @include direction-position($top: -3px, $right: unset, $bottom: unset, $left: $left-hover, );
+                }
+            }
+        }
+    }
+}

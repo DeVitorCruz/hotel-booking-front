@@ -1,0 +1,37 @@
+@mixin checkout-btn-option-actions-all-features() {
+    &__option-list {
+        display: flex;
+        gap: .75rem;
+        flex-wrap: wrap;
+    }
+
+    &__option-btn {
+        padding: .5rem 1.5rem;
+        background-color: transparent;
+        border: 2px solid currentColor;
+        cursor: pointer;
+        font-size: .875rem;
+        transition: all .2s ease;
+    }
+    
+    &__actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+        margin-top: 2rem;
+    }
+
+    &__btn {
+        padding: .875rem 2rem;
+        border: none;
+        cursor: pointer;
+        font-size: .8125rem;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        transition: all .3s ease;
+
+        &--primary { }
+        &--secondary { }
+        &:disabled { opacity: .6; cursor: not-allowed; }
+    }
+}

@@ -1,0 +1,39 @@
+@use '../../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../../styles-collections/breakpoints' as *;
+@use '../../variables' as var;
+
+@use './image' as *;
+@use './title-description' as *;
+@use './swiper-track' as *;
+
+@mixin container-all-features() {
+    .testimonial__container {
+        @include display-features($display: flex, $justify-content: space-between, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: wrap);
+        @include border-decoration-solid-detailed($border-left: 0px, $border-top: 0px, $border-right: 0px, $border-bottom: 4px, $border-type: solid);
+        position: relative;
+        border-color: transparent;
+        gap: 0;
+
+        @include image-all-features();
+
+        .testimonial__body {
+			@include display-features($display: flex, $justify-content: space-between, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: wrap);
+			@include dimension($width: 100%, $height: auto);
+			flex: unset;
+
+            @include title-description-all-features();
+            @include swiper-track-all-features();
+		}
+
+        @include respond('lg') {
+            padding: 0 0 72px 0;
+            border-color: var.$fourth-color;
+        }
+
+        @include respond('xl') {
+            padding: 0 0 140px 0;
+            border-color: var.$fourth-color;
+        }
+    }
+}

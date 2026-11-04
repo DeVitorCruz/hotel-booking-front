@@ -1,0 +1,33 @@
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+
+@use '../variables' as var;
+
+@mixin detached-body-text-all-features() {
+    .ui-flex-heading {
+        @include font-collect(var.$font-family-cinzel, var.$font-weight-bold, 30px, $line-height: 40px);
+        @include text-format($text-transform: uppercase, $text-align: center);
+
+        @include respond(sm) {
+            @include font-collect(var.$font-family-cinzel, var.$font-weight-bold, 40px, $line-height: 50px);
+        }
+
+        @include respond(lg) {
+            @include font-collect(var.$font-family-cinzel, var.$font-weight-bold, 50px, $line-height: 67px);
+            @include text-format($text-transform: uppercase, $text-align: left);
+        }
+    }
+    
+    .ui-text {
+        @include box-external-space($top: 0px, $right: 0px, $bottom: 35px, $left: 0px);
+        @include font-collect(var.$font-family-sans, var.$font-weight-regular, 16px, $line-height: 32px);
+        @include text-format($text-transform: uppercase, $text-align: center);
+
+        @include respond(lg) {
+            @include text-format($text-transform: uppercase, $text-align: left);
+        }
+    }
+}

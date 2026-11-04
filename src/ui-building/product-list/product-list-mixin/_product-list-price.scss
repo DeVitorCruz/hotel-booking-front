@@ -1,0 +1,9 @@
+@mixin product-list-price-all-features() {
+    &__price--original {
+        display: block;
+        text-decoration: line-through;
+        font-size: .8125rem;
+    }
+
+    &__price--current { display: block; }
+}

@@ -1,0 +1,83 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+@use '../variables' as var;
+
+@use './circle-figure' as *;
+
+@use './swiper-button-details' as *;
+
+@mixin card-button-track() {
+    @include position-features($position: absolute);
+    @include display-features($display: none, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+    @include direction-position($top: unset, $right: unset, $bottom: -45%, $left: 30%, );
+
+    .swiper-button-prev, .swiper-button-next {
+        app-button-flex:has(.ui-btn-flex) {
+            @include dimension($width: 200px, $height: 80px);
+            @include font-collect(var.$font-family-sans, var.$font-weight-regular, $font-size: 30px, $line-height: 1.5);
+            @include view-ui-cursor(pointer);
+            
+            .ui-btn-flex {
+                @include flex-position-features(0 0 auto);
+                @include dimension($width: 50%, $height: auto);
+                @include text-color($color: var.$secondary-color);
+                @include change-view-scale($scale: scale(1.0));
+                @include view-ui-cursor(pointer);
+                @include position-features($position: relative);
+
+                &:after {
+                    content: "";
+                    @include circle-figure-all-features();
+                }
+
+                app-icon-flex:has(.ng-fa-icon) {
+                    @include display-features($display: block, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+                    @include transition-features($transition: all .3s ease-in-out);
+
+                    .ng-fa-icon {
+                        @include text-color($color: var.$secondary-color);
+                    }
+                }
+            }
+        }
+
+        &:hover {
+            app-button-flex:has(.ui-btn-flex) {
+                .ui-btn-flex {
+                    app-icon-flex:has(.ng-fa-icon) {
+                        @include change-view-scale($scale: scale(1.1));
+
+                        .ng-fa-icon {
+                            @include text-color(var.$tertiary-color);
+                        }
+                    }
+                }   
+            }
+        }
+    }
+
+    .swiper-button-prev {
+        @include swiper-button-details-all-features($left: 4px, $left-hover: 16px, $justify-content: end);
+    }
+
+    .swiper-button-next {
+        @include swiper-button-details-all-features($left: 46px, $left-hover: 32px, $justify-content: start);
+    }
+
+    @include respond(lg) {
+        @include display-features($display: flex, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+        @include direction-position($top: unset, $right: unset, $bottom: -46%, $left: 30%,);
+    }
+
+    @include respond(xl) {
+        @include direction-position($top: unset, $right: unset, $bottom: -40%, $left: 34%,);
+    }
+
+    @include respond("2xl") {
+        @include direction-position($top: unset, $right: unset, $bottom: -40%, $left: 37%,);
+    }
+}

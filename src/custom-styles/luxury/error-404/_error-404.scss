@@ -1,0 +1,49 @@
+@use '../variables' as var;
+@use '../../../styles-collections/breakpoints' as *;
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+@use './error-404-btn' as *;
+
+@mixin error-404-all-features() {
+    .error-404 {
+        background-color: var.$white-color;
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 20px;
+
+        &__container {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        &__code {
+            @include font-collect($font-family: var.$font-family-cinzel, $font-weight: var.$font-weight-bold, $font-size: 120px, $line-height: 1);
+            color: var.$tertiary-color;
+            opacity: .15;
+            letter-spacing: .1em;
+            margin-bottom: -.5rem;
+
+            @include respond('md') { font-size: 180px; }
+        }
+
+        &__title {
+            @include font-collect($font-family: var.$font-family-cinzel, $font-weight: var.$font-weight-bold, $font-size: 28px, $line-height: 1.3);
+            color: var.$secondary-color;
+            text-transform: uppercase;
+            margin: 0 0 1rem 0;
+
+            @include respond('md') { font-size: 36px; }
+        }
+
+        &__message {
+            font-size: .9375rem;
+            line-height: 1.75;
+            color: var.$primary-color;
+            margin: 0 0 2.5rem 0;
+        }
+
+        @include error-404-btn-all-features();
+    }
+}

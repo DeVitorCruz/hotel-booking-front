@@ -1,0 +1,20 @@
+<form 
+    class="ui-flex-form"
+    [ngClass]="FORM().customClassName ?? []"
+    (ngSubmit)="handleSubmit()">
+
+    @for (field of FORM().fields; track field.id) {
+        <div [class]="'ui-flex-form__field' + (field.customFieldClassName? ' ' + field.customFieldClassName : '')">
+            <app-flex-input
+                [INPUT_ITEM]="field.inputItem!"
+                (flexInputValueChange)="handleValueChange(field, $event)">
+            </app-flex-input>
+        </div>    
+    }
+
+    <div class="ui-flex-form__submit">
+        <app-button-flex
+            [BUTTON_ITEM]="FORM().submitButton">
+        </app-button-flex>
+    </div>
+</form>

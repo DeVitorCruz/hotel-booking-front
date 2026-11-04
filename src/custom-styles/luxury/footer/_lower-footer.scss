@@ -1,0 +1,20 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+
+@use '../variables' as var;
+
+@mixin lower-all-features() {
+    .ui-sequence-block__lower-footer {
+		& {
+			background-color: var.$seventh-color;
+			padding: 20px 0px 20px 0px;
+		}
+        @include display-features($display: flex, $justify-content: center, $flex-direction: row, $align-items: center);
+       
+        .item-space-1 {
+			& {
+				color: var.$tertiary-color;
+				padding: 0px 4px 0px 4px;
+			}
+        }
+    }
+}

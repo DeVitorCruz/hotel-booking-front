@@ -1,0 +1,37 @@
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../variables' as var;
+
+@use '../../../styles-collections/breakpoints' as *;
+@use './title' as *;
+@use './text' as *;
+
+@mixin title-description-all-features() {
+    @include box-internal-space($top: 0px, $right: 1.5rem, $bottom: 0px, $left: 1.5rem);
+
+    app-text-box:has(.text-box-block-0) {
+        @include box-external-space($top: 0px, $right: 0px, $bottom: 40px, $left: 0px);
+        @include display-features($display: block, $justify-content: unset, $flex-direction: unset, $align-items: center, $align-content: center, $flex-wrap: unset);
+
+        .text-box-block-0 {
+            app-flex-heading:has(.ui-flex-heading) {
+                .ui-flex-heading {
+                    @include title-all-features();
+                }
+            }
+
+            .ui-text {
+                @include text-all-features();
+            }
+        }
+
+        @include respond(md) {
+            @include box-external-space($top: 0px, $right: 0px, $bottom: 60px, $left: 0px);
+        }
+
+        @include respond(xl) {
+            @include box-external-space($top: 0px, $right: 50px, $bottom: 60px, $left: 0px);
+        }
+    }
+}

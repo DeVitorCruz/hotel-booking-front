@@ -1,0 +1,34 @@
+@use '../../../styles-collections/breakpoints' as *; 
+@use './form-card-header' as *;
+@use './form-card-main' as *;
+@use './form-card-footer' as *;
+
+@mixin auth-shell-right-all-features() {
+    width: 100%;
+    padding: 70px 35px;
+    min-height: 600px;
+    
+    app-register-page:has(.auth-form__container), app-login:has(.auth-form__container) {
+        app-auth-form:has(.auth-form__container) {
+            .auth-form {
+                .auth-form__container {
+                    .auth-form__card {
+                        @include form-card-header-all-features();
+
+                        .auth-form__main {
+                            @include form-card-main-all-features();
+                        }
+
+                        .auth-form__footer {
+                            @include form-card-footer-all-features();
+                        }
+                    }
+                }
+            }
+        }   
+    }
+
+    @include respond('lg') {
+        width: 50%;
+    }
+}

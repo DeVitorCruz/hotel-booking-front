@@ -1,0 +1,129 @@
+// CSS Reset
+@use './mixin/typography/font-scales' as *;
+@use './mixin/density/density-mixin' as *;
+@use './mixin/color/color-mixin' as *;
+
+*, *::before, *::after {	
+	box-sizing: border-box;
+}
+
+html {
+	line-height: 1.5;
+	--webkit-text-size-adjust: 100%;
+	tab-size: 4;		
+}
+
+body {
+	@include font-fully-collection($font-family: inherit, $font-weight: null, $font-size: null, $line-scale: inherit);
+	& {
+		margin: 0;
+	}
+}
+
+a {
+	color: inherit;
+	text-decoration: inherit;
+}
+
+b, strong {
+	font-weight: bolder;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	@include font-fully-collection($font-family: null, $font-weight: inherit, $font-size: inherit, $line-scale: null);
+	& {
+		margin: 0;
+	}
+}
+
+code, kbd, samp, pre {
+	@include font-fully-collection($font-family: monospace, $font-weight: inherit, $font-size: 1em, $line-scale: null);
+}
+
+small {
+	font-size: 80%;	
+}
+
+img, svg, video, canvas, audio, iframe, embed, object {
+	display: block;
+	vertical-align: middle;	
+}
+
+img, video {
+	max-width: 100%;
+	height: auto;		
+}
+
+table {
+	border-collapse: collapse;
+	border-color: inherit;
+	text-indent: 0;	
+}
+
+button, input, optgroup, select, textarea {
+	@include font-fully-collection($font-family: inherit, $font-weight: inherit, $font-size: 100%, $line-scale: inherit);
+	& {
+		color: inherit;
+		margin: 0;
+		padding: 0;
+		border: none;
+	}
+}
+
+button, select {
+	text-transform: none;
+}
+
+button, [type='button'], [type='reset'], [type='submit'] {
+	@include content-color($background-color: transparent, $background-image: none, $background-size: null, $background-position: null, $background-repeat: null, $opaticy: null, $visibility: null);
+	& {
+		-webkit-appearance: button;
+		cursor: pointer;
+	}
+}
+
+ul, ol {
+	list-style: none;
+}
+
+ul, ol, fieldset {	
+	margin: 0;
+	padding: 0;
+}
+
+legend {
+	padding: 0;
+}
+
+textarea {
+	resize: vertical;	
+}
+
+input::placeholder,
+textarea::placeholder {
+	opacity: 1;
+	color: #9ca3af;	
+}
+
+[role='button'], button {
+	cursor: pointer;
+}
+
+:disabled {
+	cursor: default;	
+}
+
+hr {
+	height: 0;
+	color: inherit;
+	border-top-width: 1px;
+	margin: 0;	
+}
+
+summary {
+	display: list-item;
+}
+
+blockquote, dl, dd, figure, p {
+	margin: 0;
+}

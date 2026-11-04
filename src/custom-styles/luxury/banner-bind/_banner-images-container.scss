@@ -1,0 +1,46 @@
+@use '../../../styles-collections/breakpoints' as *;
+@use '../../../styles-collections/mixin/rotate-figure-mixin' as *;
+
+@mixin banner-images-container-all-features() {
+    position: absolute;
+    bottom: 0;
+    display: none;
+    right: 12%;
+    z-index: 1;
+
+    app-container:has(.ui-sequence-block__banner-images-block) {
+        app-sequence-space:has(.ui-sequence-block__banner-images-block) {
+            width: 100%;
+
+            .ui-sequence-block__banner-images-block {
+                .item-space__banner-images-element-0, .item-space__banner-images-element-2 {
+                    position: absolute;
+                    z-index: -1;
+                }
+                .item-space__banner-images-element-0 {
+                    left: -26%;
+                    top: -23%;
+
+                    app-img-flex:has(.ui-image-flex) {
+                        .ui-image-flex {
+                            @include rotate-figure($time: 4s, $type: linear, $repeat: infinite);
+                        }
+                    }
+                }
+
+                .item-space__banner-images-element-1 {
+                    z-index: 1;
+                }
+
+                .item-space__banner-images-element-2 {
+                    right: -34%;
+                    bottom: 0;
+                }
+            }
+        }
+    }
+
+    @include respond('lg') {
+        display: block;
+    }
+}

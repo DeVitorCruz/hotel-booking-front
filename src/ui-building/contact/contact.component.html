@@ -1,0 +1,78 @@
+<div class="contact">
+    <div class="contact__main-container">
+        
+        <div class="contact__section--row">
+            <!-- SECTION 1: Info + Map -->
+            <div class="contact__section contact__section--info">
+                <div class="contact__container">
+                    <!-- Left: Store info -->
+                    <div class="contact__info">
+                        <app-text-box
+                            [TEXT_BOX_LIST]="CONTENT().header"></app-text-box>
+            
+                        <!-- Info items -->
+                        <div class="contact__info-list">
+                            @for (item of CONTENT().infoItems; track item.id) {
+                                <div class="contct__info-item">
+                                    <span class="contact__info-icon">
+                                        <app-icon-flex
+                                            [ICON_SWITCH]="item.icon"></app-icon-flex>
+                                    </span>
+                                    <div class="contact__info-body">
+                                        <div class="contact__info-label">{{ item.label }}</div>
+                                        <div class="contact__info-value">{{ item.value }}</div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <!-- Opening hours -->
+                        @if (CONTENT().openingHours.length > 0) {
+                            <div class="contact__hours">
+                                <span class="contact__hours-title">Opening Hours</span>
+                                <ul class="contact__hours-list">
+                                    @for (slot of CONTENT().openingHours; track slot.day) {
+                                        <li class="contact__hours-item">
+                                            <span class="contact__hours-day">{{ slot.day }}</span>
+                                            <span class="contact__hours-time">{{ slot.hours }}</span>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+                    </div>
+                    <!-- Right: Map -->
+                     <div class="contact__map">
+                        <iframe
+                            [src]="CONTENT().map.iframeSrc"
+                            [style.height]="CONTENT().map.height ?? '450px'"
+                            class="contact__map-frame"
+                            allowfullscreen
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                     </div>
+                </div>
+            </div>
+            <!-- SECTION 2: Contact From -->
+            <div class="contact__section contact__section--form">
+                <div class="contact__container">
+                    <div class="contact__form-wrap">
+                        <app-text-box
+                            [TEXT_BOX_LIST]="CONTENT().formHeader"></app-text-box>
+                        @if (SUBMIT_SUCCESS()) {
+                            <p class="contact__success">
+                                {{ CONTENT().successMessage ?? 'Thank you" We will in touch shortly.' }}
+                            </p>
+                        } @else {
+                            <app-flex-form
+                                [FLEX_FORM_ITEM]="CONTENT().formContent"
+                                (onSubmit)="handleSubmit()">
+                            </app-flex-form>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

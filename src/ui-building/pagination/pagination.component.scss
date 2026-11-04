@@ -1,0 +1,16 @@
+:host {
+    display: block;
+}
+
+.ui-pagination {
+    .ui-pagination__arrow {
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        
+        &:disabled {
+            cursor: not-allowed;
+            opacity: .4;
+        }
+    }
+}

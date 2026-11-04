@@ -1,0 +1,34 @@
+<section class="page-title-banner">
+	
+	<!-- Background layer -->
+	@if (_BG_IMAGE()) {
+		<div 
+			class="page-title-banner__bg"
+			[style.background-image]="'url(' + _BG_IMAGE() + ')'">
+		</div>
+		
+		<!-- Decorative shapes -->
+		<div class="page-title-banner__shape page-title-banner__shape--left"></div>
+		<div class="page-title-banner__shape page-title-banner__shape--right"></div>
+	}
+	
+	<div class="page-title-banner__content">
+		<h2 class="page-title-banner__title">{{ _TITLE() }}</h2>
+		
+		<ol class="page-title-banner__breadcrumb">
+			@for (item of _BREADCUMBS(); track item.label; let last = $last) {
+				<li class="page-title-banner__breadcrumb-item"
+				    [class.page-title-banner__breadcrumb-item--active]="last">
+				    @if (item.path && !last) {
+						<a [routerLink]="item.path"
+						   class="page-title-banner__breadcrumb-link">
+						    {{ item.label }}
+						</a>
+					} @else {
+						<span>{{ item.label }}</span>
+					}
+				    </li>
+			}
+		</ol>
+	</div>
+</section>

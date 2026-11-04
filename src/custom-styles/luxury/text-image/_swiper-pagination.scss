@@ -1,0 +1,30 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+
+@use '../variables' as var;
+@use '../../../styles-collections/breakpoints' as *;
+
+@mixin swiper-pagination-all-features() {
+    @include display-features($display: flex, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+    @include box-external-space($top: 0px, $right: 0px, $bottom: 0px, $left: 0px);
+    @include direction-position($top: unset, $right: unset, $bottom: -10%, $left: unset,);
+
+    .swiper-pagination-bullet {
+        @include display-features($display: inline-block, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+        @include dimension($width: 10px, $height: 10px);
+        @include box-external-space($top: 0px, $right: 5px, $bottom: 0px, $left: 5px);
+        @include box-internal-space($top: 0px, $right: 0px, $bottom: 0px, $left: 0px);
+        @include border-decoration-radius($border-radius: 100%);
+        @include content-color($background-color: var.$secondary-color);
+        @include view-ui-cursor(pointer);
+    }
+    
+    .swiper-pagination-bullet.swiper-pagination-bullet-active {
+        @include content-color($background-color: var.$tertiary-color);
+    }
+
+    @include respond(lg) {
+        @include display-features($display: none, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+    }
+}

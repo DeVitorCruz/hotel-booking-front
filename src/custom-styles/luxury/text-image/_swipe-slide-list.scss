@@ -1,0 +1,23 @@
+@use './icon-swiper-wrap' as *;
+@use './text-swiper' as *;
+@use './title-swiper-sub-text' as *;
+
+@mixin swiper-slide-all-features() {
+    app-container {
+        app-sequence-space:has(.ui-sequence-block__swiper-slid-list-block) {
+            .ui-sequence-block__swiper-slid-list-block {
+                .item-space__swiper-slid-list-element-0 {
+                    @include icon-swiper-wrap-all-features();
+                }
+
+                .item-space__swiper-slid-list-element-1 {
+                    @include text-swiper-all-features();
+                }
+
+                .item-space__swiper-slid-list-element-2 {
+                    @include title-swiper-sub-text-all-features();
+                }
+            }
+        }
+    }
+}

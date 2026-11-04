@@ -1,0 +1,57 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+@use '../variables' as var;
+
+
+@mixin image-wrap-all-features() {
+    @include display-features($display: none, $justify-content: space-between, $flex-direction: row, $align-items: center, $align-content: unset, $flex-wrap: unset);
+    @include dimension($width: 250px, $height: 400px);
+    @include position-features($position: absolute);
+    @include direction-position($top: 37%, $right: unset, $bottom: unset, $left: 43%, );
+    @include change-position($transform: var.$translate-middle);
+
+    &:before, &:after {
+        @include position-features($position: absolute);
+        @include content-color(var.$white-color);
+
+        @include respond(lg) {
+            content: '';
+        }
+    }
+
+    &:before {
+        @include direction-position($top: unset, $right: unset, $bottom: 0, $left: 0,);
+        @include dimension($width: 50px, $height: 70px);
+        @include out-direction-move($z-index: 1);
+    }
+
+    &:after {
+        @include direction-position($top: unset, $right: unset, $bottom: -140px, $left: -20%,);
+        @include dimension($width: 100px, $height: 210px);
+        @include content-color(var.$fourth-color);
+        @include out-direction-move($z-index: -1);
+    }
+
+    app-img-flex:has(.ui-image-flex) {
+        .ui-image-flex {
+            img {
+                @include dimension($width: 100%, $height: auto);
+            }
+        }   
+    }   
+
+    @include respond(lg) {
+        @include display-features($display: block, $justify-content: unset, $flex-direction: unset, $align-items: center, $align-content: center, $flex-wrap: unset);
+    }
+
+    @include respond(xl) {
+        @include dimension($width: 300px, $height: 430px);
+    }
+
+    @include respond(2xl) {
+        @include direction-position($top: 37%, $right: unset, $bottom: unset, $left: 47%,);
+    }
+}

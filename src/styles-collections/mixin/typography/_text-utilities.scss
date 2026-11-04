@@ -1,0 +1,28 @@
+@mixin truncate($lines: 1) {
+    & {
+		@if $lines == 1 {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+		} @else {
+			overflow: hidden;
+			display: -webkit-box;
+			-webkit-line-clamp: $lines;
+			-webkit-box-orient: vertical;
+		}
+    }    
+}
+
+@mixin visually-hidden {
+    & {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: react(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+    }
+}

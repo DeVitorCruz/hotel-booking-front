@@ -1,0 +1,30 @@
+@use './color/color-mixin' as *;
+@use '../mixin/base/base-mixin' as *;
+@use './density/density-mixin' as *;
+@use '../breakpoints' as *;
+@use '../mixin/typography/font-scales' as *;
+@use './base/base-mixin' as *;
+
+
+@mixin ui-button-rectangle($button-text-color: black, $content-color: rgb(44, 170, 224), $border-color: blue) {
+    @include text-color($button-text-color);
+    @include border-decoration-solid($length: 1px);
+    @include border-decoration-color($border-color: $border-color);
+    @include content-color($content-color);
+    @include box-internal-space($top: 12px, $right: 18px, $bottom: 12px, $left: 18px);
+    @include font-dimension($font-size: 14px, $font-weight: 500);
+    @include transition-features($transition: all .3s ease-in-out);
+    @include view-ui-cursor(pointer);
+
+    @include respond(md) {
+        @include box-internal-space($top: 15px, $right: 45px, $bottom: 15px, $left: 45px);
+    }
+
+    @include respond(lg) {
+        @include font-dimension($font-size: 18px, $font-weight: 500);
+    }
+
+    @include respond(xl) {
+        @include font-dimension($font-size: 16px, $font-weight: 500);
+    }
+}

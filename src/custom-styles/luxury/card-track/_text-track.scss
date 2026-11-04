@@ -1,0 +1,10 @@
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+
+@use '../variables' as var;
+
+@mixin text-track-all-features() {
+    @include font-collect(var.$font-family-sans, var.$font-weight-regular, 16px, $line-height: 1.8em);
+    @include box-external-space($top: 10px, $right: 0px, $bottom: 0px, $left: 0px);
+    @include text-format($text-transform: none, $text-align: center, $letter-spacing: normal);
+}

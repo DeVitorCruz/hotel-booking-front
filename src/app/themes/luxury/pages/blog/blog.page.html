@@ -1,0 +1,28 @@
+<!-- Search -->
+<div class="blog-search">
+    <div class="blog-search__container">
+        <input 
+            type="text" 
+            class="blog-search__input ui-input-flex" 
+            placeholder="Search posts..." 
+            [value]="SEARCH()"
+            (input)="onSearch($any($event.target).value)"  />
+    </div>
+</div>
+
+@if(LOADING()) {
+    <div class="blog-loading">Loading...</div>
+}
+
+@if (BLOG_CONTENT()) {
+    <app-card-grid
+        [CONTENT]="BLOG_CONTENT()!">
+    </app-card-grid>
+}
+
+@if (PAGINATION()) {
+    <app-pagination
+        [CONTENT]="PAGINATION()!"
+        (pageChange)="onPageChange($event)">
+    </app-pagination>
+}

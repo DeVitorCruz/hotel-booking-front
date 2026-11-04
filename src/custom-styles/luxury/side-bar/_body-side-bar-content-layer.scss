@@ -1,0 +1,49 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+
+@use '../variables' as var;
+
+@use './body-side-bar-anchor-link' as *;
+@use './body-side-bar-button-flex' as *;
+@use './body-side-bar-list-custom' as *;
+
+@use '../../../styles-collections/mixin/intern-accordion-sequence-mixin' as *;
+
+@mixin body-side-bar-content-layer() {
+    app-container {
+        app-sequence-space:has(.ui-sequence-block__side-bar-left-block) {
+            .ui-sequence-block__side-bar-left-block {
+                .item-space__side-bar-left-element-0 {
+                    app-nav-bar:has(.nav-block) {
+                        .nav-block {
+                            .nav-block__first-layer {
+                                .nav-block__nav-sidebar-list {
+                                    app-custom-list:has(.ui-list-custom) {
+                                        .ui-list-custom {
+                                            @include text-color($color: var.$white-color);
+                                            @include font-dimension($font-size: 15px, $font-weight: var.$font-weight-intermediate, $line-height: 1.5);
+                                            @include display-features($display: flex, $justify-content: center, $flex-direction: column, $align-items: start, $align-content: center, $flex-wrap: nowrap);
+
+                                            .ui-list-custom__list-item {
+                                                @include display-features($display: block, $justify-content: space-between, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: center);
+                                                @include dimension($width: 100%, $height: 100%);
+                                                @include box-internal-space($top: 10px, $right: 30px, $bottom: 10px, $left: 30px);
+                                                @include body-side-bar-anchor-link-all-features();        
+                                                @include body-side-bar-button-flex-all-features();
+                                                @include body-side-bar-list-custom-all-features();
+                                            }
+
+                                            @include intern-accordion-sequence($index: 2, $parentClassName: 'ui-list-custom__sub-item-list-item', $childClassName: 'ui-list-custom');
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,59 @@
+@use '../../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../../styles-collections/mixin/color/color-mixin' as *;
+
+@use '../../../../styles-collections/mixin/typography/font-scales' as *;
+
+@use '../../variables' as var;
+
+@use './card-block-flex' as *;
+
+@mixin body-card-block-all-features() {
+    @include display-features($display: flex, $justify-content: left, $flex-direction: column, $align-items: start, $align-content: unset, $flex-wrap: nowrap);
+
+    .ui-sequence-generic-element {
+        @include box-internal-space($top: 15px, $right: 0px, $bottom: 0px, $left: 0px);
+        @include box-external-space($top: 15px, $right: 0px, $bottom: 0px, $left: 0px);
+        @include dimension($width: 100%, $height: unset);
+        @include border-decoration-solid-detailed($border-left: 0px, $border-top: 1px, $border-right: 0px, $border-bottom: 0px, $border-type: solid);
+        @include border-decoration-color($border-color: var.$eighteenth-color);
+
+        app-container {
+            .flex-card-block {
+                @include display-features($display: flex, $justify-content: left, $flex-direction: row, $align-items: center, $align-content: unset, $flex-wrap: nowrap);
+                @include position-features($position: relative);
+
+                .body {
+                    app-text-box:has(.text-box-block-0) {
+                        .text-box-block-0 {
+                            .button-list-block {
+                                @include position-features($position: absolute);
+                                @include direction-position($top: 27%, $right: 0%, $bottom: unset, $left: unset);
+                            }
+                        }
+                    }
+                }
+            }
+
+            app-sequence-space:has(.ui-sequence-generic-block) {
+                .ui-sequence-generic-block {
+                    .ui-sequence-generic-element {
+                        @include box-internal-space($top: 0px, $right: 0px, $bottom: 0px, $left: 0px);
+                        @include box-external-space($top: 0px, $right: 0px, $bottom: 0px, $left: 0px);
+                        @include border-decoration-solid-detailed($border-left: 0px, $border-top: 0px, $border-right: 0px, $border-bottom: 0px, $border-type: solid);
+
+                        app-flex-card:has(.flex-card-block) {
+                            @include card-block-flex-all-features();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .item-space__product-list-sidebar-element-items-0 {
+        @include box-internal-space($top: 0px, $right: 0px, $bottom: 0px, $left: 0px);
+        @include box-external-space($top: 0px, $right: 0px, $bottom: 0px, $left: 0px);
+        @include border-decoration-solid-detailed($border-left: 0px, $border-top: 0px, $border-right: 0px, $border-bottom: 0px, $border-type: solid);
+    }
+} 

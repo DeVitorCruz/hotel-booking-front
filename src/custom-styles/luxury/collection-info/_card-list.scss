@@ -1,0 +1,40 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+
+@use './card-element' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+@use '../variables' as var;
+
+@mixin card-list-all-features() {
+    app-container {
+        app-sequence-space:has(.ui-sequence-block__card-info-list-block) {
+            .ui-sequence-block__card-info-list-block {
+                @include display-features($display: flex, $justify-content: unset, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: wrap);
+
+                .item-space__card-info-list-element-0, .item-space__card-info-list-element-1, .item-space__card-info-list-element-2 {
+                    @include flex-position-features(0 0 auto);
+                    @include dimension($width: 100%, $height: auto);
+
+                    app-sequence-space:has(.ui-sequence-block__card-block-1, .ui-sequence-block__card-block-2, .ui-sequence-block__card-block-3) {
+                        @include position-features($position: relative);
+                        @include box-external-space($top: 0px, $right: 0px, $bottom: 30px, $left: 0px);
+                        @include display-features($display: block, $justify-content: unset, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+
+                        .ui-sequence-block__card-block-1, .ui-sequence-block__card-block-2, .ui-sequence-block__card-block-3 {
+                            @include card-element-all-features();
+                        }
+                    }
+
+                    @include respond(md) {
+                        @include dimension($width: 50%, $height: auto);
+                    }
+                    
+                    @include respond(lg) {
+                        @include dimension($width: 33.3333%, $height: auto);
+                    }                    
+                }
+            }
+        }
+    }
+}

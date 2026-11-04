@@ -1,0 +1,1 @@
+export const TAILWIND_IMAGE_WRAP: string[] = [];

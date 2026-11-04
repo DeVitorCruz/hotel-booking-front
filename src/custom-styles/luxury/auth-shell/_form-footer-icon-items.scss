@@ -1,0 +1,35 @@
+@use '../../../styles-collections/mixin/base/base-mixin'  as *;
+@use '../variables' as var;
+
+@mixin form-footer-icon-items-all-features() {
+    .ui-list-custom__list-item {
+        margin: 0 5px 5px; 
+        
+        app-anchor-flex:has(.ui-link-e) {
+            .ui-link-e {
+                @include display-features($display: flex, $justify-content: center, $flex-direction: column, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+                background-color: var.$twentieth-four-color;
+                color: var.$white-color;
+                height: 40px;
+                width: 50px;
+                overflow: hidden;
+                border-radius: 3px;
+
+                app-icon-flex:has(.ng-fa-icon) {
+                    .ng-fa-icon {
+                        font-size: 15px;
+                        font-weight: var.$font-weight-regular;
+                    }
+                }
+            }
+
+            a[aria-label="twitter"] {
+                background-color: var.$twentieth-five-color;
+            }
+
+            a[aria-label="linkedin"] {
+                background-color: var.$twentieth-six-color;
+            }
+        }
+    }
+}

@@ -1,0 +1,31 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+ 
+@use '../../../styles-collections/breakpoints' as *;
+@use './title-description' as *;
+@use './swiper-track' as *;
+
+@mixin text-wrap-all-features() {
+    @include display-features($display: flex, $justify-content: space-between, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: wrap);
+
+    .item-space__text-wrap-element-0, .item-space__text-wrap-element-1 {
+        @include flex-position-features(0 0 auto);
+        @include dimension($width: 100%, $height: auto);
+    }
+
+    .item-space__text-wrap-element-0 {
+        @include title-description-all-features();
+
+        @include respond(lg) {
+            @include dimension($width: 33.33333%, $height: auto);
+        }
+    }
+
+    .item-space__text-wrap-element-1 {
+        @include swiper-all-features();
+
+        @include respond(lg) {
+            @include dimension($width: 41.6666%, $height: auto);
+        }
+    }
+}

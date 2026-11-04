@@ -1,0 +1,42 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../variables' as var;
+
+@mixin about-icon-image-all-features() {
+    @include dimension($width: 182px, $height: 221px);
+    @include display-features($display: flex, $justify-content: center, $flex-direction: column, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    line-height: 221px;
+    background-color: rgba(var.$white-color, .25);
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    text-align: center;
+    border-radius: 1000px;
+
+    &::before {
+        @include dimension($width: 140px, $height: 170px);
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        line-height: 221px;
+        background-color: var.$white-color;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        border-radius: 1000px;
+    }
+
+    app-img-flex:has(.ui-image-flex) {
+        .ui-image-flex {
+            display: flex;
+            justify-content: center;
+        
+            img {
+                max-width: 100%;
+                vertical-align: middle;
+            }
+        }
+    }
+}

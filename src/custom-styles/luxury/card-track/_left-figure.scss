@@ -1,0 +1,34 @@
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+@use '../variables' as var;
+
+@mixin left-figure-all-features() {
+    @include display-features($display: none, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+    @include position-features($position: absolute);
+    @include direction-position($top: 0, $right: unset, $bottom: unset, $left: -105px, );
+    @include dimension($width: 244px, $height: 334px);
+    @include content-color(var.$white-color);
+
+    app-text-box:has(.text-box-block-0) {
+        .text-box-block-0 {
+            .ui-figure {
+                @include position-features($position: absolute);
+                @include dimension($width: 110px, $height: 110px);
+                @include content-color(var.$secondary-color);
+                @include border-decoration-radius-detailed($border-top-left-radius: 250%, $border-top-right-radius: unset, $border-bottom-right-radius: unset, $border-bottom-left-radius: unset);
+                @include direction-position($top: unset, $right: 0, $bottom: 0, $left: unset, );
+            }
+        }
+    }
+
+    @include respond(lg) {
+        @include display-features($display: block, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+    }
+
+    @include respond(xl) {
+        @include direction-position($top: 0, $right: unset, $bottom: unset, $left: 0, );
+    }
+}

@@ -1,0 +1,36 @@
+@use '../../variables' as var;
+
+@mixin product-actions-all-features() {
+    &__form {
+        margin-top: 20px;
+    }
+    
+    &__quantity {
+        border: 1px solid var.$thirteenth-color;
+
+        &-btn {
+            color: var.$secondary-color;
+            font-size: 1.1rem;
+            transition: color .2s ease;
+
+            &:hover { color: var.$tertiary-color; }
+        }
+
+        &-input {
+            border-left: 1px solid var.$thirteenth-color;
+            border-right: 1px solid var.$thirteenth-color;
+            color: var.$sixteenth-color;
+            font-family: var.$font-family-cinzel;
+        }
+    }
+
+    &__add-to-cart {
+        background-color: var.$tertiary-color;
+        color: var.$white-color;
+        font-family: var.$font-family-sans;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+
+        &:hover { background-color: var.$twentieth-one-color; }
+    }
+}

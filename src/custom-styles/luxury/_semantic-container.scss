@@ -1,0 +1,75 @@
+@use '@angular/material' as mat;
+
+@use '../../styles-collections/mixin/color/color-mixin' as *;
+@use '../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../styles-collections/mixin/density/density-mixin' as *;
+
+@use './sidebar-button-right' as *;
+@use './sidebar-button-left' as *;
+@use './side-bar/body-side-bar-content-layer' as *;
+
+@use '../../styles-collections/breakpoints' as *;
+@use './variables' as var;
+
+@use './side-bar/semantic-right-sidenav/body-content-layer-right' as *;
+
+@mixin semantic-container-all-features() {
+    .semantic-left-sidenav, .semantic-right-sidenav {
+        @include position-features($position: fixed);
+        @include dimension($width: 290px, $height: auto);
+
+        .sidebar-layer-left, .sidebar-layer-right {
+            @include box-internal-space($top: 20px, $right: 20px, $bottom: 20px, $left: 20px);
+
+            .top-content-layer {
+                @include box-external-space($top: 30px, $right: 0px, $bottom: 30px, $left: 0px);
+            }
+        }
+
+        @include respond('sm') {
+            @include dimension($width: 320px, $height: auto);
+        }
+    }
+
+    .semantic-left-sidenav {
+        .sidebar-layer-left {
+            .top-content-layer {
+                @include display-features($display: flex, $justify-content: end, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+                @include sidebar-button-left-all-features();
+            }
+
+            .body-content-layer {
+                @include body-side-bar-content-layer();
+            }
+        }
+    }
+    
+    .semantic-right-sidenav {
+        .sidebar-layer-right {
+            @include dimension($width: 100%, $height: 100%);
+            @include position-features($position: relative);
+
+            .top-content-layer {
+                @include display-features($display: flex, $justify-content: start, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+                @include sidebar-button-right-all-features();
+            }
+
+            .body-content-layer {
+                @include body-content-layer-right();
+            }
+        }
+    }
+
+    @include mat.sidenav-overrides((
+        container-background-color: var.$white-color,
+        scrim-color: var.$fourteenth-color,
+    ));
+
+    .semantic-left-sidenav {
+        @include mat.sidenav-overrides((
+            container-background-color: var.$seventeenth-color,
+            content-text-color: var.$white-color,
+            scrim-color: var.$fourteenth-color,
+        ));
+    }
+}

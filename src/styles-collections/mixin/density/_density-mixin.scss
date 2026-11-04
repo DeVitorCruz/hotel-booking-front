@@ -1,0 +1,37 @@
+@mixin dimension($width: unset, $height: unset) {   
+	width: $width; 
+	height: $height;
+}
+
+@mixin max-dimension($max-width: unset, $max-height: unset) {
+	max-width: $max-width;
+	max-height: $max-height;
+}
+
+@mixin min-dimension($min-width: unset, $min-height: unset) {
+	min-width: $min-width;
+	min-height: $min-height;
+}
+
+@mixin box-internal-space($top: 0px, $right: 0px, $bottom: 0px, $left: 0px) {
+    padding: $top $right $bottom $left;
+}
+
+@mixin box-external-space($top: 0px, $right: 0px, $bottom: 0px, $left: 0px) {
+    margin: $top $right $bottom $left;
+}
+
+@mixin border-decoration-solid($length: 1px) {
+    border: $length solid;
+}
+
+@mixin border-decoration-solid-detailed($border-left: 1px, $border-top: 1px, $border-right: 1px, $border-bottom: 1px, $border-type: solid) {
+    border-left: $border-left $border-type;
+    border-top: $border-top $border-type;
+    border-right: $border-right $border-type;
+    border-bottom: $border-bottom $border-type;
+}
+
+@mixin transformation-rotate($angule) {
+    transform: rotate($angule);
+}

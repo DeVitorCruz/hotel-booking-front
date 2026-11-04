@@ -1,0 +1,9 @@
+<nav class="nav-block">
+    <div class="nav-block__first-layer" [ngClass]="NAV_BAR().customClassName">
+        @for (section of NAV_BAR().navBarSecList; track section) {
+            <div [class]="'nav-block__' + section.classSection">
+                <ng-container *ngComponentOutlet="section.componentSection; inputs: section.componentInput;"></ng-container>
+            </div>
+        }
+    </div>
+</nav>

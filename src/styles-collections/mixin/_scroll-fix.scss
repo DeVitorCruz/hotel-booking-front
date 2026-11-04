@@ -1,0 +1,20 @@
+@mixin scroll-fix-all-features($position-scroll: fixed, $background-color: transparent) {
+    @keyframes fadeInDown {
+        0% {
+			opacity: 0;
+			transform: translateY(-20px); 
+        }
+        100% {
+			opacity: 1;
+			transform: translateY(0px);
+        }
+    }
+       
+	top: 0;
+	position: $position-scroll;
+	background-color: $background-color;
+	width: 100%;
+	height: auto;
+	z-index: 2;
+	animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
+}

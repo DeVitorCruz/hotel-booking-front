@@ -1,0 +1,13 @@
+@if (LOADING()) {
+    <div class="team-single-loading">Loading...</div>
+}
+
+
+@if (DETAIL_CONTENT()) {
+    <app-team-single-outlet
+        [CONTENT]="DETAIL_CONTENT()!"
+        [template]="'default'">
+    </app-team-single-outlet>
+}
+
+

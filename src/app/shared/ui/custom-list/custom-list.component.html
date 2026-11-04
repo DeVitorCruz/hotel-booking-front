@@ -1,0 +1,24 @@
+<ul class="ui-list-custom" [ngClass]="EXTRACTED_CLASS_LIST()">
+    @for (item of EXTRACTED_ITEMS_LIST(); track item.id) {
+        @if (item.type === 'rlink') {
+            <li class="ui-list-custom__list-item">
+                <app-anchor-flex [ANCHOR_FLEX_ITEM]="item.anchorItem"></app-anchor-flex>
+            </li>
+        } @else if (item.type === 'subItem') {
+            <li class="ui-list-custom__list-item ui-list-custom__sub-item-list-item" [class.is-expanded]="EXPANDED_STATE()">
+                <app-button-flex 
+                    [BUTTON_ITEM]="{ 
+                        id: item.id,
+                        title: item.title, 
+                        type: 'button', 
+                        customClassName: TAILWIND_DEFAULT_BUTTON, 
+                        iconType: item.iconType,    
+                        buttonEventListenerList: item.buttonEventListenerList,
+                    }"
+                    ></app-button-flex>
+                    <app-custom-list [SUB_ITEM_CODE]="item.subItem_code"  [ITEMS_LIST]="item.subItems"></app-custom-list>
+            </li>
+        }   
+    }
+</ul>
+    

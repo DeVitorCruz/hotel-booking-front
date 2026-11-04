@@ -1,0 +1,103 @@
+@use '../../variables' as var;
+@use '../../../../styles-collections/breakpoints' as *;
+@use './product-proprieties' as *;
+@use './product-actions' as *;
+@use './product-tab-panel' as *;
+@use './product-gallery-btn' as *;
+
+@mixin product-single-all-features() {
+    .product-single {
+        --product-single-padding-y: 80px;
+
+        &__section--main {
+            background-color: var.$white-color;
+            padding: 80px 0;
+
+            @include respond('md') { padding: 90px 0; }
+            @include respond('lg') { padding: 120px 0; }
+        }
+
+        &__content-layer {
+            padding: 0 .75rem;
+            margin: 0 auto;
+            width: 100%;
+
+            @include respond('2sm') {
+                max-width: 540px;
+            }
+
+            @include respond('md') {
+                max-width: 720px;
+            }
+
+            @include respond('lg') {
+                max-width: 960px;
+            }
+
+            @include respond('xl') {
+                max-width: 1140px;
+            }
+
+            @include respond('2xl') {
+                max-width: 1320px;
+            }
+        }
+
+        &__section--tabs {
+            padding: 60px 0 90px 0;
+        }
+
+        // Gallery
+        &__gallery {
+            .product-single-main-swiper {
+                .ui-image-flex img {
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                }
+
+                .swiper-button-prev,
+                .swiper-button-next {   
+                    &::after { display: none; }
+                }
+            }
+
+            .btn-block {
+                @include product-gallery-btn-all-features();
+            }
+
+            .product-single-thumb-swiper {
+                margin-top: 12px;
+
+                .swiper-slide {
+                    opacity: .5;
+                    transition: opacity .2s ease;
+                    cursor: pointer;
+
+                    &.swiper-slide-thumb-active { opacity: 1; }
+                }
+
+                .ui-image-flex img {
+                    width: 100%;
+                    height: 80px;
+                    object-fit: cover;
+
+                    @include respond('lg') { height: 100px; }
+                }
+            }
+        }
+
+        @include product-proprieties-all-features();
+        @include product-actions-all-features();
+        
+        @include respond('md') {
+            --product-single-padding-y: 90px;
+        }
+        
+        @include respond('lg') {
+            --product-single-padding-y: 120px;
+        }
+    }
+
+    @include product-tab-panel-all-features();
+}

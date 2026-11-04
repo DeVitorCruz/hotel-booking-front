@@ -1,0 +1,11 @@
+<div class="banner-bind">
+    <section class="banner-header">
+        @if (HEADER()) {
+            <app-container
+                [BLOCK_SEQUENCE_SPACE]="HEADER()!"></app-container>
+        }
+    </section> 
+    <section class="banner-body">
+        <router-outlet></router-outlet>
+    </section>
+</div>

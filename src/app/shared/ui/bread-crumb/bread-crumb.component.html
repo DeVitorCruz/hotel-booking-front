@@ -1,0 +1,25 @@
+<nav class="nav-bread-crumbs__block" [class]="CLASS_LIST()">
+    @for (crumb of BREAD_CRUMB_ITEM(); track crumb; let isLast = $last) {
+        
+        @if (!isLast) {
+            <app-anchor-flex
+                [ANCHOR_FLEX_ITEM]="{
+                    id: 0,
+                    ariaLabel: crumb.label,
+                    rlink: crumb.url,
+                    title: crumb.label,
+                    switchAbleIcon: {
+                        type: 'none'
+                    },
+                }"></app-anchor-flex>
+        }
+        
+        @if (isLast) {
+            <span class="ui-link-e__disabled">
+                {{ crumb.label }}
+            </span>
+        } @else {
+            <span class="ui-slash-e">/</span>
+        }
+    }
+</nav>

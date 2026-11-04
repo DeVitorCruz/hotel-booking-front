@@ -1,0 +1,86 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../variables' as var;
+@use './banner-left-image' as *;
+@use './banner-main-container' as *;
+@use './banner-images-container' as *;
+@use '../../../styles-collections/breakpoints' as *;
+
+@mixin banner-bind-all-features() {
+    app-banner-bind-router:has(.banner-bind) {
+        .banner-bind {
+            .banner-header {
+                position: relative;
+                min-height: 170px;
+                z-index: 1;
+
+                app-container:has(.ui-sequence-block__banner-header-block) {
+                    display: block;
+                    width: 100%;
+                    height: auto;
+                    top: -86px;
+                    position: absolute;
+                    bottom: 0;
+                    background-color: beige;
+                    background-color: var.$fourth-color;
+
+                    app-sequence-space:has(.ui-sequence-block__banner-header-block) {
+                        .ui-sequence-block__banner-header-block {
+                            @include display-features($display: flex, $justify-content: center, $flex-direction: column, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+                            position: absolute;
+                            top: 0%;
+                            bottom: 0;
+                            width: 100%;
+
+                            .item-space__banner-header-element-0 {
+                               @include banner-left-image-all-features(); 
+                            }
+
+                            .item-space__banner-header-element-1 {
+                               @include banner-main-container-all-features();
+                            }
+
+                            .item-space__banner-header-element-2 {
+                               @include banner-images-container-all-features();
+                            }
+
+                            &::after {
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                                width: 360px;
+                                height: 192px;
+                                z-index: 0;
+                                background-color: var.$fifth-color;
+                                
+                                @include respond('md') {
+                                    content: "";
+                                    right: -17%;
+                                }
+
+                                @include respond('lg') {
+                                    right: -15%;
+                                }
+
+                                @include respond('xl') {
+                                    right: -10%;
+                                }
+
+                                @include respond('2xl') {
+                                    right: -8%;
+                                }
+
+                                @include respond('3xl') {
+                                    right: -6%;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                @include respond('md') {
+                    min-height: 360px;
+                }
+            }
+        }
+    }
+}

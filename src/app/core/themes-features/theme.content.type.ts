@@ -1,0 +1,1 @@
+export type ThemeContent = Record<string, any>;

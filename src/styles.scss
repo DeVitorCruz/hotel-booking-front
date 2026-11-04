@@ -1,0 +1,13 @@
+@use 'styles-collections/reset';
+@use 'swiper/swiper';
+@use 'swiper/modules/pagination';
+@use '_main' as *; // Import custom styles here
+
+html, 
+body { height: 100%; }
+
+body.ecommerce-blog-jewelry-luxury {
+	overflow-x: hidden;
+	
+	@include get-theme-name('ecommerce-blog-jewelry-luxury');
+}

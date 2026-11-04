@@ -1,0 +1,41 @@
+@use './about-text-col' as *;
+@use './about-icon-image' as *;
+@use '../../../styles-collections/breakpoints' as *;
+
+@mixin about-image-col-all-features() {
+    app-sequence-space:has(.ui-sequence-block__about-image-col-block) {
+        display:block;
+        margin-right: 15px;
+
+        .ui-sequence-block__about-image-col-block {
+            position: relative;
+            margin-bottom: 40px;
+            margin-right: 0;
+            z-index: 1;
+
+            .item-space__about-image-col-element-0,
+            .item-space__about-image-col-element-2 {
+                img {
+                    max-width: 100%;
+                    width: 100%;
+                }
+            } 
+
+            .item-space__about-image-col-element-0 {
+                margin-bottom: 30px;
+            }
+
+            .item-space__about-image-col-element-1 {
+                @include about-icon-image-all-features();
+            }
+
+            @include respond('lg') { margin-right: 40px; margin-bottom: 0px;  }
+
+            @include respond('xl') { margin-right: 15px; }
+        }
+
+        @include respond('2xl') {
+            margin-right: 85px;
+        }
+    }
+}

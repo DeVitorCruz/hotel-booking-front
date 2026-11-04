@@ -1,0 +1,56 @@
+@use '../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../styles-collections/breakpoints' as *;
+
+:host {
+    display: block;
+}
+
+.card-grid {
+    padding: var(--card-grid-padding-y, 80px) 0;
+
+    &__container {
+        max-width: var(--card-grid-max-width, 1280px);
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    &__body {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--card-grid-gap, 30px);
+
+        @include respond('md') {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include respond('lg') {
+            grid-template-columns: repeat(var(--card-grid-cols, 3), 1fr);
+        }
+
+        &--cols-4 {
+            @include respond('lg') {
+                grid-template-columns: repeat(4, 1fr);
+            }   
+        }
+
+        &--cols-2 {
+            @include respond('lg') {
+                grid-template-columns: repeat(2, 1fr);
+            }   
+        }
+    }
+
+    &__image {
+        overflow: hidden;
+
+        img {
+            @include dimension($width: 100%, $height: auto);
+            display: block;
+        }
+    }
+
+    &__content {
+        padding: var(--card-grid-content-padding, 16px 0);
+    }
+}

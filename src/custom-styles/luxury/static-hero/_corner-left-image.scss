@@ -1,0 +1,11 @@
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/breakpoints' as *;
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+
+@mixin corner-left-image-all-features() {
+    @include dimension($width: unset, $height: 320px);
+    @include border-decoration-solid(1px);
+    @include border-decoration-color(#DCCBB6);
+    @include border-decoration-radius(1000px);
+}

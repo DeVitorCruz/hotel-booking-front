@@ -1,0 +1,1 @@
+export const TAILWIND_MAIN_PRODUCT_2_CLASS_LIST: string[] = [];

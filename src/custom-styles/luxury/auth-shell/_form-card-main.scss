@@ -1,0 +1,57 @@
+@use '../../../styles-collections/breakpoints' as *;
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../variables' as var;
+
+
+@mixin form-card-main-all-features() {
+    .auth-form__main--container {
+        app-flex-form:has(.register-form-content, .login-form-content) {
+            .register-form-content, .login-form-content {
+                @include display-features($display: flex, $justify-content: space-between, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: wrap);
+                
+                .ui-flex-form__field, .ui-flex-form__submit {
+                    flex: 0  0 auto;
+                    width: 100%;
+                }
+
+                .ui-flex-form__field {
+                    app-flex-input:has(.ui-input-flex) {
+                        
+                        label {
+                            display: inline-block;
+                        }
+                        
+                        .ui-input-flex {
+                            width: 100%;
+                            margin-bottom: 10px;
+                            padding-left: 20px;
+                            height: 60px;
+                            border: 1px solid var.$twentieth-three-color;
+                            border-radius: 2px;
+                        }
+                    }
+                }
+
+                .ui-flex-form__submit {
+                    app-button-flex:has(.auth-sugmit-btn, .auth-sign-up-btn) {
+                        .auth-sugmit-btn, .auth-sign-up-btn {
+                            font-size: 16px;
+                            padding: 10px 20px;
+                            border: 2px solid var.$secondary-color;
+                            width: 100%;
+                            color: var.$white-color;                            
+                            margin-top: 30px;
+                            background-color: var.$secondary-color;
+                            transition: all .4s ease-in-out 0s;
+
+                            &:hover {
+                                color: var.$secondary-color;
+                                background-color: var.$white-color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

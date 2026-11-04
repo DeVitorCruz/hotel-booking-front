@@ -1,0 +1,18 @@
+@mixin product-list-header-all-features() {
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+    }
+
+    &__title { margin: 0; }
+
+    &__header-action { 
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+    
+    &__empty { padding: 3rem 0; text-align: center; }
+}

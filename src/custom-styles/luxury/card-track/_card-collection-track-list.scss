@@ -1,0 +1,77 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+
+@use './card-body-track' as *;
+@use './card-button-track' as *;
+@use './heart-figure' as *;
+
+@use '../variables' as var;
+
+@mixin card-collection-track-list() {
+    app-slide:has(.card-collection-track) {
+        .card-collection-track {
+            @include position-features($position: unset);
+
+            .swiper-wrapper {
+                .swiper-slide {
+                    app-flex-card:has(.flex-card-block__card-item-1-track-block, .flex-card-block__card-item-2-track-block, .flex-card-block__card-item-3-track-block, .flex-card-block__card-item-4-track-block, .flex-card-block__card-item-5-track-block) {
+                        @include display-features($display: flex, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+
+                        .flex-card-block__card-item-1-track-block, .flex-card-block__card-item-2-track-block, .flex-card-block__card-item-3-track-block, .flex-card-block__card-item-4-track-block, .flex-card-block__card-item-5-track-block {
+                            @include box-internal-space($top: 0px, $right: 15px, $bottom: 0px, $left: 15px);
+                            @include box-external-space($top: 0px, $right: 0px, $bottom: 30px, $left: 0px);
+                            @include flex-position-features(0 0 auto);
+                            @include dimension($width: 100%, $height: auto);
+
+                            .head {
+                                app-img-flex:has(.ui-image-flex) {
+                                    .ui-image-flex {
+                                        @include heart-figure-all-features();
+                                        img {
+                                            @include dimension($width: 100%, $height: auto);
+                                        }
+                                    }
+                                }
+                            }
+
+                            .body {
+                                @include card-body-track();
+                            }
+                        }
+                    }
+                }
+            }
+
+            .btn-block {
+                @include card-button-track();
+            }
+
+            .swiper-pagination {
+                @include display-features($display: flex, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+                @include position-features($position: absolute);
+                @include direction-position($top: unset, $right: unset, $bottom: -60px, $left: 0, );
+
+                .swiper-pagination-bullet {
+                    @include display-features($display: block, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+                    @include dimension($width: 10px, $height: 10px);
+                    @include box-internal-space($top: 0px, $right: 0px, $bottom: 0px, $left: 0px);
+                    @include border-decoration-radius($border-radius: 100%);
+                    @include box-external-space($top: 0px, $right: 5px, $bottom: 0px, $left: 5px);
+                    @include content-color($background-color: var.$tertiary-color);
+                    @include view-ui-cursor(pointer);
+                }   
+
+                .swiper-pagination-bullet-active {
+                    @include content-color($background-color: var.$secondary-color);
+                }
+
+                @include respond(lg) {
+                    @include display-features($display: none, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+                }
+            }
+        }
+    }
+}

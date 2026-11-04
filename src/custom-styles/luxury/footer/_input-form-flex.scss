@@ -1,0 +1,15 @@
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+
+@use '../variables' as var;
+
+@mixin input-form-flex-all-features() {
+	& {
+		color: var.$primary-color;
+		background-color: var.$white-color;
+		padding: 0px 70px 0px 20px;
+	}
+
+    @include dimension($width: 100%, $height: 58px);
+    @include font-collect(var.$font-family-sans, var.$font-weight-regular, 16px);
+}

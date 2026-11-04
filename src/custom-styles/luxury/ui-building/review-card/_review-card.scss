@@ -1,0 +1,63 @@
+@use '../../variables' as var;
+@use '../../../../styles-collections/breakpoints' as *;
+@use '../../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../../../styles-collections/mixin/density/density-mixin' as *;
+@use './review-form' as *;
+
+@mixin review-card-all-features() {
+    .review-panel {
+        &__item {
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var.$thirteenth-color;
+        }
+
+        &__avatar {
+            border: 2px solid var.$eleventh-color;
+        }
+
+        &__author {
+            @include font-collect($font-family: var.$font-family-cinzel, $font-weight: var.$font-weight-bold, $font-size: 16px, $line-height: 1.3);
+            color: var.$secondary-color;
+        }
+
+        &__date {
+            font-size: .8125rem;
+            color: var.$twentieth-color;
+        }
+
+        &__stars {
+            span { color: var.$tertiary-color; }
+        }
+
+        &__comment {
+            font-size: .9375rem;
+            line-height: 1.75;
+            color: var.$primary-color;
+        }
+
+        // ---- Form section ----
+        &__form-title {
+            @include font-collect($font-family: var.$font-family-cinzel, $font-weight: var.$font-weight-bold, $font-size: 20px, $line-height: 1.3);
+            color: var.$secondary-color;
+        }
+
+        &__rating-label {
+            font-size: .875rem;
+            font-weight: var.$font-weight-intermediate;
+            color: var.$sixteenth-color;
+        }
+
+        &__stars--input {
+            .review-panel__star-btn {
+                color: var.$tertiary-color;
+                font-size: 1.5rem;
+
+                &.is-active { opacity: 1; }
+                &:hover { opacity: .8; }
+            }
+        }
+        
+        // ---- Form inputs ----
+        @include review-form-all-features();
+    }
+}

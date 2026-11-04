@@ -1,0 +1,39 @@
+@switch (BUTTON().matButton) {
+    
+    @case ('elevated') {
+        <button [disabled]="BUTTON().isDisabled? true : null" [type]="BUTTON().type" class="ui-btn-flex" [ngClass]="BUTTON().customClassName" appDynamicEvents [CONFIG_LIST]="BUTTON().buttonEventListenerList"
+            matButton="elevated">
+            {{ BUTTON().title }}
+            @if (BUTTON().iconType.type !== 'none') {
+            <app-icon-flex [ICON_SWITCH]="BUTTON().iconType"></app-icon-flex>
+            }
+        </button>
+    }
+
+    @case ('outlined') {
+        <button [disabled]="BUTTON().isDisabled? true : null" [type]="BUTTON().type" class="ui-btn-flex" [ngClass]="BUTTON().customClassName" appDynamicEvents [CONFIG_LIST]="BUTTON().buttonEventListenerList"
+            matButton="outlined">
+            {{ BUTTON().title }}
+            @if (BUTTON().iconType.type !== 'none') {
+            <app-icon-flex [ICON_SWITCH]="BUTTON().iconType"></app-icon-flex>
+            }
+        </button>
+    }
+    
+    @default {
+        <button [disabled]="BUTTON().isDisabled? true : null" [type]="BUTTON().type" class="ui-btn-flex" [ngClass]="BUTTON().customClassName" appDynamicEvents [CONFIG_LIST]="BUTTON().buttonEventListenerList">
+            {{ BUTTON().title }}
+            @if (BUTTON().iconType.type !== 'none') {
+                <app-icon-flex
+                    [ICON_SWITCH]="BUTTON().iconType"></app-icon-flex>
+            }
+        </button>
+    }
+}
+
+
+
+
+
+
+

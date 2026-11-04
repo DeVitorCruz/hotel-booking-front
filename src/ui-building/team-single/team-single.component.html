@@ -1,0 +1,67 @@
+<div class="team-single">
+    <div class="team-single__container">
+
+        <!-- Left: Photo -->
+        <div class="team-single__image">
+            <app-img-flex
+                [IMAGE_FLEX_ITEM]="CONTENT().image"></app-img-flex>
+        </div>
+
+        <!-- Right: Content -->
+        <div class="team-single__content">
+
+            <!-- Name + Role -->
+            <div class="team-single__header">
+                <h2 class="team-single__name">{{ CONTENT().name }}</h2>
+                <p class="team-single__role">{{ CONTENT().role }}</p>
+            </div>
+
+            <!-- Bio -->
+            @if (CONTENT().bio) { <p class="team-single__bio">{{ CONTENT().bio }}</p> }
+
+            <!-- Contact info -->
+            @if (CONTENT().email || CONTENT().phone) {
+                <div class="team-single__contact">
+                    @if (CONTENT().email) {
+                        <div class="team-single__contact-item">
+                            <span class="team-single__contact-label">Email:</span>
+                            <a 
+                                [href]="'mailto:' + CONTENT().email" 
+                                class="team-single__contact-value">
+                                {{ CONTENT().email }}
+                            </a>
+                        </div>
+                    }
+                    @if (CONTENT().phone) {
+                        <div class="team-single__contact-item">
+                            <span class="team-single__contact-label">Phone:</span>
+                            <a 
+                                [href]="'tel:' + CONTENT().phone" 
+                                class="team-single__contact-value">
+                                {{ CONTENT().phone }}
+                            </a>
+                        </div>
+                    }
+                </div>
+            }
+
+            <!-- Social links -->
+            @if (CONTENT().socialLinks && CONTENT().socialLinks!.length > 0) {
+                <div class="team-single__social">
+                    @for (link of CONTENT().socialLinks!; track link.id) {
+                        <app-anchor-flex
+                            [ANCHOR_FLEX_ITEM]="link"></app-anchor-flex>
+                    }
+                </div>
+            }
+
+            <!-- Extra content -->
+            @if (CONTENT().extraContent && CONTENT().extraContent!.length > 0) {
+                <div class="team-single__extra">
+                    <app-text-box
+                        [TEXT_BOX_LIST]="CONTENT().extraContent!"></app-text-box>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,1 @@
+export const TAILWIND_SEQUENCE_SPACE_RIGHT_ITEM: string[] = [];

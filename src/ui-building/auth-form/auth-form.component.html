@@ -1,0 +1,30 @@
+<section class="auth-form">
+    <div class="auth-form__container">
+        <div class="auth-form__card">
+            <!-- Header -->
+            <app-container
+                [BLOCK_SEQUENCE_SPACE]="CONTENT().headerContent">
+            </app-container>
+
+            <!-- Form -->
+            <div class="auth-form__main">
+                <div class="auth-form__main--container">
+                    <app-flex-form
+                        [FLEX_FORM_ITEM]="CONTENT().formContent"
+                        (onSubmit)="handleSubmit()">
+                    </app-flex-form>
+                </div>
+            </div>
+
+            @if (CONTENT().footerContent && CONTENT().footerContent!.length > 0) {
+                <div class="auth-form__footer">
+                    <div class="auth-form__footer--container">
+                        <app-text-box
+                            [TEXT_BOX_LIST]="CONTENT().footerContent!">
+                        </app-text-box>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

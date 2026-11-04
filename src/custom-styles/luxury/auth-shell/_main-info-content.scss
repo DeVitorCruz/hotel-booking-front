@@ -1,0 +1,15 @@
+@use '../../../styles-collections/breakpoints' as *;
+
+@mixin main-info-content-all-features() {
+    width: 100%;
+
+    app-img-flex:has(.ui-image-flex) {
+        img {
+            width: 100%;
+
+            @include respond('lg') {
+                width: auto;
+            }
+        }
+    }
+}

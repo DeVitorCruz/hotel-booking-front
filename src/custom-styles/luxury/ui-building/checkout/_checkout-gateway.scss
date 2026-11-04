@@ -1,0 +1,23 @@
+@use '../../variables' as var;
+
+@mixin checkout-gateway-all-features() {
+    &__option-btn {
+        border-color: var.$thirteenth-color;
+        color: var.$primary-color;
+        font-family: var.$font-family-sans;
+        font-size: .8125rem;
+        letter-spacing: .05em;
+        text-transform: uppercase;
+
+        &:hover {
+            border-color: var.$tertiary-color;
+            color: var.$tertiary-color;
+        }
+
+        &.is-active {
+            border-color: var.$tertiary-color;
+            background-color: var.$tertiary-color;
+            color: var.$white-color;
+        }
+    }
+} 

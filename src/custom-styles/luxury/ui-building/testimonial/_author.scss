@@ -1,0 +1,44 @@
+@use '../../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../../../styles-collections/breakpoints' as *;
+@use '../../variables' as var;
+
+@mixin author-all-features() {
+    app-sequence-space:has(.ui-sequence-block__sub-text-swiper-block) {
+        .ui-sequence-block__sub-text-swiper-block {
+            .item-space__sub_text-swiper-element-0 {
+                app-text-box:has(.text-box-block__testimonial-author-0){
+                    .text-box-block__testimonial-author-0 {
+                        app-flex-heading .ui-flex-heading {
+                            @include font-collect($font-family: var.$font-family-cinzel, $font-weight: var.$font-weight-bold, $font-size: 22px, $line-height: 1.2);
+                            color: var.$secondary-color;
+                            text-align: center;
+                            margin: 30px 0 .5rem 0;
+                            
+                            @include respond('lg') {
+                                text-align: left;
+                                margin: 45px 0 .5rem 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .item-space__sub_text-swiper-element-1 {
+                app-text-box:has(.text-box-block__testimonial-role-0) {
+                    .text-box-block__testimonial-role-0 {
+                        .ui-text {
+                            @include font-collect($font-family: var.$font-family-sans, $font-weight: var.$font-weight-middle, $font-size: 15px, $line-height: 18px);
+                            color: var.$tertiary-color;
+                            text-transform: capitalize;
+                            text-align: center;
+
+                            @include respond('lg') {
+                                text-align: left;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

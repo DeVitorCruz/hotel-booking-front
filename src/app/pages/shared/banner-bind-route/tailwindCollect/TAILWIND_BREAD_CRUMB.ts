@@ -1,0 +1,1 @@
+export const TAILWIND_BREAD_CRUMB: string[] = [];

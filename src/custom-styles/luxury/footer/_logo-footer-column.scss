@@ -1,0 +1,66 @@
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+@use '../variables' as var;
+
+@use './upper-body-footer-column' as *;
+
+@mixin logo-footer-column-all-features() {
+    .ui-sequence-block__logo-column {
+		& {
+			padding: 0px 15px 0px 15px;
+			margin: 0 0 70px 0;
+		}
+    
+        &::before {
+			& {
+				position: absolute;
+				background-color: var.$eighth-color;
+				z-index: 0;
+			}
+            @include direction-position($top: 0%, $right: unset, $bottom: unset, $left: 0);
+            @include dimension($width: 20%, $height: 90%);
+           
+            @include respond(lg) {
+				& {
+					content: '';
+				}
+            }
+        }
+
+        .item-space-0, .item-space-1 {
+			& {
+				z-index: 2;
+			}
+        }
+
+        .item-space-0 {
+			& {
+				position: sticky;
+				margin: 0 0 35px 0;
+			}
+     
+            img {
+				& { max-width: 180px; } 
+            }
+        }
+
+        .item-space-1 { 
+			& { position: sticky; }
+            @include upper-body-footer-column-all-features();
+        }
+
+        @include respond(md) {
+			& { background-color: var.$secondary-color; }
+        }
+
+        @include respond(lg) {
+			& {
+				padding: 140px 15px 140px 15px; 
+				margin: 0 0 0px 0;
+				background-color: var.$eighth-color;
+			}
+        }
+    }
+}

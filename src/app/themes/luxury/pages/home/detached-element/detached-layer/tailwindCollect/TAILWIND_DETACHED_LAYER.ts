@@ -1,0 +1,1 @@
+export const TAILWIND_DETACHED_LAYER: string[] = [];

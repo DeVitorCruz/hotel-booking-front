@@ -1,0 +1,22 @@
+@use '../../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../variables' as var;
+
+@mixin square-swiper-all-features() {
+    @include dimension($width: 50%, $height: auto);
+    flex: 0 0 auto;
+
+    app-text-box:has(.text-box-block-0) {
+        @include dimension($width: 100%, $height: auto);
+        display: block;
+        padding: 0;
+        margin: 0;
+
+        .text-box-block-0 {
+            @include dimension($width: auto, $height: 80px);
+            @include border-decoration-solid-detailed($border-left: 0px, $border-top: 1px, $border-right: 1px, $border-bottom: 1px, $border-type: solid);
+            border-top-right-radius: 100px;
+            border-bottom-right-radius: 100px;
+            border-color: var.$eleventh-color;
+        }
+    }
+}

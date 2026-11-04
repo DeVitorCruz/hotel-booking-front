@@ -1,0 +1,29 @@
+@use '../../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../../styles-collections/breakpoints' as *;
+@use './swiper-slide' as *;
+@use './swiper-button' as *;
+@use './swiper-pagination' as *;
+
+@mixin swiper-track-all-features() {
+    app-slide:has(.testimonial-swiper) {
+        @include dimension($width: 100%, $height: auto);
+        flex: 0 0 auto;
+        padding: 0 1.5rem 0 1.5rem;
+        position: relative;
+
+        .testimonial-swiper {
+            position: unset;
+
+            .swiper-wrapper .swiper-slide {
+                @include swiper-slide-all-features();
+                margin-bottom: 40px;
+            }
+
+            @include swiper-button-all-features();
+            @include swiper-pagination-all-features();
+        }
+
+        @include respond('lg') { @include dimension($width: 41.6666%, $height: auto); }
+    }
+}

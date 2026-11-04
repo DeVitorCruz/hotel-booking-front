@@ -1,0 +1,37 @@
+@use '../../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../../../styles-collections/mixin/color/color-mixin' as *;
+
+@use '../../variables' as var;
+
+@mixin card-block-flex-all-features() {
+    .flex-card-block {
+        .head {
+            app-img-flex:has(.ui-image-flex) {
+                .ui-image-flex {
+                    img {
+                        @include border-decoration-solid-detailed($border-left: 1px, $border-top: 1px, $border-right: 1px, $border-bottom: 1px, $border-type: solid);
+                        @include box-external-space($top: 0px, $right: 15px, $bottom: 0px, $left: 0px);
+                        @include border-decoration-color($border-color: var.$nineteenth-color);
+                    }
+                }
+            }
+        }
+
+        .body {
+            app-text-box:has(.text-box-block-0) {
+                .text-box-block-0 {
+                    .ui-flex-heading {
+                        @include font-collect(var.$font-family-sans, var.$font-weight-intermediate, 14px, $line-height: 1.5);
+                        @include text-color($color: var.$secondary-color);
+                    }
+
+                    .ui-text {
+                        @include font-collect(var.$font-family-sans, var.$font-weight-regular, 13px, $line-height: 1.5);
+                        @include box-external-space($top: 3px, $right: 0px, $bottom: 0px, $left: 0px);
+                    }
+                }
+            }
+        }
+    }
+}

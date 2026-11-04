@@ -1,0 +1,24 @@
+<div class="tab-panel" [ngClass]="CONTENT().customClassName">
+    
+    <!-- Tab buttons -->
+    <div class="tab-panel__nav">
+        @for (tab of CONTENT().tabs; track tab.id) {
+            <button 
+                type="button"
+                class="tab-panel__btn"
+                [ngClass]="{ 'is-active': isActive(tab) }"
+                (click)="setTab(tab)">
+                {{ tab.label }}
+            </button>
+        }
+    </div>
+
+    <!-- Active tab body -->
+     <div class="tab-panel__body">
+        <ng-container
+            *ngComponentOutlet="
+                ACTIVE_ITEM().component;
+                inputs: ACTIVE_ITEM().componentInput">
+        </ng-container>
+     </div>
+</div>

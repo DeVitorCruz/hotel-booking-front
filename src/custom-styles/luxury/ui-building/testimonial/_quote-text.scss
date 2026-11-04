@@ -1,0 +1,24 @@
+@use '../../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../../../styles-collections/breakpoints' as *;
+@use '../../variables' as var;
+
+@mixin quote-text-all-features() {
+    app-text-box:has(.text-box-block__text-swiper-slide-0) {
+        @include dimension($width: 100%, $height: auto);
+        display: block;
+
+        .text-box-block__text-swiper-slide-0 {
+            .ui-text {
+                @include font-collect($font-family: var.$font-family-sans, $font-weight: var.$font-weight-regular, $font-size: 21px, $line-height: 40px);               
+                text-align: center;
+                margin: 30px 0 15px 0;
+
+                @include respond('lg') {
+                    margin: 45px 0 15px 0;
+                    text-align: left;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,40 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+@use '../variables' as var;
+@use './body-card' as *;
+
+@mixin card-item-all-features($margin-right: 12px, $margin-left: 12px, $flex-direction: column-reverse, $top: unset, $bottom: 0) {
+    app-flex-card:has(.flex-card-block) {
+        @include display-features($display: block, $justify-content: unset, $flex-direction: unset, $align-items: center, $align-content: center, $flex-wrap: unset);
+        @include box-external-space($top: 0px, $right: 0px, $bottom: 30px, $left: 0px);
+
+        @include respond(xl) {
+            @include box-external-space($top: 0px, $right: $margin-right, $bottom: 30px, $left: $margin-left);
+        }
+    }
+    
+    .flex-card-block {
+        @include display-features($display: flex, $justify-content: center, $flex-direction: $flex-direction, $align-items: center, $align-content: center, $flex-wrap: wrap);
+
+        .head, .body {
+            @include flex-position-features(0 0 auto);
+            @include dimension($width: 100%, $height: auto);
+        }
+
+        .head {
+            .ui-image-flex {
+                img {
+                    @include dimension($width: 100%, $height: auto);
+                }
+            }
+        }
+
+        .body {
+            @include body-card-all-features($top, $bottom);
+        }
+    }
+} 

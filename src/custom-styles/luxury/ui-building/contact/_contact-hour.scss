@@ -1,0 +1,37 @@
+@use '../../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../variables' as var;
+
+@mixin contact-hour-all-features() {
+    &__hours {
+        border-top: 1px solid var.$sixteenth-color;
+        padding-top: 1.5rem;
+    }
+
+    &__hours-title {
+        @include font-collect($font-family: var.$font-family-cinzel, $font-weight: var.$font-weight-bold, $font-size: 14px, $line-height: 1);
+        color: var.$secondary-color;
+        text-transform: uppercase;
+        letter-spacing: .05em;
+        display: block;
+        margin-bottom: 1rem;
+    }
+
+    &__hours-item {
+        border-bottom: 1px solid var.$thirteenth-color;
+        padding: .5rem 0;
+
+        &:last-child { border-bottom: none; }
+    }
+
+    &__hours-day {
+        font-size: .875rem;
+        color: var.$primary-color;
+    }
+
+    &__hours-time {
+        width: 100%;
+        border: none;
+        display: block;
+        filter: grayscale(20%);
+    }
+}

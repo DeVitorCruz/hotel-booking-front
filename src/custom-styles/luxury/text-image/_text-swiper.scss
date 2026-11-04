@@ -1,0 +1,26 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+@use '../variables' as var;
+
+@mixin text-swiper-all-features() {
+    app-text-box:has(.text-box-block__text-swiper-slide-0) {
+        @include display-features($display: block, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: wrap);
+        @include dimension($width: 100%, $height: auto);
+
+        .text-box-block__text-swiper-slide-0 {
+            .ui-text {
+                @include box-external-space($top: 30px, $right: 0px, $bottom: 15px, $left: 0px);
+                @include font-collect(var.$font-family-sans, var.$font-weight-regular, 21px, $line-height: 40px);
+                @include text-format($text-transform: normal, $text-align: center, $letter-spacing: normal);
+
+                @include respond(lg) {
+                    @include box-external-space($top: 45px, $right: 0px, $bottom: 15px, $left: 0px);
+                    @include text-format($text-transform: normal, $text-align: left, $letter-spacing: normal);
+                }
+            }
+        }
+    }
+}

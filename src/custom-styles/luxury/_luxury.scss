@@ -1,0 +1,10 @@
+@use './pages' as *;
+@use '../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../styles-collections/mixin/color/color-mixin' as *;
+@use './variables' as var;
+
+@mixin ecommerce-blog-jewelry-luxury-theme-all-features() {
+    @include font-fully-collection(var.$font-family-sans, var.$font-weight-regular, var.$font-size-base, var.$line-scale);
+    @include text-color(var.$primary-color);
+    @include all-page-collected();
+}

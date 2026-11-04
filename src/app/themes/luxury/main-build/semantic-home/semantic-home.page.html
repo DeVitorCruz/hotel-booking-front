@@ -1,0 +1,39 @@
+<mat-drawer-container class="semantic-container">
+    <mat-drawer position="end" #rightDrawer class="semantic-right-sidenav" mode="over">
+        <div class="sidebar-layer-right">
+            <div class="top-content-layer">
+                <app-button-flex
+                    [BUTTON_ITEM]="CLOSE_RIGHT_BUTTON"></app-button-flex>
+            </div>
+            <div class="body-content-layer">
+                <ng-container
+                    *ngComponentOutlet="RIGHT_SIDE_BAR.sideBarComponent; inputs: RIGHT_SIDE_BAR.sideBarInputs"></ng-container>
+            </div>
+        </div>
+    </mat-drawer>
+    <mat-drawer position="start" #leftDrawer class="semantic-left-sidenav" mode="over">
+        <div class="sidebar-layer-left">
+            <div class="top-content-layer">
+                <app-button-flex 
+                    [BUTTON_ITEM]="CLOSE_LEFT_BUTTON"></app-button-flex>
+            </div>
+            <div class="body-content-layer">
+                <ng-container
+                    *ngComponentOutlet="LEFT_SIDE_BAR.sideBarComponent; inputs: LEFT_SIDE_BAR.sideBarInputs"></ng-container>
+            </div>
+        </div>
+    </mat-drawer>
+    <div class="semantic-sidenav-content">
+        <app-semantic [class]="this.EXTRACTED_PAGES()['home']?.['blockClassName'] ?? ''"
+            [SEMANTIC_FEATURES]="CURRENT_PAGE()">            
+            <app-nav-bar slot="header"
+                appStickyOnScroll
+                [NAV_BAR_ITEM]="NAV_BAR.navBar"></app-nav-bar>
+            <div slot="main">
+                <router-outlet></router-outlet>
+            </div>
+            <app-container slot="footer"
+                [BLOCK_SEQUENCE_SPACE]="FOOTER_CHILDS"></app-container>
+        </app-semantic>
+    </div>
+</mat-drawer-container>

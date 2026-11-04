@@ -1,0 +1,57 @@
+@use '../../variables' as var;
+@use '../../../../styles-collections/breakpoints' as *;
+@use './team-name-role' as *;
+@use './team-social' as *;
+@use './team-bio-contact' as *;
+
+@mixin team-single-all-features() {
+    .team-single {
+        background-color: var.$white-color;
+        padding: 80px 0;
+
+        @include respond('md') { padding: 90px 0; }
+        @include respond('lg') { padding: 120px 0; } 
+
+        &__container {
+            margin: 0 auto;
+            padding: 0 20px;
+
+            @include respond('2sm') {
+                max-width: 540px;
+            }
+
+            @include respond('md') {
+                max-width: 720px;
+            }
+
+            @include respond('lg') {
+                max-width: 960px;
+            }
+
+            @include respond('xl') {
+                max-width: 1140px;
+            }
+
+            @include respond('2xl') {
+                max-width: 1320px;
+            }
+        }
+
+        &__image {
+            .ui-image-flex img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+        }
+
+        // Name + Role
+        @include team-name-role-all-features();
+
+        // Bio + Contact
+        @include team-bio-contact-all-features();
+
+        // Social links
+        @include team-social-all-features();
+    }    
+}

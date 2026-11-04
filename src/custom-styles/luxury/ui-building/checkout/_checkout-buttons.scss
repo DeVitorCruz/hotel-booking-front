@@ -1,0 +1,29 @@
+@use '../../variables' as var;
+
+@mixin checkout-buttons-all-features() {
+    &__btn {
+        font-family: var.$font-family-sans;
+
+        &--primary {
+            background-color: var.$tertiary-color;
+            color: var.$white-color;
+
+            &:hover { background-color: var.$twentieth-one-color; }
+        }
+
+        &--secondary {
+            background-color: transparent;
+            color: var.$secondary-color;
+            border: 1px solid var.$thirteenth-color;
+
+            &:hover {
+                border-color: var.$secondary-color;
+            }
+        }
+
+        &.is-loading {
+            opacity: .7;
+            cursor: wait;
+        }
+    }
+}

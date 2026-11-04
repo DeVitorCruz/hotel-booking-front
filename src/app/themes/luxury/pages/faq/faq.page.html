@@ -1,0 +1,14 @@
+
+@if (LOADING_EFFECT()) {
+    <div class="faq-loading">Loading...</div>
+}
+
+@if (FAQ()) {
+    <app-faq-accordion
+        [CONTENT]="FAQ()!"></app-faq-accordion>
+}
+
+<app-faq-contact
+    [CONTENT]="CONTACT_CONTENT"
+    (contactSubmit)="onContactSubmit()"
+    ></app-faq-contact>

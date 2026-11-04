@@ -1,0 +1,47 @@
+@for (item of LIST(); track item.id) {
+    <div [class]="'text-box-block' + `${item.customBlockClassName? '__' + item.customBlockClassName : '' }` + `-${item.id}`">
+
+        @if (item.heading) {
+            <app-flex-heading [FLEX_HEADING]="item.heading"></app-flex-heading>
+        }
+
+        @if (item.list) {
+            <app-custom-list
+            [ITEMS_LIST]="item.list"></app-custom-list>
+        }
+        
+        @if (item.text) {
+            @for (list_item of item.text; track list_item) {
+                <p class="ui-text">{{ list_item }}</p>
+            }
+        }
+        
+        @if (item.buttonSection) {
+            <div class="button-list-block">
+                @for (item of item.buttonSection; track item.id) {
+                    <app-button-flex
+                        [BUTTON_ITEM]="item"></app-button-flex>
+                }
+            </div>
+        }
+
+        @if (item.anchorLink) {
+            <div class="link-list-block">
+                @for (item of item.anchorLink; track item) {
+                    <app-anchor-flex [ANCHOR_FLEX_ITEM]="item"></app-anchor-flex>
+                }
+            </div>
+        }
+
+        @if (item.flexFormItem)  {
+            <app-flex-form 
+                [FLEX_FORM_ITEM]="item.flexFormItem"></app-flex-form>
+        }
+
+        @if (item.secFigure) {
+            <div class="ui-figure"></div>
+        }
+
+    </div>
+}
+

@@ -1,0 +1,34 @@
+@use '../../variables' as var;
+@use '../../../../styles-collections/breakpoints' as *;
+@use './article-header' as *;
+@use './article-body' as *;
+
+@mixin article-all-features() {
+    .article {
+        background-color: var.$white-color;
+
+        &__cover {
+            max-height: 500px;
+
+            img { filter: brightness(.95); }
+        }
+
+        &__container {
+            padding: 3rem 20px 5rem 20px;
+
+            @include respond('lg') { padding: 4rem 20px 6rem 20px; }
+        }
+
+        &__back {
+            color: var.$tertiary-color;
+            font-size: .8125rem;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+
+            &:hover { color: var.$twentieth-one-color; }
+        }
+
+        @include article-header-all-features();
+        @include article-body-all-features();
+    }
+}

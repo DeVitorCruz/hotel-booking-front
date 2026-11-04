@@ -1,0 +1,50 @@
+@use '../../../../styles-collections/breakpoints' as *;
+@use '../../variables' as var;
+@use './text-header' as *;
+@use './accordion-list' as *;
+
+@mixin faq-accordion-all-features() {
+    .faq-accordion {
+        background-color: var.$white-color;
+        padding: 80px 0;
+
+        @include respond('md') { padding: 90px 0; }
+        @include respond('lg') { padding: 120px 0; }
+
+        &__container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            padding: 0 .75rem;
+            margin: 0 auto;
+
+            app-text-box:has(.text-box-block__faq-list-content-header-0), .faq-accordion__list {
+                padding: 0 .75rem;
+                margin: 0 auto;
+
+                @include respond('lg') { 
+                    flex: 0 0 auto;
+                    width: 66.6666666667%; 
+                    margin-left: 16.6666666667%;
+                }
+            }
+
+            app-text-box:has(.text-box-block__faq-list-content-header-0) {
+                display: block;
+                .text-box-block__faq-list-content-header-0 {
+                    @include text-header-all-features();
+                }
+            }
+
+            .faq-accordion__list {
+                @include accordion-list-all-features();
+            }
+
+            @include respond('2sm') { max-width: 540px; }
+            @include respond('md') { max-width: 720px; }
+            @include respond('lg') { max-width: 960px; }
+            @include respond('xl') { max-width: 1140px; }
+            @include respond('2xl') { max-width: 1320px; }
+        }
+    }
+}

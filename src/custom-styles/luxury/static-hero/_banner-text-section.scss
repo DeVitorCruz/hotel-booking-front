@@ -1,0 +1,71 @@
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+
+@use '../../../styles-collections/mixin/ui-button-rectangle-mixin' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+@use '../variables' as var;
+
+@mixin banner-text-section-all-features() {
+    .text-box-block__static-hero-0 {
+        @include display-features($display: flex, $justify-content: center, $flex-direction: column, $align-items: center);
+        @include box-external-space($top: 0px);
+        @include max-dimension($max-width: 100%, $max-height: unset);
+        @include text-format($text-align: center);
+
+        .ui-flex-heading, .ui-text, .ui-btn-flex {
+            @include respond(lg) {
+                @include text-format($text-align: left);
+            }
+        }
+
+        .ui-flex-heading {
+            @include font-collect($font-family: var.$font-family-cinzel, $font-weight: 700, $font-size: 40px);
+            @include text-color(var.$secondary-color);
+            @include font-dimension($font-size: 40px, $font-weight: 700, $line-height: 1.2);
+            @include text-format($text-transform: uppercase, $text-align: unset);
+
+            @include respond(md) {
+                @include font-dimension($font-size: 60px, $font-weight: 700, $line-height: 1.2);
+            }
+
+            @include respond(lg) {
+                @include font-dimension($font-size: 85px, $font-weight: 700, $line-height: 1.2);
+                @include text-format($text-transform: uppercase, $text-align: left);
+            }
+        }
+
+        .ui-text {
+            @include max-dimension($max-width: 515px, $max-height: unset);
+            @include font-dimension($font-size: 16px, $font-weight: 400, $line-height: 30px);
+            @include box-external-space($top: 10px, $bottom: 10px);
+
+            @include respond(lg) {
+                @include dimension($width: 100%, $height: unset);
+            }
+        }
+
+        .ui-btn-flex {
+            @include ui-button-rectangle($button-text-color: var.$tertiary-color, $content-color: var.$transparent-color, $border-color: var.$tertiary-color);
+
+            &:hover {
+                @include ui-button-rectangle($button-text-color: var.$white-color, $content-color: var.$tertiary-color, $border-color: var.$tertiary-color);
+            }
+        }
+
+        @include respond(sm) {
+            @include box-external-space($top: 50px);
+        }
+
+        @include respond(md) {
+            @include box-external-space($top: 0px);
+        }
+
+        @include respond(lg) {
+            @include display-features($display: flex, $justify-content: left, $flex-direction: column, $align-items: self-start);
+            @include max-dimension($max-width: 657px, $max-height: unset);
+        }
+    }
+}

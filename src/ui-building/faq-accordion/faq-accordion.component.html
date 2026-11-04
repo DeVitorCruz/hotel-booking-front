@@ -1,0 +1,26 @@
+<section class="faq-accordion">
+    <div class="faq-accordion__container">
+        <app-text-box
+            [TEXT_BOX_LIST]="CONTENT().header"></app-text-box>
+        <div class="faq-accordion__list">
+            @for (item of CONTENT().items; track item.id) {
+                <div class="faq-accordion__item" [class.is-open]="isOpen(item.code)">
+                    <div class="faq-accordion__item--btn">
+                        <button 
+                            class="faq-accordion__question" 
+                            type="button"
+                            (click)="toggle(item.code)">
+                            <div class="faq-accordion__text">{{ item.question }}</div>
+                            <span class="faq-accordion__icon">{{ isOpen(item.code)? '-' : '+' }}</span>
+                        </button>
+                    </div>
+                    <div class="faq-accordion__item--answer">
+                        <div class="accordion-body">
+                            <p>{{ item.answer }}</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>  

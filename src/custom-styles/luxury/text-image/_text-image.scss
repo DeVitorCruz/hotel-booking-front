@@ -1,0 +1,25 @@
+@use '../../../styles-collections/breakpoints' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use './content-wrap' as *;
+
+@mixin text-image-all-features() {
+    app-sequence-space:has(.ui-sequence-block__text-image-block) {
+        @include box-internal-space($top: 80px, $right: 0px, $bottom: 80px, $left: 0px);
+        @include display-features($display: block, $justify-content: unset, $flex-direction: unset, $align-items: unset, $align-content: unset, $flex-wrap: unset);
+        
+        .ui-sequence-block__text-image-block {
+            .item-space__text-image-e-0 {
+                @include content-wrap-all-features();
+            }
+        }
+        
+        @include respond(md) {
+            @include box-internal-space($top: 90px, $right: 0px, $bottom: 90px, $left: 0px);
+        }
+
+        @include respond(lg) {
+            @include box-internal-space($top: 120px, $right: 0px, $bottom: 120px, $left: 0px);
+        }
+    }
+}

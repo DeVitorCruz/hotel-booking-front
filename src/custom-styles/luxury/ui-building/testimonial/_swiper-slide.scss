@@ -1,0 +1,24 @@
+@use '../../../../styles-collections/mixin/typography/font-scales' as *;
+@use './icon-wrap' as *;
+@use './author' as *;
+@use './quote-text' as *;
+@use '../../variables' as var;
+
+@mixin swiper-slide-all-features() {
+    app-sequence-space:has(.ui-sequence-block__swiper-slid-list-block) {
+        .ui-sequence-block__swiper-slid-list-block {
+
+            .item-space__swiper-slid-list-element-0 {
+                @include icon-wrap-all-features();
+            }
+
+            .item-space__swiper-slid-list-element-1 {
+                @include quote-text-all-features();
+            }
+
+            .item-space__swiper-slid-list-element-2 {
+                @include author-all-features();
+            }
+        }
+    }
+}

@@ -1,0 +1,40 @@
+@mixin checkout-steps-indicator-all-features() {
+    &__steps {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        margin-bottom: 3rem;
+    }
+
+    &__step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .375rem;
+
+        &-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .875rem;
+            font-weight: 600;
+            border: 2px solid currentColor;
+            transition: all .2s ease;
+        }
+
+        &-label { font-size: .75rem; }
+
+        &-line {
+            flex: 1;
+            height: 1px;
+            background: currentColor;
+            opacity: .2;
+            min-width: 60px;
+            margin-bottom: 1.25rem;
+        }
+    }
+}

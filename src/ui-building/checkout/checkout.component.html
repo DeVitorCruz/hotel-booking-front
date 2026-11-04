@@ -1,0 +1,255 @@
+<div class="checkout">
+    <div class="checkout__content-layer">
+        <!-- Step indicator -->
+        <div class="checkout__steps">
+            <div class="checkout__step" [ngClass]="{'is-active': STEP() === 1, 'is-done': STEP() > 1}">
+                <span class="checkout__step-number">1</span>
+                <span class="checkout__step-label">Shipping</span>
+            </div>
+            <div class="checkout__step-line"></div>
+            <div class="checkout__step" ngClass="{'is-active': STEP() === 2, 'is-done': STEP() > 2}">
+               <span class="checkout__step-number">2</span>
+               <span class="checkout__step-label">Payment</span>
+            </div>
+            <div class="checkout__step-line"></div>
+            <div class="checkout__step" ngClass="{'is-active': STEP() === 3}">
+                <span class="checkout__step-number">3</span>
+                <span class="checkout__step-label">Confirmation</span>
+            </div>
+        </div>
+        <!-- Error -->
+        @if (ERROR()) {
+            <div class="checkout__error">{{ ERROR() }}</div>
+        }
+        <!-- ---- STEP 1: Shipping --------------------- -->
+        @if (STEP() === 1) {
+            <div class="checkout__section">
+                <h2 class="checkout__section-title">Shipping Address</h2>
+                <div class="checkout__form">
+                    <div class="checkout__field">
+                        <label for="">Full Name *</label>
+                        <input type="text" class="ui-input-flex"
+                            [value]="FORM().recipient_name"
+                            (input)="onFieldChange('recipient_name', $any($event.target).value)"
+                            placeholder="Your full name" />
+                    </div>
+                    <div class="checkout__field">
+                        <label for="">Phone</label>
+                        <input type="tel" class="ui-input-flex"
+                            [value]="FORM().recipient_phone"
+                            (input)="onFieldChange('recipient_phone', $any($event.target).value)"
+                            placeholder="+55 (21) 9 9999-9999" />
+                    </div>
+                    <div class="checkout__field checkout__field--full">
+                        <label for="">Address *</label>
+                        <input type="text" class="ui-input-flex"
+                            [value]="FORM().address_line1"
+                            (input)="onFieldChange('address_line1', $any($event.target).value)"
+                            placeholder="Street address" />
+                    </div>
+                    <div class="checkout__field checkout__field--full">
+                        <label for="">Complement</label>
+                        <input type="text" class="ui-input-flex"
+                            [value]="FORM().address_line2"
+                            (input)="onFieldChange('address_line2', $any($event.target).value)"
+                            placeholder="Apt, suite, etc." />
+                    </div>
+                    <div class="checkout__field">
+                        <label for="">City *</label>
+                        <input type="text" class="ui-input-flex"
+                            [value]="FORM().city"
+                            (input)="onFieldChange('city', $any($event.target).value)"
+                            placeholder="city" />
+                    </div>
+                    <div class="checkout__field">
+                        <label for="">State *</label>
+                        <input type="text" class="ui-input-flex"
+                            [value]="FORM().state"
+                            (input)="onFieldChange('state', $any($event.target).value)"
+                            placeholder="State" />
+                    </div>
+                    <div class="checkout__field">
+                        <label for="">Postal Code *</label>
+                        <input type="text" class="ui-input-flex"
+                            [value]="FORM().postal_code"
+                            (input)="onFieldChange('postal_code', $any($event.target).value)"
+                            placeholder="00000-000" />
+                    </div>
+                    <div class="checkout__field">
+                        <label for="">Country</label>
+                        <input type="text" class="ui-input-flex"
+                            [value]="FORM().country"
+                            (input)="onFieldChange('country', $any($event.target).value)"
+                            placeholder="BR" />
+                    </div>
+                </div>
+                <div class="checkout__actions">
+                    <button type="button" class="checkout__btn checkout__btn--primary"
+                        (click)="goToStep(2)">
+                        Continue to Payment
+                    </button>
+                </div>
+            </div>
+        }
+        <!-- STEP 2: Payment -->
+        @if (STEP() === 2) {
+            <div class="checkout__section">
+                <h2 class="checkout__section-title">Payment</h2>
+                <!-- Gateway selector -->
+                <div class="checkout__form-group">
+                    <label for="" class="checkout__label">Payment Gateway</label>
+                    <div class="checkout__option-list">
+                        @for (gateway of CONTENT().gateways; track gateway.id) {
+                            <button type="button"
+                                class="checkout__option-btn"
+                                [ngClass]="{ 'is-active': FORM().gateway === gateway.id }"
+                                (click)="setGateway(gateway.id)">
+                                {{ gateway.id === 'mercadopago' ? 'Mercado Pago' : 'PagSeguro' }}
+                            </button>
+                        }
+                    </div>
+                </div>
+                <!-- Method selector -->
+                <div class="checkout__form-group">
+                    <label for="" class="checkout__label">Payment Method</label>
+                    <div class="checkout__option-list">
+                        @for (method of AVAILABLE_METHODS(); track method) {
+                            <button type="button"
+                                class="checkout__option-btn"
+                                [ngClass]="{'is-active': FORM().method === method}"
+                                (click)="setMethod(method)">
+                                {{ method | uppercase }}
+                            </button>
+                        }
+                    </div>
+                </div>
+                <!-- Payer info -->
+                <div class="checkout__form">
+                    <div class="checkout__field">
+                        <label for="">Full Name</label>
+                        <input type="text"
+                            class="ui-input-flex"
+                            [value]="FORM().payer_name"
+                            (input)="onFieldChange('payer_name', $any($event.target).value)"
+                            placeholder="Payer full name"/>
+                    </div>
+                    <div class="checkout__field">
+                        <label for="">Email</label>
+                        <input type="text"
+                            class="ui-input-flex"
+                            [value]="FORM().payer_email"
+                            (input)="onFieldChange('payer_email', $any($event.target).value)"
+                            placeholder="your@email.com"/>
+                    </div>
+                    <div class="checkout__field">
+                        <label for="">CPF</label>
+                        <input type="text" class="ui-input-flex"
+                            [value]="FORM().payer_cpf"
+                            (input)="onFieldChange('payer_cpf', $any($event.target).value)"
+                            placeholder="000.000.000-00" />
+                    </div>
+                    <!-- Card fields -->
+                    @if (IS_CARD()) {
+                        <div class="checkout__field">
+                            <label for="">Installmens</label>
+                            <input type="text" class="ui-input-flex"
+                                [value]="FORM().installments"
+                                (input)="onFieldChange('installments', $any($event.target).value)"
+                                min="1" max="12" />
+                        </div>
+                    }
+                    <div class="checkout__field checkout__field--full">
+                        <label for="">Notes</label>
+                        <textarea name="" id=""
+                            class="ui-input-flex checkout__textarea"
+                            [value]="FORM().notes"
+                            (input)="onFieldChange('notes', $any($event.target).value)"
+                            placeholder="Order notes (optional)">
+                        </textarea>
+                    </div>
+                </div>
+                <div class="checkout__actions">
+                    <button type="button" class="checkout__btn checkout__btn--secondary"
+                        (click)="goToStep(1)">
+                        Back
+                    </button>
+                    <button type="button" class="checkout__btn checkout__btn--primary"
+                        [ngClass]="{'is-loading': LOADING() }"
+                        (click)="onSubmit()">
+                        {{ LOADING() ? 'Processing...' : 'Place Order' }}
+                    </button>
+                </div>
+            </div>
+        }
+        <!-- STEP 3: Confirmation -->
+        @if (STEP() === 3 && PIX_DETAILS()) {
+            <!-- PIX -->
+            @if (IS_PIX() && PIX_DETAILS()) {
+                <div class="checkout__section checkout__section--pix">
+                    <h2 class="checkout__section-title">Pay with PIX</h2>
+        
+                    @if (PAYMENT_STATUS() === 'paid') {
+                        <div class="checkout__paid">
+                            ✓ Payment confirmed!
+                        </div>
+                    } @else {
+                        <div class="checkout__pix">
+                            <div class="checkout__pix-qr">
+                                <img [src]="'data:image/png;base64,' + PIX_DETAILS()!.pix_qr_base64"
+                                    alt="PIX QR Code" />
+                            </div>
+                            <div class="checkout__pix-code">
+                                <p class="checkout__pix-label">Copy and paste code:</p>
+                                <div class="checkout__pix-copy">
+                                    <input type="text" class="ui-input-flex"
+                                        [value]="PIX_DETAILS()!.pix_code" readonly />
+                                    <button type="button" class="checkout__btn checkout__btn--secondary"
+                                        (click)="copyPixCode()">
+                                        Copy
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="checkout__countdown">
+                                <span>Expires in:</span>
+                                <strong>{{ FORMATTED_COUNTDOWN() }}</strong>
+                            </div>
+                            <p class="checkout__polling-msg">
+                                Waiting for payment confirmation...
+                            </p>
+                        </div>
+                    }
+                </div>
+            }
+            <!-- Boleto -->
+            @if (IS_BOLETO() && BOLETO_DETAILS()) {
+                <div class="checkout__section checkout__section--boleto">
+                    <h2 class="checkout__section-title">Pay with Boleto</h2>
+                    @if (PAYMENT_STATUS() === 'paid') {
+                        <div class="checkout__paid">✓ Payment confirmed!</div>
+                    } @else {
+                        <div class="checkout__boleto">
+                            <button type="button" class="checkout__btn checkout__btn--primary"
+                                (click)="openBoleto()">
+                                Open Boleto
+                            </button>
+                            <p class="checkout__boleto-barcode">
+                                {{ BOLETO_DETAILS()!.barcode }}
+                            </p>
+                            <p class="checkout__boleto-expiry">
+                                Expires: {{ BOLETO_DETAILS()!.expires_at | date:'dd/MM/yyyy' }}
+                            </p>
+                        </div>
+                    }
+                </div>
+            }
+        
+            <!-- Card redirect -->
+            @if (IS_CARD()) {
+                <div class="checkout__section">
+                    <h2 class="checkout__section-title">Redirecting to payment ...</h2>
+                    <p>You will be redirected to complete your payment securely.</p>
+                </div>
+            }
+        }
+    </div>
+</div>

@@ -1,0 +1,18 @@
+@use '../variables' as var;
+
+@mixin error-404-btn-all-features() {
+    &__btn {
+        display: inline-block;
+        padding: .875rem 2.5rem;
+        background-color: var.$tertiary-color;
+        color: var.$white-color;
+        text-decoration: none;
+        font-size: .8125rem;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        font-family: var.$font-family-sans;
+        transition: background-color .3s ease;
+
+        &:hover { background-color: var.$twentieth-one-color; }
+    }
+}

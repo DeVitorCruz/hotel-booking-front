@@ -1,0 +1,62 @@
+@use '../variables' as var;
+@use '../../../styles-collections/breakpoints' as *;
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+
+@mixin blog-all-features() {
+    .blog-search {
+        background-color: var.$fourth-color;
+        padding: 2rem 0;
+        
+        &__container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        &__input {
+            width: 100%;
+            padding: .875rem 1.25rem;
+            border: 1px solid var.$thirteenth-color;
+            background-color: var.$white-color;
+            font-size: .9375rem;
+            color: var.$sixteenth-color;
+            outline: none;
+            font-family: var.$font-family-sans;
+            transition: border-color .3s ease;
+
+            &:focus { border-color: var.$tertiary-color; }
+            &::placeholder { color: var.$twentieth-color; }
+        }
+    }
+
+    app-card-grid:has(.blog-grid) {
+        .card-grid__container {
+            app-text-box:has(.text-box-block-0) {
+                .text-box-block-0 {
+                    .ui-text {
+                        font-size: .8125rem;
+                        color: var.$twentieth-color;
+                        text-transform: uppercase;
+                        letter-spacing: .04em;
+                        margin: 0 0 .5rem 0;
+                    }
+                }
+            }
+
+            app-text-box:has(.text-box-block-2) {
+                .text-box-block-2 {
+                    .ui-text {
+                        font-size: .875rem;
+                        color: var.$primary-color;
+                        line-height: 1.65;
+                        margin-top: .75rem;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 3;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                    }
+                }
+            }
+        }
+    }
+}

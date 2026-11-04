@@ -1,0 +1,60 @@
+@use './checkout-steps-indicator' as *;
+@use './checkout-forms' as *;
+@use './checkout-gateway' as *;
+@use './checkout-buttons' as *;
+@use './checkout-pix' as *;
+@use './checkout-boleto' as *;
+@use '../../variables' as var;
+@use '../../../../styles-collections/breakpoints' as *;
+@use '../../../../styles-collections/mixin/typography/font-scales' as *;
+
+@mixin checkout-all-features() {
+    .checkout {
+        background-color: var.$white-color;
+        padding: 80px 0; 
+
+        &__content-layer {
+            @include respond('2sm') {
+                max-width: 540px;
+            }
+
+            @include respond('md') {
+                max-width: 720px;
+            }
+
+            @include respond('xl') {
+                max-width: 1140px;
+            }
+
+            @include respond('2xl') {
+                max-width: 1320px;
+            }    
+        }
+
+        &__section-title {
+            @include font-collect($font-family: var.$font-family-cinzel, $font-weight: var.$font-weight-bold, $font-size: 24px, $line-height: 1.3);
+            color: var.$secondary-color;
+            text-transform: uppercase;
+            border-bottom: 1px solid var.$thirteenth-color;
+            padding-bottom: 1rem;
+        }
+
+        &__paid {
+            padding: 2rem;
+            background-color: var.$fourth-color;
+            color: var.$secondary-color;
+            border-left: 3px solid var.$tertiary-color;
+            @include font-collect($font-family: var.$font-family-cinzel, $font-weight: var.$font-weight-bold, $font-size: 20px, $line-height: 1.3);
+        }
+
+        @include respond('md') { padding: 90px 0; }
+        @include respond('lg') { padding: 120px 0; }
+
+        @include checkout-steps-indicator-all-features();
+        @include checkout-forms-all-features();
+        @include checkout-gateway-all-features();
+        @include checkout-buttons-all-features();
+        @include checkout-pix-all-features();
+        @include checkout-boleto-all-features();
+    }
+}

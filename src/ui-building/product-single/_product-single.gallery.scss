@@ -1,0 +1,38 @@
+@use '../../styles-collections/breakpoints' as *;
+
+@mixin product-single-gallery-all-features() {
+    flex: 0 0 auto;
+    width: 100%;   
+
+    // Main swiper image
+    ::ng-deep .product-single-main-swiper {
+        .ui-image-flex img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    }
+    
+    // thumb swiper images
+    ::ng-deep .product-single-thumb-swiper {
+        margin-top: 10px;
+
+        .ui-image-flex img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            cursor: pointer;
+            opacity: .5;
+            transition: opacity .2s ease;
+        }
+    }
+    
+    .product-single-thumb-swiper .ui-image-flex img {
+        opacity: 1;
+    }
+    
+    @include respond('lg') { 
+        flex: 0 0 auto;
+        width: 50%; 
+    }
+}

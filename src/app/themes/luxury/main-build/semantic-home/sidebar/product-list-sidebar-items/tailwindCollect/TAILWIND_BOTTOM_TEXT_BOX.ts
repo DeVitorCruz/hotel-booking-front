@@ -1,0 +1,1 @@
+export const TAILWIND_BOTTOM_TEXT_BOX: string[] = [];

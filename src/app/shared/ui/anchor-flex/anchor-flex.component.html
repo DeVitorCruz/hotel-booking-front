@@ -1,0 +1,22 @@
+<a  
+  class="ui-link-e"
+  [routerLink]="ANCHOR_FLEX_ITEM().rlink?? ''"
+  [title]="ANCHOR_FLEX_ITEM().description?? ''"
+  [aria-label]="ANCHOR_FLEX_ITEM().ariaLabel?? ''">
+  
+  @if (ANCHOR_FLEX_ITEM().switchAbleIcon.type !== 'none') {
+    <app-icon-flex 
+      [ICON_SWITCH]="ANCHOR_FLEX_ITEM().switchAbleIcon"
+      ></app-icon-flex>
+  }
+
+  @if (ANCHOR_FLEX_ITEM().imageFlex) {
+    <app-img-flex 
+      [IMAGE_FLEX_ITEM]="ANCHOR_FLEX_ITEM().imageFlex!"
+      ></app-img-flex>
+  }
+  
+  @if (ANCHOR_FLEX_ITEM().title) {
+    {{ ANCHOR_FLEX_ITEM().title }}
+  }
+</a>

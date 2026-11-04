@@ -1,0 +1,9 @@
+@use '../../../../styles-collections/breakpoints' as *;
+@use '../../variables' as var;
+
+@mixin contact-row-all-features() {
+    &__section--row {
+        display: flex;
+        flex-direction: column;        
+    }
+}

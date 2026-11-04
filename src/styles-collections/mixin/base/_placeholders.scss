@@ -1,0 +1,58 @@
+// --- Shared placeholders to reduce CSS output duplication ---
+// These replace the most frequently repeated identical mixin calls
+
+// Display
+%flex-row-center {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    flex-wrap: nowrap;
+}
+
+%flex-row-center-wrap {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+%flex-row-between {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    flex-wrap: nowrap;
+}
+
+%flex-col-center {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+%display-block {
+    display: block;
+}
+
+%display-none {
+    display: none;
+}
+
+// Position
+%pos-relative { position: relative; }
+%pos-absolute { position: absolute; }
+
+// Dimensions
+%full-width-auto { width: 100%; height: auto; }
+%full-size { width: 100%; height: 100%; }
+%half-width-auto { width: 50%; height: auto; }
+%square-40 { width: 40px; height: 40px; }
+%square-48 { width: 48px; height: 48px; }

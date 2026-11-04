@@ -1,0 +1,68 @@
+@use '../../styles-collections/breakpoints' as *;
+
+:host { display: block; width: 100% }
+
+.team-single {
+    width: 100%;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+        width: 100%;
+
+        @include respond('lg') {
+            flex-direction: row;
+            align-items: flex-start;
+        }
+    }
+
+    &__image {
+        width: 100%;
+
+        .ui-image-flex img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @include respond('lg') { flex: 0 0 40%; }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        width: 100%;
+
+        @include respond('lg') { flex: 1; }
+    }
+
+    &__header { display: flex; flex-direction: column; gap: .5rem; }
+
+    &__name { margin: 0; }
+    &__role { margin: 0; }
+    &__bio { margin: 0; line-height: 1.75; }
+
+    &__contact {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+
+    &__contact-item {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        font-size: .875rem;
+    }
+
+    &__contact-label { font-weight: 600; flex-shrink: 0; }
+    &__contact-value { text-decoration: none; }
+    &__social {
+        display: flex;
+        align-items: center;
+        gap: .75rem;
+        flex-wrap: wrap;
+    }
+}

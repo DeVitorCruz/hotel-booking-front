@@ -1,0 +1,22 @@
+<section class="faq-contact">
+    <div class="faq-contact__container">
+        <div class="faq-contact__header">
+            <app-flex-heading [FLEX_HEADING]="CONTENT().headerContent.header"/>
+            <app-text-box [TEXT_BOX_LIST]="CONTENT().headerContent.customText!"/>
+        </div>
+        <div class="faq-contact__body">
+            <div class="faq-content-layer">
+                @if (SUBMITTED_SUCCESSFULLY()) {
+                    <div class="faq-contact__success">
+                        {{ CONTENT().successMessage ?? 'Thank you! We will be in touch shortly.' }}
+                    </div>
+                } @else {
+                    <app-flex-form
+                        [FLEX_FORM_ITEM]="CONTENT().formContent"
+                        (onSubmit)="handleSubmit()"
+                    ></app-flex-form>
+                }
+            </div>
+        </div>
+    </div>
+</section>

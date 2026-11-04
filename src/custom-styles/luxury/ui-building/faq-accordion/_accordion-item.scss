@@ -1,0 +1,60 @@
+@use '../../variables' as var;
+
+@mixin accordion-item-all-features() {
+    .faq-accordion__item {
+        border: 1px solid var.$twentieth-eight-color;
+        padding: 5px 20px;
+        margin-bottom: 20px;
+        position: relative;
+
+        &--btn {
+            color: var.$secondary-color;
+            padding: 20px 0;
+            position: inherit;
+            z-index: 1;
+            
+            .faq-accordion__question {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                color: var.$twentieth-nine-color;
+                font-size: 18px;
+                text-transform: left;
+
+                .faq-accordion__icon {
+                    font-size: 15px;
+                    font-weight: var.$font-weight-bold;
+                    margin-left: auto;
+                    width: 1.25rem;
+                    height:1.25rem;
+                }
+            }
+        }
+
+        &--answer {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height ease .4s, padding .4s ease, opacity .4s ease;
+            position: inherit;
+            z-index: 0;
+
+            .accordion-body {
+                padding: 1rem 0;
+
+                p {
+                    font-size: 16px;
+                    color: var.$twentieth-seven-color;
+                    line-height: 1.8em;
+                    margin-bottom: 1rem;
+                }
+            }   
+        }
+
+        &.is-open {
+            .faq-accordion__item--answer {
+                max-height: 300px;
+                opacity: 1;   
+            }
+        }
+    } 
+}

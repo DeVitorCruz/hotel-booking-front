@@ -1,0 +1,38 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+@use './title-track' as *;
+@use './text-track' as *;
+
+@mixin title-text-track-all-features() {
+    @include display-features($display: flex, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: wrap);
+    @include box-internal-space($top: 0px, $right: 1.5rem, $bottom: 0px, $left: 1.5rem);
+
+    .text-box-block__content-collection-track-block-header-0 {
+        @include flex-position-features(0 0 auto);
+        @include dimension($width: 100%, $height: auto);
+        @include box-internal-space($top: 80px, $right: 0px, $bottom: 0, $left: 0px);
+        @include box-external-space($top: 0px, $right: 0px, $bottom: 40px, $left: 0px);
+
+        app-flex-heading:has(.ui-flex-heading) {
+            .ui-flex-heading {
+                @include title-track-all-features();
+            }
+        }
+
+        .ui-text {
+            @include text-track-all-features();
+        }
+
+        @include respond(md) {
+            @include box-internal-space($top: 90px, $right: 0px, $bottom: 0px, $left: 0px);
+            @include box-external-space($top: 0px, $right: 0px, $bottom: 60px, $left: 0px);
+        }
+
+        @include respond(lg) {
+            @include dimension($width: 50%, $height: auto);
+            @include box-internal-space($top: 120px, $right: 0px, $bottom: 0px, $left: 0px);
+        }
+    }
+}

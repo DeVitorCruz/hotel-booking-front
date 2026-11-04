@@ -1,0 +1,16 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/breakpoints' as *;
+
+@mixin detached-image-content-all-features() {
+    @include out-direction-move($z-index: 1);
+    
+    app-img-flex:has(.ui-image-flex) {
+        .ui-image-flex {
+            @include display-features($display: flex, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: wrap);
+
+            @include respond(lg) {
+                @include display-features($display: flex, $justify-content: space-around, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: wrap);
+            }
+        }
+    }
+}

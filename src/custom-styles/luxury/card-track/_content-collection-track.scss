@@ -1,0 +1,41 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+
+@use './title-text-track.scss' as *;
+@use './card-collection-track-list' as *;
+@use './wall-figure' as *;
+
+@mixin content-collection-track-all-features() {
+    app-flex-collection:has(.ui-flex-collection-block__content-collection-track-block) {
+        .ui-flex-collection-block__content-collection-track-block {
+            app-text-box:has(.text-box-block__content-collection-track-block-header-0) {
+                @include title-text-track-all-features();
+            }
+            
+            app-sequence-space:has(.ui-sequence-block__content-collection-track-body-block) {
+                @include display-features($display: block, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: wrap);
+                @include position-features($position: relative);
+                @include box-external-space($top: 0px, $right: 0px, $bottom: 0px, $left: 0px);
+                @include out-direction-move($z-index: 1);
+                
+                &::before {
+                    @include wall-figure-all-features();
+                }
+
+                .ui-sequence-block__content-collection-track-body-block {
+                    @include position-features($position: relative);
+
+                    .item-space__content-collection-track-body-block-0 {
+                        @include card-collection-track-list();
+                    }
+                }
+
+                @include respond(md) {
+                    @include box-external-space($top: 80px, $right: 0px, $bottom: 0px, $left: 0px);
+                }
+            }
+        }
+    }
+}

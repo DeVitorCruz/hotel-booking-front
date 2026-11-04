@@ -1,0 +1,62 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+
+@use '../variables' as var;
+
+@use '../../../styles-collections/mixin/ui-button-rectangle-mixin' as *;
+
+@mixin card-body-all-features() {
+    app-flex-card:has(.flex-card-block) {
+        .flex-card-block {
+            .head {
+                @include display-features($display: flex, $justify-content: left, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+                @include box-external-space($top: 20px, $right: 20px, $bottom: 0px, $left: 20px);
+
+                @include respond(md) {
+                    @include display-features($display: flex, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+                }
+            }
+
+            .body {
+                @include box-internal-space($top: 30px, $right: 20px, $bottom: 30px, $left: 20px);
+
+                app-text-box:has(.text-box-block-0) {
+                    .text-box-block-0 {
+                        app-flex-heading:has(.ui-flex-heading) {
+                            .ui-flex-heading {
+                                @include font-collect(var.$font-family-cinzel, var.$font-weight-bold, 22px, $line-height: 38px);
+                                @include text-color(var.$secondary-color);
+                                @include box-external-space($top: 0px, $right: 0px, $bottom: .5rem, $left: 0px);
+                            }
+                        }
+
+                        .ui-text {
+                            @include font-collect(var.$font-family-sans, var.$font-weight-regular, 16px, $line-height: 32px);
+                            @include box-external-space($top: 0px, $right: 0px, $bottom: 50px, $left: 0px);
+                        }
+
+                        .link-list-block {
+                            app-anchor-flex:has(.ui-link-e) {
+                                .ui-link-e {
+                                    @include ui-button-rectangle($button-text-color: var.$tertiary-color, $content-color: var.$fourth-color, $border-color: var.$transparent-color);
+
+                                    &:hover {
+                                        @include ui-button-rectangle($button-text-color: var.$tertiary-color, $content-color: var.$transparent-color, $border-color: var.$tertiary-color);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                @include respond(md) {
+                    @include box-internal-space($top: 30px, $right: 40px, $bottom: 30px, $left: 40px);
+                }
+            }
+        }
+    }
+}

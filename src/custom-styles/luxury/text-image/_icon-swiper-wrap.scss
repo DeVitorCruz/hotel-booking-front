@@ -1,0 +1,15 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+
+@use './icon-value-swiper' as *;
+
+@mixin icon-swiper-wrap-all-features() {
+    app-sequence-space:has(.ui-sequence-block__icon-swiper-wrap-block) {
+        @include display-features($display: block, $justify-content: unset, $flex-direction: unset, $align-items: center, $align-content: center, $flex-wrap: unset);
+        @include dimension($width: 100%, $height: auto);
+
+        .ui-sequence-block__icon-swiper-wrap-block {
+            @include icon-value-swiper-all-features();
+        }
+    }
+}

@@ -1,0 +1,43 @@
+@use '../../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../../styles-collections/breakpoints' as *;
+@use '../../variables' as var;
+
+@mixin image-all-features() {
+    .testimonial__image {
+        @include dimension($width: 250px, $height: 400px);
+        @include direction-position($top: 37%, $right: unset, $bottom: unset, $left: 43%);
+        display: none;
+        position: absolute;
+        transform: var.$translate-middle;
+
+        &:before, &:after {
+            position: absolute;
+            background-color: var.$white-color;
+            @include respond('lg') { content: ''; }
+        }
+
+        &:before {
+            @include direction-position($top: unset, $right: unset, $bottom: 0, $left: 0);
+            @include dimension($width: 50px, $height: 70px);
+            z-index: 1;
+        }
+        
+        &:after {
+            @include direction-position($top: unset, $right: unset, $bottom: -140px, $left: -20%);
+            @include dimension($width: 100px, $height: 210px);
+            background-color: var.$fourth-color;
+            z-index: -1;
+        }
+
+        .ui-image-flex img {
+            @include dimension($width: 100%, $height: auto);
+        }
+
+        @include respond('lg') { display: block; }
+
+        @include respond('xl') { @include dimension($width: 300px, $height: 430px); }
+
+        @include respond('2xl') { @include direction-position($top: 37%, $right: unset, $bottom: unset, $left: 47%); }
+    }
+}

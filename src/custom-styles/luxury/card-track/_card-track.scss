@@ -1,0 +1,42 @@
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+@use '../variables' as var;
+
+@use './left-figure' as *;
+@use './right-figure' as *;
+@use './content-collection-track.scss' as *;
+
+@mixin card-track-all-features() {
+    app-container {
+        app-sequence-space:has(.ui-sequence-block__card-track-block) {
+            @include position-features($position: relative);
+            @include display-features($display: block, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+            @include content-color(var.$fourth-color);
+            @include out-direction-move($z-index: 1);
+            @include box-internal-space($top: 0px, $right: 0px, $bottom: 80px, $left: 0px);
+
+            .item-space__card-track-element-0 {
+                @include left-figure-all-features();
+            }
+
+            .item-space__card-track-element-1 {
+                @include right-figure-all-features();
+            }
+
+            .item-space__card-track-element-2 {
+                @include content-collection-track-all-features();
+            }
+
+            @include respond(md) {
+                @include box-internal-space($top: 0px, $right: 0px, $bottom: 90px, $left: 0px);
+            }
+
+            @include respond(lg) {
+                @include box-internal-space($top: 0px, $right: 0px, $bottom: 350px, $left: 0px);
+            }
+        }
+    }
+}

@@ -1,0 +1,95 @@
+@use '../../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../../styles-collections/mixin/density/density-mixin' as *;
+@use './card-grid-header' as *;
+@use './card-grid-item' as *;
+@use './card-grid-decoration' as *;
+@use '../../../../styles-collections/breakpoints' as *;
+@use '../../../luxury/variables' as var;
+
+
+@mixin card-grid-all-features() {
+    app-card-grid:has(.team-grid) {
+        display: block;
+        position: relative;
+        background-color: var.$fourth-color;
+        padding: 80px 0 50px 0;
+
+        &::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            @include dimension($width: 400px, $height: 259px);
+            background-color: var.$fifth-color;
+            border-top-right-radius: 4px;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            @include dimension($width: 167px, $height: 285px);
+            @include direction-position($top: 0, $right: unset, $bottom: unset, $left: 0,);
+            @include border-decoration-solid-detailed($border-left: 1px, $border-top: 0px, $border-right: 1px, $border-bottom: 1px, $border-type: solid);
+            display: none;
+            background-color: transparent;
+            border-color: var.$eleventh-color;
+            border-bottom-right-radius: 1000px;
+            border-bottom-left-radius: 1000px;
+            z-index: 0;
+        }
+
+        .team-grid {
+            padding: 0;
+            .card-grid__container {
+                @include card-grid-header-all-features();
+                max-width: 1280px;
+                position: relative;
+                padding: 0 20px 0 20px;
+                margin: 0 auto 0 auto;
+                z-index: 1;
+
+                .card-grid__body {
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    gap: 30px;
+
+                    @include card-grid-item-all-features();
+
+                    @include respond('md') {
+                        grid-template-columns: repeat(2, 1fr);
+                    }
+
+                    @include respond('lg') {
+                        grid-template-columns: repeat(3, 1fr);
+                    }
+
+                    &--cols-4 {
+                        @include respond('lg') {
+                            grid-template-columns: repeat(4, 1fr);
+                        }
+                    }
+                }   
+            }
+
+            @include card-grid-decoration-all-features();
+        }
+
+        @include respond('md') {
+            padding: 90px 0 60px 0;
+        }
+
+        @include respond('lg') {
+            &::after {
+                display: block;
+            }
+
+            padding: 120px 0 90px 0;
+        }
+
+        @include respond('xl') {
+            &::after {
+                @include dimension($width: 267px, $height: 485px);
+            }
+        }
+    }
+}

@@ -1,0 +1,55 @@
+@use '../../../../styles-collections/breakpoints' as *;
+@use '../../variables' as var;
+@use './contact-info' as *;
+@use './contact-hour' as *;
+@use './contact-form' as *;
+@use './contact-row' as *;
+
+@mixin contact-all-features() {
+    .contact {
+        --contact-padding-y: 80px;
+        background-color: var.$white-color;
+
+        // Header, Info items
+        @include contact-info-all-features();
+
+        // Opening hours, hours-title, hours-item, hours-day and hours-time
+        @include contact-hour-all-features();
+
+        // Form, Form inputs
+        @include contact-form-all-features();
+
+        @include respond('md') { --contact-padding-y: 90px; }
+        @include respond('lg') { --contact-padding-y: 120px; }
+
+        &__main-container {
+            --max-width-container: 970px;
+
+            @include respond('2sm') {
+                --max-width-container: 540px;
+            }
+
+            @include respond('md') {
+                --max-width-container: 720px;
+            }
+
+            @include respond('lg') {
+                --max-width-container: 960px;
+            }
+
+            @include respond('xl') {
+                --max-width-container: 1140px;
+            }
+
+            @include respond('2xl') {
+                --max-width-container: 1320px;
+            }
+        }
+
+        &__map-frame {
+            width: 100%;
+        }
+
+        @include contact-row-all-features();
+    }
+}   

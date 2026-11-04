@@ -1,0 +1,44 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+
+@use './detached-body-text' as *;
+@use './detached-inner-row' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+@use '../variables' as var;
+
+@mixin detached-body-content-all-features() {
+    @include out-direction-move($z-index: 1);
+    @include box-external-space($top: 30px, $right: 0px, $bottom: 0px, $left: 0px);
+    @include content-color(var.$secondary-color);
+ 
+    app-sequence-space:has(.ui-sequence-block__detached-body-block) {
+        .ui-sequence-block__detached-body-block {
+            @include display-features($display: flex, $justify-content: center, $flex-direction: column, $align-items: center, $align-content: center, $flex-wrap: wrap);
+
+            .item-space__detached-body-element-0, .item-space__detached-body-element-1 {
+                @include flex-position-features(0 0 auto);
+                @include dimension($width: 100%, $height: auto);
+            }
+
+            .item-space__detached-body-element-0 {
+                @include border-decoration-solid-detailed($border-left: 0px, $border-top: 0px, $border-right: 0px, $border-bottom: 1px, $border-type: dashed);
+                @include border-decoration-color(var.$tenth-color);
+
+                .text-box-block-0 {
+                    @include detached-body-text-all-features();
+                }
+            }
+
+            .item-space__detached-body-element-1 {
+                @include detached-inner-row-all-features();
+            }
+        }
+    }
+
+    @include respond(lg) {
+        @include box-external-space($top: 0px, $right: 0px, $bottom: 0px, $left: 20px)
+    }
+}

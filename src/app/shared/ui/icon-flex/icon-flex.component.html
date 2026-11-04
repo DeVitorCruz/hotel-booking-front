@@ -1,0 +1,10 @@
+@if (current_icon_kit.type === 'iconAwesome') {
+    <fa-icon [icon]="current_icon_kit.currentIcon"></fa-icon>
+} @else if (current_icon_kit.type === 'iconMaterial') {
+    <mat-icon 
+        [aria-hidden]="current_icon_kit.ariaHidden" 
+        [aria-label]="current_icon_kit.ariaLabel" 
+        [fontIcon]="current_icon_kit.fontIcon">
+    </mat-icon>
+} 
+

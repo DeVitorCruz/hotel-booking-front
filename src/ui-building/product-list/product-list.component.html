@@ -1,0 +1,117 @@
+<div class="product-list">
+
+    <div class="product-list__container">
+        <!-- Header -->
+        <div class="product-list__header">
+            <h2 class="product-list__title">{{ CONTENT().title }}</h2>
+            @if (CONTENT().headerAction) {
+                <button
+                    type="button"
+                    class="product-list__header-action"
+                    [ngClass]="CONTENT().headerAction!.customClassName"
+                    (click)="CONTENT().headerAction!.handler(0)">
+                    {{ CONTENT().headerAction!.label }}
+                </button>
+            }
+        </div>
+        @if (CONTENT().items.length === 0) {
+            <!-- Empty state -->
+            <div class="product-list__empty">
+                <p>{{ CONTENT().emptyMessage ?? 'No items found.' }}</p>
+            </div>
+        } @else {
+            <!-- Items table -->
+            <div class="product-list__table">
+        
+                <!-- Table header -->
+                <div class="product-list__table-head">
+                    <span class="product-list__col product-list__col--image"></span>
+                    <span class="product-list__col product-list__col--name">Product</span>
+                    <span class="product-list__col product__col--price">Price</span>
+                    @if (CONTENT().items[0].quantity !== undefined) {
+                        <span class="product-list__col product-list__col--qty">Quantity</span>
+                        <span class="product-list__col product-list__col--subtotal">Subtotal</span>
+                    }
+                    <span class="product-list__col product-list__col--actions"></span>
+                </div>
+                <!-- Table rows -->
+                @for(item of CONTENT().items; track item.id) {
+                    <div class="product-list__row">
+                        <!-- Image -->
+                        <div class="product-list__col product-list__col--image">
+                            <app-img-flex
+                                [IMAGE_FLEX_ITEM]="item.image"></app-img-flex>
+                        </div>
+                        <!-- Name + meta -->
+                        <div class="product-list__col product-list__col--name">
+                            <span class="product-list__item-name">{{ item.name }}</span>
+                            @if (item.meta) {
+                                <span class="product-list__item-meta">{{ item.meta }}</span>
+                            }
+                        </div>
+                        <!-- Price -->
+                        <div class="product-list__col product-list__col--price">
+                            @if (item.originalPrice) {
+                                <span class="product-list__price--original">
+                                    {{ formatPrice(item.originalPrice, item.currency) }}
+                                </span>
+                            }
+                            <span class="product-list__price--current">
+                                {{ formatPrice(item.price, item.currency) }}
+                            </span>
+                        </div>
+        
+                        <!-- Quantity (optional) -->
+                        @if (item.quantity !== undefined) {
+                            <div class="product-list__col product-list__col--qty">
+                                <div class="product-list__quantity">
+                                    <button
+                                        type="button"
+                                        class="product-list__quantity-btn"
+                                        (click)="decrement(item)">-</button>
+                                    <input
+                                        type="number"
+                                        min="1"
+                                        class="product-list__quantity-input"
+                                        [value]="getQuantity(item)"
+                                        (input)="onQuantityChange(item, $any($event.target).value)" />
+                                    <button
+                                        type="button"
+                                        class="product-list__quantity-btn"
+                                        (click)="increment(item)">+</button>
+                                </div>
+                            </div>
+                            <!-- Subtotal -->
+                            <div class="product-list__col product-list__col--subtotal">
+                                <span class="product-list__subtotal">
+                                    {{ formatPrice(item.price * getQuantity(item), item.currency) }}
+                                </span>
+                            </div>
+                        }
+                        <!-- Actions -->
+                        <div class="product-list__col product-list__col--actions">
+                            @for (action of item.actions; track action.id) {
+                                <button
+                                    type="button"
+                                    class="product-list__action-btn"
+                                    [ngClass]="action.customClassName"
+                                    (click)="action.handler(item.id)">{{ action.label }}</button>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- summary -->
+            @if (CONTENT().summary && CONTENT().summary!.length > 0) {
+                <div class="product-list__summary">
+                    @for (row of CONTENT().summary!; track row.label) {
+                        <div class="product-list__summary-row">
+                            <span class="product-list__summary-label">{{ row.label }}</span>
+                            <span class="product-list__summary-value">{{ row.value }}</span>
+                        </div>
+                    }
+                </div>
+            }
+        }
+    </div>
+</div>

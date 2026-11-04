@@ -1,0 +1,53 @@
+@use '../../../styles-collections/breakpoints' as *;
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../variables' as var;
+@use './auth-row-content' as *;
+
+@mixin auth-sell-all-features() {
+    app-auth-shell:has(.auth-shell) {
+        display: block;
+        position: relative;
+        transition: all .3s;
+
+        .auth-shell {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+            padding: 100px 0;
+        
+            &__container {
+                padding: 0 .75rem;
+                margin: 0 auto;
+
+                @include respond('2sm') {
+                    max-width: 540px;
+                }
+
+                @include respond('md') {
+                    max-width: 720px;
+                }
+
+                @include respond('lg') {
+                    max-width: 960px;
+                }
+
+                @include respond('xl') {
+                    max-width: 1140px;
+                }
+
+                @include respond('2xl') {
+                    max-width: 1320px;
+                }
+            }
+            
+            &__container--row {
+                @include auth-row-content-all-features();
+            }
+        }
+
+        @include respond('lg') {
+            transition: unset;
+        }
+    }
+}

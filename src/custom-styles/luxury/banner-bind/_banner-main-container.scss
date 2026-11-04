@@ -1,0 +1,55 @@
+@use '../../../styles-collections/breakpoints' as *;
+@use './banner-title' as *;
+@use './banner-breadcrumb' as *;
+
+@mixin banner-main-container-all-features() {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 .75rem;
+    z-index: 1;
+
+    app-container:has(.ui-sequence-block__banner-main-container-block) {
+        display: flex;
+        flex-wrap: wrap;
+
+        app-sequence-space:has(.ui-sequence-block__banner-main-container-block) {
+            flex: 1 0 0%;
+            width: 100%;
+            max-width: 100%;
+            padding: 0 11.25px;
+
+            .ui-sequence-block__banner-main-container-block {
+                text-align: left;
+                margin-top: 70px;
+                
+                .item-space__banner-main-container-element-0 {
+                    @include banner-title-all-features();
+                }   
+    
+                .item-space__banner-main-container-element-1 {
+                    @include banner-breadcrumb-all-features();
+                }
+
+                @include respond('md') {
+                    margin-top: 90px;
+                }
+            }
+        }
+    }
+    
+    @include respond('md') {
+        max-width: 720px;
+    }
+
+    @include respond('lg') {
+        max-width: 960px;
+    }
+
+    @include respond('xl') {
+        max-width: 1140px;
+    }
+
+    @include respond('2xl') {
+        max-width: 1320px;
+    }
+}

@@ -1,0 +1,11 @@
+<div style="min-height: 100vh; display: flex; flex-direction: column; background:var(--bg-color)">
+    <header style="border-bottom: 1px solid rgba(0, 0, 0, 0.04)">
+        <ng-content select="[slot=header]"></ng-content>
+    </header>
+    <main style="flex: 1">
+        <ng-content select="[slot=content]"></ng-content>
+    </main>
+    <footer>
+        <ng-content select="[slot=footer]"></ng-content>
+    </footer>
+</div>

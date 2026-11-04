@@ -1,0 +1,7 @@
+@use './luxury/luxury' as *;
+
+@mixin select-theme($theme-name) {
+    @if $theme-name == 'ecommerce-blog-jewelry-luxury' {
+        @include ecommerce-blog-jewelry-luxury-theme-all-features();
+    }
+}

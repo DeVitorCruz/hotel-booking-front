@@ -1,0 +1,22 @@
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+@use '../variables' as var;
+
+@mixin nav-hidden-button-all-features() {
+    .nav-block__nav-hidden-button {
+        .ui-btn-flex {
+            @include dimension(40px, 35px);
+            & {
+				color: var.$white-color;
+				background-color: var.$secondary-color;
+				padding: 5px 10px 5px 10px;
+				border-radius: .25rem;
+            }
+        }
+
+        @include respond('lg') {
+            display: none;
+        }
+    }
+}

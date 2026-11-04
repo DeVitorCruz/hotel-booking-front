@@ -1,0 +1,35 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/breakpoints' as *;
+
+@use './inner-card' as *;
+@use './inner-info' as *;
+
+@mixin detached-inner-row-all-features() {
+    .ui-sequence-block__ticket-body-time-block {
+        @include display-features($display: flex, $justify-content: center, $flex-direction: column, $align-items: center, $align-content: center, $flex-wrap: wrap);
+        @include box-external-space($top: 38px, $right: 0px, $bottom: 0px, $left: 0px);
+
+        .item-space__ticket-body-time-element-0,
+        .item-space__ticket-body-time-element-1 {
+            @include flex-position-features(0 0 auto);
+            @include dimension($width: 100%, $height: auto);
+
+            @include respond(lg) {
+                @include dimension($width: 50%, $height: auto)
+            }
+        }
+
+        .item-space__ticket-body-time-element-0 {
+            @include inner-card-all-features();
+        }
+
+        .item-space__ticket-body-time-element-1 {
+            @include inner-info-all-features();
+        }
+
+        @include respond(lg) {
+            @include display-features($display: flex, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: wrap);
+        }
+    }
+}

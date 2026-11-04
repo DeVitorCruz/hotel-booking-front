@@ -1,0 +1,108 @@
+<div class="product-single">
+    <div class="product-single__content-layer">
+        <!-- SECTION 1: Gallery + Content -->
+        <div class="product-single__section product-single__section--main">
+            <div class="product-single__container">
+                <!-- Gallery -->
+                <div class="product-single__gallery">
+                <app-slide
+                    [SLIDE_ITEM]="GALLERY()"></app-slide>
+                </div>
+                 <!-- Content -->
+                <div class="product-single__content">
+                <!-- Title -->
+                <h2 class="product-single__title">{{ CONTENT().title }}</h2>
+                <!-- Rating -->
+                <div class="product-single__rating">
+                    <div class="product-single__stars">
+                        @for (star of STARS; track star) {
+                            <span class="product-single__star"
+                                [ngClass]="{ 'is-active': isStarActive(star) }">
+                                ★
+                            </span>
+                        }
+                    </div>
+                    <span class="product-single__review--count">
+                        ({{ CONTENT().reviewCount }} reviews)
+                    </span>
+                </div>
+                <!-- Price -->
+                <div class="product-single__price">
+                    @if (FORMATTED_DISCOUNT()) {
+                        <span class="product-single__price--discount">
+                            {{ FORMATTED_DISCOUNT() }}
+                        </span>
+                        <span class="product-single__price--original">
+                            {{ FORMATTED_PRICE() }}
+                        </span>
+                    } @else {
+                        <span class="product-single__price--regular">
+                            {{ FORMATTED_PRICE() }}
+                        </span>
+                    }
+                </div>
+                <!-- Description -->
+                <p class="product-single__description">
+                    {{ CONTENT().description }}
+                </p>
+                <!-- Category -->
+                @if (CONTENT().category) {
+                    <div class="product-sinle__meta">
+                        <span class="product-single__meta-label">Category:</span>
+                        <span class="product-single__meta-value">
+                            {{ CONTENT().category }}
+                        </span>
+                    </div>
+                }
+                <!-- Tags -->
+                @if (CONTENT().tags && CONTENT().tags!.length > 0) {
+                    <div class="product-single__meta">
+                        <span class="product-single__meta-label">Tags:</span>
+                        <div class="product-single__tags">
+                            @for (tag of CONTENT().tags!; track tag) {
+                                <div class="product-single__tag">{{ tag }}</div>
+                            }
+                        </div>
+                    </div>
+                }
+                <!-- Quantity + Add to Cart -->
+                <div class="product-single__form">
+                    <div class="product-single__quantity">
+                        <button
+                            type="button"
+                            class="product-single__quantity-btn"
+                            (click)="decrement()">
+                            -
+                        </button>
+                        <input
+                            type="number"
+                            class="product-single__quantity-input"
+                            [value]="QUANTITY()"
+                            min="1"
+                            (input)="onQuantityChange($any($event.target).value)" />
+                        <button
+                            type="button"
+                            class="product-single__quantity-btn"
+                            (click)="increment()">
+                            +
+                        </button>
+                    </div>
+                    <button
+                        type="button"
+                        class="product-single__add-to-cart"
+                        (click)="handleAddToCart()">
+                        Add to cart
+                    </button>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- SECTION 2: Tab Panel -->
+        <div class="product-single__section product-single__section--tabs">
+            <div class="product-single__container">
+                <app-tab-panel
+                    [CONTENT]="CONTENT().tabPanel"></app-tab-panel>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="review-panel">
+    
+    <!-- Existing reviews -->
+    @if (CONTENT().reviews.length > 0) {
+        <div class="review-panel__list">
+            @for (review of CONTENT().reviews; track review.id) {
+                <div class="review-panel__item">
+                    <div class="review-panel__avatar">
+                        @if (review.avatar) {
+                            <app-img-flex
+                                [IMAGE_FLEX_ITEM]="{ src: review.avatar, alt: review.author, }"></app-img-flex>
+                        }
+                    </div>
+                    <div class="review-panel__content">
+                        <div class="review-panel__meta">
+                            <h4 class="review-panel__author">{{ review.author }}</h4>
+                            <span class="review-panel__date">{{ review.date }}</span>
+                        </div>
+                        <div class="review-panel__stars">
+                            @for (star of [1, 2, 3, 4, 5]; track star) {
+                                <span [ngClass]="{ 'is-active': star <= review.rating  }">★</span>
+                            }
+                        </div>
+                        <p class="review-panel__comment">{{ review.comment }}</p>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+    <!-- Add review form -->
+    <div class="review-panel__form-section">
+        <h3 class="review-panel__form-title">Add a Review</h3>
+
+        <!-- Interactive star reting -->
+        <div class="review-panel__rating-input">
+           <span class="review-panel__rating-label">Your rating</span> 
+           <div class="review-panel__stars review-panel__stars--input">
+                @for(star of STARS; track star) {
+                    <button
+                        type="button"
+                        class="review-panel__star-btn"
+                        [ngClass]="{ 'is-active': isStarActive(star) }"
+                        (click)="setRating(star)">
+                        ★
+                    </button>
+                }
+           </div>
+        </div> 
+    </div>
+
+    <app-flex-form
+        [FLEX_FORM_ITEM]="REVIEW_FORM"
+        (onSubmit)="onSubmit()">
+    </app-flex-form>
+</div>

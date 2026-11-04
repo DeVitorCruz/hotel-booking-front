@@ -1,0 +1,49 @@
+<section [ngClass]="'card-grid' + (CONTENT().sectionClassName ? ' ' + CONTENT().sectionClassName : '')">
+    <div class="card-grid__container">
+        <!-- Header -->
+        <app-text-box
+            [TEXT_BOX_LIST]="CONTENT().header">
+        </app-text-box>
+
+        <!-- Grid -->
+        <div [ngClass]="'card-grid__body' + (CONTENT().gridClassName? ' card-grid__body--' + CONTENT().gridClassName : '')">
+            @for (card of CONTENT().cards; track card.id) {
+                <div [ngClass]="'card-grid__item'"  [class]="card.customClassName?.join(' ') ?? ''">
+                    
+                    <!-- Image -->
+                    <div class="card-grid__image">
+                        @if (card.link) {
+                            <app-anchor-flex
+                                [ANCHOR_FLEX_ITEM]="{
+                                    id: card.id,
+                                    rlink: card.link,                                    
+                                    imageFlex: card.image,
+                                    switchAbleIcon: { type: 'none' }
+                                }">
+                            </app-anchor-flex>
+                        } @else {
+                            <app-img-flex [IMAGE_FLEX_ITEM]="card.image"></app-img-flex>
+                        }
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="card-grid__content">
+                        <app-text-box
+                            [TEXT_BOX_LIST]="card.content"></app-text-box>
+                    </div>
+                    
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Optional decoration -->
+    @if (CONTENT().decoration) {
+        <app-sequence-space
+            [SEQUENCE_SPACE_LIST]="CONTENT().decoration!"
+            [COSTUME_CLASS_BLOCK_NAME]="'card-grid-decoration'"
+            [COSTUME_CLASS_ELEMENT]="'card-grid-decoration-element'"
+            [COSTUME_CLASS_NAME_LIST]="[]">
+        </app-sequence-space>
+    }
+</section>

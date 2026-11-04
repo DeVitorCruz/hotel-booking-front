@@ -1,0 +1,1 @@
+export type ThemeStyles = Record<string, string>;

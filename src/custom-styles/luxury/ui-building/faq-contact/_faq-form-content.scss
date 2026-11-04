@@ -1,0 +1,57 @@
+@use '../../variables' as var;
+@use '../../../../styles-collections/mixin/typography/font-scales' as *;
+@use './faq-btn-contact' as *;
+
+@mixin faq-form-content-all-features() {
+    width: 100%;
+    max-width: 100%;
+
+    app-flex-form:has(.ui-flex-form, .faq-form) {
+        display: block;
+        max-width: 570px;
+        margin: auto;
+        padding: 50px;
+        padding-top: 60px;
+        box-shadow: 0px 5px 15px 0px rgba(68, 68, 68, .1);
+        border-radius: 5px;
+        background-color: var.$white-color;
+
+        .ui-flex-form {
+            app-flex-input:has(.ui-input-flex) {
+                display: block;
+                width: 100%; 
+                padding: 0 10px 5px;
+
+                .ui-input-flex {
+                    width: 100%;
+                    height: 50px;
+                    outline: none;
+                    background: none;
+                    border-radius: 0;
+                    border-bottom: 1px solid var.$thritieth-one-color;
+                    border-top: none;
+                    box-shadow: none;
+                    margin-bottom: 22px;
+                }
+            }            
+
+            .faq-form-text {
+                app-flex-input:has(.faq-contact-message) {
+                    display: block;
+                    padding: 0 10px;
+                    margin: 0;
+
+                    .faq-contact-message {
+                        @include font-collect($font-family: inherit, $font-weight: var.$font-weight-regular, $font-size: 1rem, $line-height: 1.5);
+                        height: 160px;
+                        margin-top: 22px;
+                    }
+                }
+            }
+
+            .ui-flex-form__submit {
+                @include faq-btn-contact-all-features();               
+            }
+        }
+    }
+}

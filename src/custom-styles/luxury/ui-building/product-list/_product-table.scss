@@ -1,0 +1,43 @@
+@use '../../variables' as var;
+@use '../../../../styles-collections/mixin/typography/font-scales' as *;
+@use './product-table-quantifier' as *;
+
+@mixin product-table-all-features() {
+    // Table head
+    &__table-head {
+        @include font-collect($font-family: var.$font-family-cinzel, $font-weight: var.$font-weight-intermediate, $font-size: 13px, $line-height: 1);
+        color: var.$secondary-color;
+        text-transform: uppercase;
+        letter-spacing: .05em;
+        border-bottom: 2px solid var.$thirteenth-color;
+        padding-bottom: .75rem;
+    }
+
+    // Image + meta
+    &__col--image {
+        .ui-image-flex img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            display: block;
+        }
+    }
+
+    &__item-meta {
+        color: var.$twentieth-color;
+        font-size: .8125rem;
+        margin-top: .25rem;
+    }
+
+    // Empty state
+    &__empty {
+        p {
+            font-size: 1rem;
+            color: var.$twentieth-color;
+            text-align: center;
+        }
+    }
+    
+    // product quantifier
+    @include product-table-quantifier-all-feature();
+}

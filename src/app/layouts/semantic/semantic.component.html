@@ -1,0 +1,10 @@
+<header [class]="SEMANTIC()['blockClassName'] + '__semantic-header'">
+    <ng-content select="[slot=header]"></ng-content>
+</header>
+<main [class]="SEMANTIC()['blockClassName'] + '__semantic-main'">
+    <ng-content select="[slot=main]"></ng-content>
+</main>
+<footer [class]="SEMANTIC()['blockClassName'] + '__semantic-footer'">  
+    <ng-content select="[slot=footer]"></ng-content>
+</footer>
+ 

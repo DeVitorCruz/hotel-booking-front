@@ -1,0 +1,16 @@
+<div class="ui-image-flex">
+    <img 
+        appSmartImage
+        [MEDIA_IMG_SWITHER]="image">
+
+    @for (flexAddictionItem of FLEX_ADDICTION_LIST(); track flexAddictionItem) {
+        @if (flexAddictionItem.imgIcon) {
+            <app-icon-flex
+                [ICON_SWITCH]="flexAddictionItem.imgIcon"></app-icon-flex>
+        }
+
+        @if (flexAddictionItem.imgText) {
+            <p class="ui-image-text-flex">{{ flexAddictionItem.imgText }}</p>
+        }
+    }
+</div>

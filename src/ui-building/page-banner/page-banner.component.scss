@@ -1,0 +1,103 @@
+@use '../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../styles-collections/mixin/color/color-mixin' as *;
+@use '../../styles-collections/breakpoints' as *;
+
+:host {
+    display: block;
+}
+
+.page-title-banner {
+    @include position-features($position: relative);
+    @include dimension($width: 100%, $height: var(--page-title-height, 220px));
+    @include display-features($display: flex, $justify-content: center, $flex-direction: column, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+    @include screen-adjust($overflow: hidden);
+    @include content-color($background-color: var(--page-title-bg, #f5f2ea));
+    @include transition-features();
+
+    &__bg {
+        @include position-features($position: absolute);
+        @include direction-position($top: 0, $right: 0, $bottom: 0, $left: 0);
+        @include dimension($width: 100%, $height: 100%);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: var(--page-title-bg-opacity, 0.15);
+    }
+
+    &__shape {
+        @include position-features($position: absolute);
+        @include dimension($width: 120px, $height: 120px);
+        background-size: contain;
+        background-repeat: no-repeat;
+        @include transition-features();
+        opacity: 0.5;
+
+        &--left {
+            @include direction-position($top: 0, $right: auto, $bottom: auto, $left: 0);
+            background-image: var(--page-title-shape-left, none);
+        }
+
+        &--right {
+            @include direction-position($top: auto, $right: 0, $bottom: 0, $left: auto);
+            background-image: var(--page-title-shape-right, none);
+        }
+    }
+
+    &__content {
+        @include position-features($position: relative);
+        @include display-features($display: flex, $justify-content: center, $flex-direction: column, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+        @include out-direction-move($z-index: 1);
+        text-align: center;
+    }
+
+    &__title {
+        @include font-dimension(
+            $font-size: var(--page-title-font-size, 28px),
+            $font-weight: var(--page-title-font-weight, 700)
+        );
+        @include text-color($color: var(--page-title-color, #333));
+        @include text-format($text-transform: capitalize, $text-align: center);
+        @include box-external-space($top: 0, $right: 0, $bottom: 12px, $left: 0);
+        font-family: var(--page-title-font, inherit);
+        line-height: 1.2;
+    }
+
+    &__breadcrumb {
+        @include display-features($display: flex, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: wrap);
+        @include box-internal-space($top: 0, $right: 0, $bottom: 0, $left: 0);
+        @include box-external-space($top: 0, $right: 0, $bottom: 0, $left: 0);
+        list-style: none;
+        gap: 8px;
+    }
+
+    &__breadcrumb-item {
+        @include display-features($display: flex, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+        @include font-dimension(
+            $font-size: var(--page-title-breadcrumb-size, 13px),
+            $font-weight: 500
+        );
+        @include text-color($color: var(--page-title-breadcrumb-color, #888));
+        gap: 8px;
+
+        &:not(:last-child)::after {
+            content: '/';
+            @include text-color($color: var(--page-title-breadcrumb-separator, #ccc));
+        }
+
+        &--active {
+            @include text-color($color: var(--page-title-breadcrumb-active, #ba9659));
+        }
+    }
+
+    &__breadcrumb-link {
+        @include text-color($color: var(--page-title-breadcrumb-color, #888));
+        @include transition-features();
+        text-decoration: none;
+
+        &:hover {
+            @include text-color($color: var(--page-title-breadcrumb-hover, #626842));
+        }
+    }
+}

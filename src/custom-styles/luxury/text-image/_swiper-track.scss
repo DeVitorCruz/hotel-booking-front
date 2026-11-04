@@ -1,0 +1,54 @@
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+
+@use './swiper-button' as *;
+@use './swipe-slide-list' as *;
+@use './swiper-pagination' as *;
+
+@mixin swiper-all-features() {
+    @include box-internal-space($top: 0px, $right: 1.5rem, $bottom: 0px, $left: 1.5rem);
+
+    app-slide:has(.slide-text-wrap) {
+        .slide-text-wrap {
+            @include position-features($position: unset);
+
+            .swiper-wrapper {
+                .swiper-slide {
+                    @include swiper-slide-all-features();
+                }
+            }
+
+            .btn-block {
+                @include position-features($position: absolute);
+                @include direction-position($top: 80%, $right: unset, $bottom: unset, $left: -158%, );
+                @include display-features($display: none, $justify-content: unset, $flex-direction: unset, $align-items: unset, $align-content: unset, $flex-wrap: unset);
+
+                .swiper-navigation-icon {
+                    @include display-features($display: none, $justify-content: unset, $flex-direction: unset, $align-items: unset, $align-content: unset, $flex-wrap: unset);
+                }
+
+                .swiper-button-prev, .swiper-button-next {
+                    @include swiper-button-all-features();
+                }
+
+                @include respond(lg) {
+                    @include display-features($display: flex, $justify-content: space-between, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: wrap);
+                }
+
+                @include respond(xl) {
+                    @include direction-position($top: 80%, $right: unset, $bottom: unset, $left: -154%, );
+                }
+
+                @include respond("2xl") {
+                    @include direction-position($top: 80%, $right: unset, $bottom: unset, $left: -152%, );
+                }
+            }
+
+            .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
+                @include swiper-pagination-all-features();
+            }
+        }
+    }
+}

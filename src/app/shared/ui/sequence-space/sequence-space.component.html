@@ -1,0 +1,12 @@
+<div class="ui-sequence-generic-block" [class]="'ui-sequence-block' + `${CLASS_NAME() !== ''? '__' + CLASS_NAME() : ''}`" [ngClass]="CLASS_LIST()">
+    @for (item of LIST(); track item) {
+        <div class="ui-sequence-generic-element" [class]="'item-space' + `${CLASS_ELEMENT() !== ''? '__' + CLASS_ELEMENT() : ''}` + '-' + item.id" [ngClass]="item.customClassName">
+            <ng-container
+                *ngComponentOutlet="item.component; inputs: item.componentInput"></ng-container>
+        </div>
+    }
+</div>
+
+
+
+ 

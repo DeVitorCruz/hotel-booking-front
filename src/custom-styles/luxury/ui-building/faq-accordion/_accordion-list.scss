@@ -1,0 +1,12 @@
+@use '../../../../styles-collections/breakpoints' as *;
+@use './accordion-item' as *;
+
+@mixin accordion-list-all-features() {
+    font-size: 14px;
+    
+    @include accordion-item-all-features();
+    
+    @include respond('md') {
+        font-size: 15px;
+    }
+} 

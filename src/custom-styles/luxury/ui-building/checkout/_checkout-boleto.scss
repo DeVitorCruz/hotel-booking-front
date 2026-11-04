@@ -1,0 +1,15 @@
+@use '../../variables' as var;
+
+@mixin checkout-boleto-all-features() {
+    &__boleto-barcode {
+        background-color: var.$nineteenth-color;
+        padding: 1rem;
+        border: 1px solid var.$thirteenth-color;
+        color: var.$sixteenth-color;
+    }
+
+    &__boleto-expiry {
+        font-size: .875rem;
+        color: var.$twentieth-color;
+    }
+}

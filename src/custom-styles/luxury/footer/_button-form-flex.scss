@@ -1,0 +1,12 @@
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+
+@use '../variables' as var;
+
+@mixin button-form-flex-all-features() {
+	& {
+		font-size: 24px;
+		background-color: var.$tertiary-color;
+		border: 0;
+	}
+    @include dimension($width: 100%, $height: 58px);
+}

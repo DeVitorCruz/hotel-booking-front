@@ -1,0 +1,32 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+@use './title-description' as *;
+@use './card-list' as *;
+
+@mixin collection-info-all-features() {
+    app-sequence-space:has(.ui-sequence-block__collection-info-block) {
+        @include display-features($display: block, $justify-content: space-between, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+        @include dimension($width: 100%, $height: auto);
+        @include box-internal-space($top: 0px, $right: 0px, $bottom: 50px, $left: 0px);
+
+        .ui-sequence-block__collection-info-block {
+            .item-space__collection-info-element-0 {
+                @include title-description-all-features();
+            }
+
+            .item-space__collection-info-element-1 {
+                @include card-list-all-features();
+            }
+        }
+
+        @include respond(md) {
+            @include box-internal-space($top: 0px, $right: 0px, $bottom: 60px, $left: 0px);
+        }
+
+        @include respond(lg) {
+            @include box-internal-space($top: 0px, $right: 0px, $bottom: 90px, $left: 0px);
+        }
+    }
+}

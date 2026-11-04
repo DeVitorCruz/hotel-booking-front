@@ -1,0 +1,33 @@
+@use '../../variables' as var;
+
+@mixin checkout-forms-all-features() {
+    &__field label, &__label {
+        font-size: .8125rem;
+        font-weight: var.$font-weight-middle;
+        color: var.$sixteenth-color;
+        text-transform: uppercase;
+        letter-spacing: .03em;
+    }
+
+    .ui-input-flex {
+        width: 100%;
+        padding: .75rem 1rem;
+        border: 1px solid var.$thirteenth-color;
+        background-color: var.$nineteenth-color;
+        font-size: .875rem;
+        color: var.$sixteenth-color;
+        outline: none;
+        font-family: var.$font-family-sans;
+        transition: border-color .3s ease;
+
+        &:focus {
+            border-color: var.$tertiary-color;
+            background-color: var.$white-color;
+        }
+    }
+
+    &__textarea {
+        min-height: 80px;
+        resize: vertical;
+    }
+}

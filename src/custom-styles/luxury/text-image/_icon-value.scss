@@ -1,0 +1,17 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+
+@use '../variables' as var;
+
+@mixin icon-value-all-features() {
+    @include display-features($display: flex, $justify-content: end, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: wrap);
+    @include flex-position-features(0 0 auto);
+    @include dimension($width: 50%, $height: auto);
+    @include font-collect(var.$font-family-sans, var.$font-weight-regular, 55px, $line-height: 65px);
+    @include text-color(var.$white-color);
+    @include box-internal-space($top: 15px);
+    @include border-decoration-radius-detailed($border-top-left-radius: 100px);
+    @include content-color(var.$secondary-color);
+}

@@ -1,0 +1,26 @@
+@use '../../variables' as var;
+
+@mixin checkout-pix-all-features() {
+    &__pix-qr img {
+        border: 1px solid var.$thirteenth-color;
+        padding: .75rem;
+        background-color: var.$white-color;
+    }
+
+    &__pix-label {
+        font-size: .8125rem;
+        color: var.$twentieth-color;
+        margin-bottom: .5rem;
+    }
+
+    &__countdown {
+        font-size: 1.5rem;
+        color: var.$tertiary-color;
+        font-family: var.$font-family-cinzel;
+    }
+
+    &__polling-msg {
+        font-size: .875rem;
+        color: var.$twentieth-color;
+    }
+}

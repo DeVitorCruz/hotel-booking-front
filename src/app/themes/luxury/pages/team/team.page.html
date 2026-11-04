@@ -1,0 +1,9 @@
+@if (_LOADING_EFFECT()) {
+    <div class="team-loading">Loading...</div>
+}
+
+@if (_CONTENT_EFFECT()) {
+    <app-card-grid
+        [CONTENT]="_CONTENT_EFFECT()!"></app-card-grid>
+}
+

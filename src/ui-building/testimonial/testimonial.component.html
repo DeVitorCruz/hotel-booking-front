@@ -1,0 +1,20 @@
+<section class="testimonial">
+	<div class="testimonial__container">
+		
+		<!-- Image -->
+		<div class="testimonial__image">
+			<app-img-flex [IMAGE_FLEX_ITEM]="CONTENT().image"></app-img-flex>
+		</div>
+		
+		<!-- Body -->
+		<div class="testimonial__body">
+			<!-- Header: title + subtitle -->
+			<app-text-box [TEXT_BOX_LIST]="CONTENT().header"></app-text-box>
+			
+			<!-- Quotes slider -->
+			@if (IS_BROWSER() && slideItem) {
+				<app-slide [SLIDE_ITEM]="slideItem"></app-slide>
+			}
+		</div>
+	</div>
+</section>

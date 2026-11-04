@@ -1,0 +1,60 @@
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+@use '../variables' as var;
+
+@use './lower-footer' as *;
+@use './upper-footer' as *;
+
+
+@mixin footer-all-features() {
+    .ui-sequence-block__footer-childs {
+		& {
+			position: relative;
+			background-color: var.$secondary-color;
+			color: var.$white-color;
+			padding: 90px 0px 0px 0px;
+		}
+        
+        .item-space-0 {
+            @include Upper-all-features();
+        }
+        
+        .item-space-1 {
+            @include lower-all-features();
+        }
+
+        @include respond(lg) {
+			& {
+				padding: 0px 0px 0px 0px;
+			}
+        }
+    }
+    
+    .footer__upper--container, 
+    .footer__lower--container {
+		& {
+			padding: 0 11.2px 0 11.2px;
+			margin: 0 auto 0 auto;
+		}
+		@include max-dimension($max-width: 1280px, $max-height: auto);
+    }    
+    
+    .search-form__button {
+		& {
+			display: flex;
+			padding: 8px 16px 8px 16px;	
+			transition: all .2s ease-out;
+			cursor: pointer;
+		}	
+    }
+    
+    .search-form__input {
+		& {
+			flex: 1;
+			padding: 8px 16px 8px 16px;
+			background-color: transparent;
+		}	
+		&:focus { outline: none }
+    }
+}

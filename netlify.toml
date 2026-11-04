@@ -1,0 +1,14 @@
+[build]
+    command = "ng build --configuration=production"
+    publish = "dist/datentria/browser"
+
+[build.environment]
+    NODE_VERSION = "22"
+
+[[plugins]]
+    package = "@netlify/angular-runtime"
+
+[[redirects]]
+    from = "/"
+    to = "/home"
+    status = 301

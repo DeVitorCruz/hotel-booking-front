@@ -1,0 +1,65 @@
+@use '../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../styles-collections/mixin/density/density-mixin' as *;
+
+@use '../../styles-collections/breakpoints' as *;
+@use './detached-element/detached-element' as *;
+
+@use './semantic-container' as *;
+@use './nav/_nav-block' as *;
+@use './static-hero/static-hero' as *;
+@use './card-track/card-track' as *;
+@use './collection-card/collection-card' as *;
+@use './text-image/text-image' as *;
+@use './collection-info/collection-info' as *;
+@use './footer/footer' as *;
+
+@mixin home-all-features() {
+    .semantic-container {
+        @include semantic-container-all-features();
+
+        .semantic-sidenav-content {
+            @include screen-adjust(hidden);
+
+            .semantic-home {
+                .semantic-home__semantic-header {
+                    @include nav-block-all-features();
+                }
+        
+                .semantic-home__semantic-main {
+                    app-sequence-space:has(.ui-sequence-block__static-hero) {
+                        @include display-features($display: block, $justify-content: unset, $flex-direction: unset, $align-items: unset, $align-content: unset, $flex-wrap: unset);
+                        @include dimension($width: 100%, $height: 916px);
+                        @include position-features(relative);
+            
+                        @include respond(md) {
+                            @include dimension($width: 100%, $height: 1016px);
+                        }
+            
+                        @include respond(lg) {
+                            @include dimension($width: 100%, $height: 756px);
+                        }
+            
+                        @include respond(xl) {
+                            @include dimension($width: 100%, $height: 916px);
+                        }
+                        
+                        @include static-hero-all-features();
+                    }
+        
+                    app-flex-collection:has(.ui-flex-collection-block__collection-card) {
+                        @include collection-card-all-features();
+                    }
+        
+                    @include card-track-all-features();
+                    @include detached-element-all-features();
+                    @include text-image-all-features();
+                    @include collection-info-all-features();
+                }
+        
+                .semantic-home__semantic-footer {
+                    @include footer-all-features();
+                }
+            }
+        }
+    }
+}

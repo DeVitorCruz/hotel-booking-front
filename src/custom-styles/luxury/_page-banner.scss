@@ -1,0 +1,68 @@
+@use '../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../styles-collections/mixin/color/color-mixin' as *;
+@use '../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../styles-collections/breakpoints' as *;
+@use './variables' as var;
+
+@mixin page-banner-all-features() {
+	app-page-banner:has(.page-title-banner) {
+			
+		// CSS variables consumed by the generic component
+		--page-title-bg: #{var.$fourth-color};
+		--page-title-bg-opacity: .15;
+		--page-title-height: 220px;
+		--page-title-font: #{var.$font-family-cinzel};
+		--page-title-font-size: 28px;
+		--page-title-font-weight: #{var.$font-weight-bold};
+		--page-title-color: #{var.$secondary-color};
+		--page-title-shape-right: url('/assets/collection-info/img-1.jpg');
+		--page-title-shape-left: url('/assets/collection-info/img-2.jpg');
+		--page-title-breadcrumb-color: #{var.$primary-color};
+		--page-title-breadcrumb-active: #{var.$tertiary-color};
+		--page-title-breadcrumb-hover: #{var.$secondary-color};
+		--page-title-breadcrumb-separator: #{var.$sixth-color};
+		--page-title-breadcrumb-size: 13px;
+		
+		.page-title-banner {
+			@include transition-features($transition: all .2s ease-out);
+			
+			&__shape {
+				@include dimension($width: 120px, $height: 120px);
+				@include transition-features($transition: all .2s ease-out);
+			}
+			
+			&__title {
+				@include box-external-space($top: 0, $right: 0px, $bottom: 12px, $left: 0);
+			}
+			
+			&__breadcrumb {
+				@include display-grid-features($grid-template-columns: null, $grid-template-rows: null, $gap: 8px, $column-gap: null, $row-gap: null, $justify-content: null, $align-content: null);
+			}
+			
+			&__breadcrumb-item {
+				@include display-grid-features($grid-template-columns: null, $grid-template-rows: null, $gap: 8px, $column-gap: null, $row-gap: null, $justify-content: null, $align-content: null);
+			}
+		}
+		
+		@include respond('md') {
+			--page-title-height: 260px;
+			--page-title-font-size: 34px;
+		}
+		
+		@include respond('lg') {
+			--page-title-height: 300px;
+			--page-title-font-size: 40px;
+			
+			.page-title-banner__shape {
+				@include dimension($width: 180px, $height: 180px);
+			}
+		}	
+	}
+}
+
+
+
+
+
+

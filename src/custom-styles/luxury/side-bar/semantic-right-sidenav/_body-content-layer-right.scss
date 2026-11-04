@@ -1,0 +1,54 @@
+@use './body-card-block' as *;
+
+@use '../../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../../styles-collections/mixin/density/density-mixin' as *;
+
+@use '../../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../../../styles-collections/mixin/color/color-mixin' as *;
+
+@use '../../variables' as var;
+
+@mixin body-content-layer-right() {
+    app-container {
+        app-sequence-space:has(.ui-sequence-block__side-bar-right-block) {
+            .ui-sequence-block__side-bar-right-block {
+                .item-space__side-bar-right-element-0 {
+                    app-sequence-space:has(.ui-sequence-block__product-list-sidebar-block-items) {
+                        .ui-sequence-block__product-list-sidebar-block-items {
+                            @include body-card-block-all-features();
+                        }
+                    }
+                }
+
+                .item-space__side-bar-right-element-1 {
+                    @include position-features($position: absolute);
+                    @include direction-position($top: unset, $right: 0, $bottom: 0, $left: unset, );
+                    @include box-internal-space($top: 20px, $right: 0px, $bottom: 30px, $left: 0px);
+                    @include dimension($width: 100%, $height: unset);
+
+                    app-text-box:has(.text-box-block__bottom-text-box-block-0) {
+                        @include display-features($display: block, $justify-content: space-between, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: unset);
+                        @include box-external-space($top: 0px, $right: 0px, $bottom: 30px, $left: 0px);
+                        @include box-internal-space($top: 0px, $right: 40px, $bottom: 0px, $left: 40px);
+
+                        .text-box-block__bottom-text-box-block-0 {
+                            @include display-features($display: flex, $justify-content: space-between, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+
+                            app-flex-heading:has(.ui-flex-heading) {
+                                .ui-flex-heading {
+                                    @include font-collect(var.$font-family-sans, var.$font-weight-intermediate, 1.0666666667rem, $line-height: 1.5);
+                                    @include text-color($color: var.$secondary-color);
+                                }
+                            }
+
+                            .ui-text {
+                                @include font-collect(var.$font-family-sans, var.$font-weight-intermediate, 20px, $line-height: 1.5);
+                                @include text-color($color: var.$twentieth-one-color);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

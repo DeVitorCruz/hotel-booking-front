@@ -1,0 +1,18 @@
+<app-single-panel>
+    <div slot="header" style="padding: 1rem; display: flex; align-items: center; justify-content: space-between">
+        <div style="font-weight: 700">LuxJewels</div>
+        <nav><a href="#" style="margin-left: 1rem">Shop</a></nav>
+    </div>
+
+    <section slot="content" style="padding: 4rem; text-align: center">
+        <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem">{{ hero?.title }}</h1>
+        <p style="color: rgba(0, 0, 0, 0.65)">{{ hero?.subtitle }}</p>
+        <div style="margin-top: 1.25rem">
+            <button style="background:var(--primary-color); color: #fff; padding: 0.6rem; border-radius:6px">{{ hero?.ctaLabel }}</button>
+        </div>
+    </section>
+
+    <div slot="footer" style="padding: 1rem; text-align: center; background:rgba(0, 0, 0, 0.02)">
+        &copy;{{ this.getYear() }} LuxJewels
+    </div>
+</app-single-panel>

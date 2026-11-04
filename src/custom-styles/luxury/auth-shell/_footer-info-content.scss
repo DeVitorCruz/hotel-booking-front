@@ -1,0 +1,22 @@
+@use '../variables' as var;
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+
+@mixin footer-info-content-all-features() {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+
+    app-anchor-flex:has(.ui-link-e) {
+        .ui-link-e {
+            @include display-features($display: flex, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: wrap);
+            font-size: 14px;
+            text-transform: capitalize;
+            background-color: var.$white-color;
+            color: var.$twentieth-two-color;
+            padding: 0px 20px;
+            height: 40px;
+            transition: all .4s ease-in-out 0s;
+            border: 2px solid var.$white-color;
+        }
+    }
+}

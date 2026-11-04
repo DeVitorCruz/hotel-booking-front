@@ -1,0 +1,23 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+
+@use '../variables' as var;
+
+@mixin upper-title-all-features() {
+    @include position-features($position: absolute);
+    @include direction-position($top: 0, $right: 0, $bottom: unset, $left: unset, );
+
+    app-text-box:has(.text-box-block-0) {
+        .text-box-block-0 {
+            .ui-text {
+                @include font-collect(var.$font-family-sans, var.$font-weight-middle, 15px, $line-height: 15px);
+                @include box-internal-space($top: 7px, $right: 17px, $bottom: 7px, $left: 17px);
+                @include text-format($text-transform: none, $text-align: center, $letter-spacing: normal);
+                @include text-color(var.$white-color);
+                @include content-color(var.$secondary-color);
+            }
+        }
+    }
+}

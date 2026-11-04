@@ -1,0 +1,33 @@
+<article class="article">
+    <!-- Cover image -->
+    @if (CONTENT().cover_image) {
+        <div class="article__cover">
+            <img [src]="CONTENT().cover_image" [alt]="CONTENT().title">
+        </div>
+    }
+
+    <div class="article__container">
+        <!-- Back link -->
+        @if (CONTENT().back_link) {
+            <a [routerLink]="CONTENT().back_link" class="article__back">
+                ← {{ CONTENT().back_link ?? 'Back' }}    
+            </a>
+        } 
+
+        <!-- Header -->
+        <header class="article__header">
+            <h1 class="article__title">{{ CONTENT().title }}</h1>
+            <div class="article__meta">
+                <span class="article__author">By {{ CONTENT().author.name }}</span>
+                <span class="article__separator">-</span>
+                <span class="article__date">{{ CONTENT().published_at }}</span>
+            </div>
+            @if (CONTENT().excerpt) {
+                <p class="article__excerpt">{{ CONTENT().excerpt }}</p>
+            }
+        </header>
+
+        <!-- Body -->
+        <div class="article__body" [innerHTML]="CONTENT().body"></div>
+    </div>
+</article>

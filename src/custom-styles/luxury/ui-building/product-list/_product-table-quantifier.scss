@@ -1,0 +1,63 @@
+@use '../../variables' as var;
+@use '../../../../styles-collections/mixin/typography/font-scales' as *;
+
+@mixin product-table-quantifier-all-feature() {
+    // Price
+    &__price--original {
+        color: var.$twentieth-color;
+        font-size: .8125rem;
+        text-decoration: line-through;
+    }
+
+    &__price--current {
+        @include font-collect($font-family: var.$font-family-cinzel, $font-weight: var.$font-weight-bold, $font-size: 16px, $line-height: 1);
+        color: var.$tertiary-color;
+    }
+
+    // Quantity
+    &__quantity {
+        border: 1px solid var.$thirteenth-color;
+
+        &-btn {
+            color: var.$secondary-color;
+            transition: color .2s ease;
+            &:hover { color: var.$tertiary-color; }
+        }
+
+        &-input {
+            border-left: 1px solid var.$thirteenth-color;
+            border-right: 1px solid var.$thirteenth-color;
+            color: var.$sixteenth-color;
+            font-family: var.$font-family-cinzel;
+        }
+    }
+
+    // Action Buttons
+    &__add-cart-btn {
+        background-color: var.$tertiary-color;
+        color: var.$white-color;
+        font-size: .75rem;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        padding: .5rem 1rem;
+        transition: background-color .2s ease;
+
+        &:hover { background-color: var.$twentieth-one-color; }
+    }
+
+    &__remove-btn {
+        background-color: transparent;
+        color: var.$twentieth-color;
+        font-size: .75rem;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        padding: .5rem 1rem;
+        border: 1px solid var.$thirteenth-color;
+        transition: all .2s ease;
+
+        &:hover {
+            border-color: var.$tertiary-color;
+            color: var.$tertiary-color;
+        }
+    }
+}

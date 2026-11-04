@@ -1,0 +1,44 @@
+@use '../../../styles-collections/breakpoints' as *;
+@use './product-list-cols-items' as *;
+@use './product-list-price' as *;
+@use './product-list-quantity' as *;
+@use './product-list-actions' as *;
+
+@mixin product-list-table-all-features() {
+    &__table { width: 100%; }
+
+    &__table-head {
+        display: none;
+
+        @include respond('md') {
+            display: flex;
+            align-items: center;
+            padding: .75rem 0;
+            border-bottom: 2px solid currentColor;
+            gap: 1rem;
+        }
+    }
+
+    &__row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid currentColor;
+
+        @include respond('md') { flex-wrap: nowrap; }
+    }
+
+    // columns
+    @include product-list-cols-items-all-features();
+
+    // Price
+    @include product-list-price-all-features();
+
+    // Quantity
+    @include product-list-quantity-all-features();
+
+    // Actions
+    @include product-list-actions-all-features();
+}

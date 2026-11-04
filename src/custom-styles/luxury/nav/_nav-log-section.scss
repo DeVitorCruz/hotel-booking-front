@@ -1,0 +1,10 @@
+@mixin nav-log-section-all-features() {
+    .nav-block__logo {
+        .ui-link-e {
+            .ui-image-flex {
+                max-width: 170px;  
+                padding: 0 .7rem 0 .7rem; 
+            }
+        }
+    }
+}

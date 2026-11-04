@@ -1,0 +1,25 @@
+@if (LOADING()) {
+    <div class="shop-loading">Loading...</div>
+}
+
+<div class="ui-shop-wrapp">
+    <div class="ui-shop-wrapp__container">
+        <div class="ui-shop-wrapp__row">
+            <div class="ui-shop-wrapp__column">
+                @if (SHOP()) {
+                    <app-card-grid
+                        [CONTENT]="SHOP()!"></app-card-grid>
+                }
+                
+                @if (PAGINATION()) {
+                    <app-pagination
+                        [CONTENT]="PAGINATION()!"
+                        (pageChange)="onPageChange($event)"></app-pagination>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

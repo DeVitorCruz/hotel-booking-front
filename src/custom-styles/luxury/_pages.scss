@@ -1,0 +1,43 @@
+@use './home' as *;
+@use './ui-building/testimonial/testimonial' as *;
+@use './ui-building/card-grid/card-grid' as *;
+@use './about/about' as *;
+@use './page-banner' as *;
+@use './banner-bind/banner-bind' as *;
+@use './auth-shell/auth-shell' as *;
+@use './ui-building/faq-accordion/faq-accordion' as *;
+@use './ui-building/faq-contact/faq-contact' as *;
+@use './shop/shop' as *;
+@use './ui-building/product-single/product-single' as *;
+@use './ui-building/tab-panel/tab-panel' as *;
+@use './ui-building/review-card/review-card'  as *;
+@use './ui-building/team-single/team-single' as *;
+@use './ui-building/product-list/product-list' as *;
+@use './error-404/error-404' as *;
+@use './ui-building/contact/contact' as *;
+@use './ui-building/checkout/checkout' as *;
+@use './blog/blog' as *;
+@use './ui-building/article/article' as *;
+
+@mixin all-page-collected() {
+    @include home-all-features();
+    @include testimonial-all-features();
+    @include card-grid-all-features();
+    @include page-banner-all-features();
+    @include about-all-features();
+    @include banner-bind-all-features();
+    @include auth-sell-all-features();
+    @include faq-accordion-all-features();
+    @include faq-contact-all-features();
+    @include shop-all-features();
+    @include product-single-all-features();
+    @include tab-panel-all-features();
+    @include review-card-all-features();
+    @include team-single-all-features();
+    @include product-list-all-features();
+    @include error-404-all-features();
+    @include contact-all-features();
+    @include checkout-all-features();
+    @include blog-all-features();
+    @include article-all-features();
+}

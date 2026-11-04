@@ -1,0 +1,37 @@
+@use '../../variables' as var;
+@use '../../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../../../styles-collections/breakpoints' as *;
+
+@mixin article-header-all-features() {
+    &__header {
+        border-bottom-color: var.$twentieth-one-color;
+    }
+
+    &__title {
+        @include font-collect($font-family: var.$font-family-cinzel, $font-weight: var.$font-weight-bold, $font-size: 28px, $line-height: 1.3);
+        color: var.$secondary-color;
+        @include respond('lg') { font-size: 36px; }
+    }
+
+    &__author {
+        color: var.$tertiary-color;
+        font-size: .875rem;
+        font-weight: var.$font-weight-middle;
+    }
+
+    &__separator { color: var.$font-weight-middle; }
+
+    &__date { 
+        color: var.$twentieth-color;
+        font-size: .875rem;
+    }
+
+    &__excerpt {
+        font-size: 1.0625rem;
+        color: var.$primary-color;
+        line-height: 1.75;
+        font-style: italic;
+        border-left: 3px solid var.$tertiary-color;
+        padding-left: 1.25rem;
+    }
+}

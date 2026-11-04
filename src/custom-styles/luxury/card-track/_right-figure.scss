@@ -1,0 +1,60 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+
+@use '../variables' as var;
+
+@use '../../../styles-collections/mixin/rotate-figure-mixin' as *;
+
+@mixin right-figure-all-features() {
+    @include position-features($position: absolute);
+    @include display-features($display: none, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+    @include dimension($width: 300px, $height: 300px);
+    @include direction-position($top: 184px, $right: -38px, $bottom: unset, $left: unset, );
+    @include out-direction-move($z-index: -1);
+    
+    app-text-box:has(.text-box-block-0) {
+        @include position-features($position: relative);
+        @include display-features($display: block, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+        @include dimension($width: 100%, $height: 100%);
+        @include border-decoration-solid($length: 1px);
+        @include border-decoration-color($border-color: var.$fifth-color);
+        @include border-decoration-radius($border-radius: 250%);
+
+        .text-box-block-0 {
+            .ui-figure {
+                @include position-features($position: absolute);
+                @include direction-position($top: 0, $right: unset, $bottom: unset, $left: 0, );
+                @include dimension($width: 150px, $height: 150px);
+                @include content-color($background-color: var.$fifth-color);
+                @include border-decoration-radius-detailed($border-top-left-radius: 250%, $border-top-right-radius: unset, $border-bottom-right-radius: unset, $border-bottom-left-radius: unset);
+
+                @include respond("2xl") {
+                    @include dimension($width: 200px, $height: 200px);
+                }
+
+                @include respond("3xl") {
+                    @include dimension($width: 257.5px, $height: 257.5px);
+                }
+            }
+        }
+
+        @include rotate-figure($time: 4s, $type: linear, $repeat: infinite);
+    }
+
+    @include respond(xl) {
+        @include display-features($display: block, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+    }
+
+    @include respond("2xl") {
+        @include dimension($width: 400px, $height: 400px);
+        @include direction-position($top: 134px, $right: -38px, $bottom: unset, $left: unset, );
+    }
+    
+    @include respond("3xl") {
+        @include dimension($width: 515px, $height: 515px);
+        @include direction-position($top: 83px, $right: 0, $bottom: unset, $left: unset, );
+    }
+}

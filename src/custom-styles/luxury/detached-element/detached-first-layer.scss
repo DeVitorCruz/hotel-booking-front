@@ -1,0 +1,76 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+
+@use './detached-body-content' as *;
+@use './detached-image-content' as *;
+
+@use '../../../styles-collections/breakpoints' as *;
+@use '../variables' as var;
+
+
+@mixin detached-first-all-features() {
+    app-sequence-space:has(.ui-sequence-block__detached-layer-block) {
+        @include position-features($position: relative);
+        @include display-features($display: block, $justify-content: unset, $flex-direction: unset, $align-items: unset, $align-content: unset, $flex-wrap: unset);
+        @include box-internal-space($top: 40px, $right: 30px, $bottom: 40px, $left: 30px);
+        @include content-color(var.$secondary-color);
+        @include text-color(var.$white-color);
+
+        .ui-sequence-block__detached-layer-block {
+            @include display-features($display: flex, $justify-content: center, $flex-direction: column, $align-items: center, $align-content: center, $flex-wrap: wrap);
+
+            .item-space__detached-layer-element-0, .item-space__detached-layer-element-1 {
+                @include flex-position-features(0 0 auto);
+                @include dimension($width: 100%, $height: auto);
+
+                @include respond(lg) {
+                    @include dimension($width: 47%, $height: auto);
+                }
+
+                @include respond(xl) {
+                    @include dimension($width: 50%, $height: auto);
+                }
+            }
+
+            .item-space__detached-layer-element-0 {
+                @include detached-image-content-all-features();
+            }
+
+            .item-space__detached-layer-element-1 {
+                @include detached-body-content-all-features();
+            }
+
+            @include respond(lg) {
+                @include display-features($display: flex, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: unset);
+            }
+        }
+
+        &:before, &::after {
+            @include position-features($position: absolute);
+            @include content-color(var.$ninth-color);
+
+            @include respond(sm) {
+                content: '';
+            }
+        }
+
+        &:before {
+            @include direction-position($top: 0, $right: unset, $bottom: unset, $left: 0);
+            @include dimension($width: 290px, $height: 290px);
+        }
+
+        &::after {
+            @include direction-position($top: unset, $right: 0, $bottom: 0, $left: unset);
+            @include dimension($width: 316px, $height: 290px);
+        }
+
+        @include respond(lg) {
+            @include box-internal-space($top: 30px, $right: 20px, $bottom: 30px, $left: 20px);
+        }
+
+        @include respond(xl) {
+            @include box-internal-space($top: 90px, $right: 90px, $bottom: 90px, $left: 90px);
+        }
+    }
+}

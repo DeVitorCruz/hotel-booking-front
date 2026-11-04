@@ -1,0 +1,20 @@
+@use '../../variables' as var;
+@use '../../../../styles-collections/mixin/typography/font-scales' as *;
+
+@mixin product-list-summary-all-features() {
+    &__summary {
+        border-top: 2px solid var.$thirteenth-color;
+        padding-top: 1.5rem;
+    }
+
+    &__summary-label {
+        font-weight: var.$font-weight-intermediate;
+        color: var.$secondary-color;
+        font-size: .9375rem;
+    }
+
+    &__summary-value {
+        @include font-collect($font-family: var.$font-family-cinzel, $font-weight: var.$font-weight-bold, $font-size: 16px, $line-height: 1);
+        color: var.$tertiary-color;
+    }
+}

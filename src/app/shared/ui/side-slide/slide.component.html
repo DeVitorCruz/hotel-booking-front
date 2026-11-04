@@ -1,0 +1,49 @@
+<div [class]="'swiper' + ' ' + SLIDE().containerClassName">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+        @for (screen of SLIDE().swiperSlideList; track screen) {
+            <div class="swiper-slide">
+                <ng-container
+                    *ngComponentOutlet="screen.swiperComponent; inputs: screen.swiperInput"></ng-container>
+            </div>
+        }
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+
+    <!-- If we need navigation buttons -->
+    <div class="btn-block">
+        @for (button of SLIDE().buttonList; track button) {
+            <div [class]="button.classNameSwiper?? ''">
+                @if (button.iconType.type === 'iconAwesome') {
+                    <app-button-flex 
+                        [BUTTON_ITEM]="button"></app-button-flex>
+                } @else if (button.iconType.type === 'iconMaterial') {
+                    <app-button-flex 
+                        [BUTTON_ITEM]="button"></app-button-flex>
+                } @else {
+                    <app-button-flex 
+                        [BUTTON_ITEM]="button"></app-button-flex>
+                }
+            </div>
+        }
+    </div>
+
+    <!-- If we need scrollbar -->
+    <div class="swiper-scrollbar"></div>
+</div>
+
+<!-- Thumbs swiper - rendered inside same component, initialized first -->
+@if (SLIDE().thumbs) {
+    <div [class]="'swiper' + ' ' + SLIDE().thumbs?.containerClassName">
+        <div class="swiper-wrapper">
+            @for (screen of SLIDE().thumbs!.swiperSlideList; track screen) {
+                <div class="swiper-slide">
+                    <ng-container
+                        *ngComponentOutlet="screen.swiperComponent; inputs: screen.swiperInput">
+                    </ng-container>
+                </div>
+            }
+        </div>
+    </div>
+}

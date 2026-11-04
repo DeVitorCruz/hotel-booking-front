@@ -1,0 +1,23 @@
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../../styles-collections/mixin/color/color-mixin' as *;
+
+@use '../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../variables' as var;
+
+@mixin swiper-button-all-features() {
+    app-button-flex:has(.ui-btn-flex) {
+        @include display-features($display: block, $justify-content: unset, $flex-direction: unset, $align-items: center, $align-content: center, $flex-wrap: unset); 
+        
+        .ui-btn-flex {
+            @include font-collect(var.$font-family-sans, var.$font-weight-regular, 30px, $line-height: 1.5);
+            @include text-color(var.$secondary-color);
+            @include transition-features($transition: all .3s ease-in-out);
+
+            &:hover {
+                @include text-color(var.$tertiary-color);
+                @include change-view-scale($scale: scale(1.3));
+            }
+        }
+    }
+}

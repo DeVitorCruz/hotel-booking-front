@@ -1,0 +1,77 @@
+@use '../../variables' as var;
+@use '../../../../styles-collections/breakpoints' as *;
+@use '../../../../styles-collections/mixin/typography/font-scales' as *;
+@use './faq-form-content' as *;
+
+@mixin faq-contact-all-features() {
+    app-faq-contact:has(.faq-contact) {
+        display: block;
+        background-color: var.$thritieth-color;
+        padding: 80px 0;
+        padding-top: 60px;
+
+        .faq-contact {
+            &__container {
+                width: 100%;
+                padding: 0 .75rem;
+                margin: 0 auto;
+            }
+
+            &__header, &__body {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            &__header {
+                app-flex-heading:has(.ui-flex-heading), app-text-box:has(.text-box-block__header-text-0) {
+                    flex: 0 0 auto;
+                    width: 100%;
+                }
+
+                app-flex-heading:has(.ui-flex-heading) {
+                    .ui-flex-heading {
+                        @include font-collect($font-family: var.$font-family-cinzel, $font-weight: var.$font-weight-bold, $font-size: 30px, $line-height: 40px);
+                        color: var.$secondary-color;
+                        margin-bottom: 40px;
+                        text-align: center;
+
+                        @include respond("md") {
+                            font-size: 47px;
+                            margin-bottom: 60px
+                        }
+
+                        @include respond("lg") {
+                            font-size: 50px;
+                            line-height: 67px;
+                        }
+                    }
+                }
+
+                app-text-box:has(.text-box-block__header-text-0) {
+                    .text-box-block__header-text-0 {
+                        .ui-text {
+                            @include font-collect($font-family: var.$font-family-cinzel, $font-weight: var.$font-weight-bold, $font-size: 30px, $line-height: 1.2);
+                            text-align: center;
+                            margin-bottom: 35px;
+                            color: var.$secondary-color;
+                        }
+                    }
+                }
+            }
+
+            &__body {
+                .faq-content-layer {
+                    @include faq-form-content-all-features();
+                }
+            }
+        }
+
+        @include respond("md") {
+            padding: 90px 0;
+        }
+
+        @include respond("lg") {
+            padding: 120px 0;
+        }
+    }
+}

@@ -1,0 +1,9 @@
+<div [class]="'ui-flex-collection-block' + `${COLLECTION().customBlockClassName?? COLLECTION().customBlockClassName !== ''? '__' + COLLECTION().customBlockClassName : ''}`" [ngClass]="COLLECTION().customClassName">
+    <app-text-box
+        [TEXT_BOX_LIST]="COLLECTION().header"></app-text-box>
+
+    <app-sequence-space
+        [SEQUENCE_SPACE_LIST]="COLLECTION().bodyList"
+        [COSTUME_CLASS_BLOCK_NAME]="COLLECTION().bodyBlockClassName?? ''"
+        [COSTUME_CLASS_ELEMENT]="COLLECTION().bodyBlockClassName?? ''"></app-sequence-space>
+</div>

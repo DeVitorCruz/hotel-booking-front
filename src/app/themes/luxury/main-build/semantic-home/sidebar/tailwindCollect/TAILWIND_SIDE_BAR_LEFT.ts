@@ -1,0 +1,1 @@
+export const TAILWIND_SIDE_BAR_LEFT: string[] = [];

@@ -1,0 +1,20 @@
+@mixin intern-visibility-hover-sequence($index: 0, $parentClassName: '', $childClassName: '') {
+    .#{$parentClassName} {
+        .#{$childClassName} {			 
+			transition: all .3s ease-out;
+			opacity: 0;
+			visibility: hidden;
+			
+			@if ($index > 0) {
+                @include intern-visibility-hover-sequence($index - 1, $parentClassName, $childClassName);
+            }
+        }
+
+        &:hover {
+            .#{$childClassName} {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+}

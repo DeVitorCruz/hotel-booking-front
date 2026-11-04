@@ -1,0 +1,56 @@
+@use '../variables' as var;
+@use './form-footer-icon-items' as *;
+@use '../../../styles-collections/mixin/base/base-mixin' as *;
+
+@mixin form-card-footer-all-features() {
+    .auth-form__footer--container {
+        app-text-box:has(.text-box-block-0) {
+            .text-box-block-0 {
+                app-flex-heading:has(.ui-flex-heading) {
+                    display: block;
+                    font-weight: var.$font-weight-middle;
+                    border-top: 1px dashed var.$twentieth-three-color;
+                    margin-bottom: 20px;
+                    margin-top: 45px;
+                    text-align: center;
+
+                    .ui-flex-heading {
+                        display: inline-block;
+                        position: relative;
+                        font-size: 16px;
+                        color: var.$secondary-color;
+                        background-color: var.$white-color;
+                        padding: 0 25px;
+                        top: -14px;
+                    }
+                }
+
+                app-custom-list:has(.ui-list-custom) {
+                    .ui-list-custom {
+                        @include display-features($display: flex, $justify-content: center, $flex-direction: row, $align-items: center, $align-content: center, $flex-wrap: wrap);
+                        @include form-footer-icon-items-all-features();
+                        margin-bottom: 20px;
+                    }
+                }
+
+                .ui-text {
+                    color: var.$twentieth-seven-color;
+                    display: inline-block;
+                    margin-bottom: 15px;
+                }
+
+                .link-list-block {
+                    display: inline-block;
+                    margin-left: 7px;
+
+                    app-anchor-flex:has(.ui-link-e) {
+                        .ui-link-e {
+                            font-size: 14px;
+                            color: var.$secondary-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

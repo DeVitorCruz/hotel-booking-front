@@ -1,0 +1,49 @@
+@use '../../styles-collections/mixin/base/base-mixin' as *;
+@use '../../styles-collections/mixin/density/density-mixin' as *;
+@use '../../styles-collections/breakpoints' as *;
+
+:host {
+	display: block;
+}
+
+.testimonial {
+	padding: var(--testimonial-padding-y, 80px) 0 var(--testimonial-padding-y, 80px) 0;
+	
+	&__container {
+		max-width: var(--testimonial-max-width, 1280px);
+		margin: 0 auto 0 auto;
+		padding: 0 20px 0 20px;
+		@include display-features($display: flex, $justify-content: center, $flex-direction: column, $align-items: center, $align-content: center, $flex-wrap: nowrap);
+		gap: var(--testimonial-gap, 40px);
+		
+		@include respond('lg') {
+			flex-direction: row;
+			justify-content: space-between;
+			gap: var(--testimonial-gap-lg, 60px);
+		}
+	}
+	
+	&__image {
+		flex: 0 0 auto;
+		@include dimension($width: 100%, $height: auto);
+		
+		@include respond('lg') {
+			width: var(--testimonial-image-width, 40%);		
+		}
+	}
+	
+	&__body {
+		flex: 1;
+		@include dimension($width: 100%, $height: auto);
+	}
+	
+	@include respond('md') {
+		padding: var(--testimonial-padding-y-md, 90px) 0 var(--testimonial-padding-y-md, 90px) 0;
+	}
+	
+	@include respond('lg') {
+		padding: var(--testimonial-padding-y-lg, 120px) 0 var(--testimonial-padding-y-lg, 120px) 0;
+	}
+}
+
+

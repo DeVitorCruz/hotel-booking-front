@@ -1,0 +1,21 @@
+@use '../../variables' as var;
+@use '../../../../styles-collections/mixin/typography/font-scales' as *;
+@use '../../../../styles-collections/breakpoints' as *;
+
+@mixin team-name-role-all-features() {
+    &__name {
+        @include font-collect($font-family: var.$font-family-cinzel, $font-weight: var.$font-weight-bold, $font-size: 28px, $line-height: 1.3);
+        color: var.$secondary-color;
+        margin: 0;
+        
+        @include respond('lg') { font-size: 36px; }
+    }   
+
+    &__role {
+        font-size: .9375rem;
+        color: var.$tertiary-color;
+        text-transform: uppercase;
+        letter-spacing: .08em;
+        margin: 0;
+    }
+}
